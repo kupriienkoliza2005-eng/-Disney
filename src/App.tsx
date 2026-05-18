@@ -33,6 +33,13 @@ interface SimulationLink extends d3.SimulationLinkDatum<SimulationNode> {
   description: string;
 }
 
+interface NodeMetrics {
+  degree: number;
+  centrality: number;
+  neighborCount: number;
+  clusterShare: number;
+}
+
 export default function App() {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,6 +59,35 @@ export default function App() {
     source: l.source,
     target: l.target
   })), []);
+
+  // Quantitative NetworkX-style Metrics
+  const nodeMetrics = useMemo(() => {
+    const metricsMap: Record<string, NodeMetrics> = {};
+    const totalNodes = nodes.length;
+
+    nodes.forEach(node => {
+      const connectedLinks = links.filter(l => 
+        (typeof l.source === 'string' ? l.source === node.id : (l.source as any).id === node.id) || 
+        (typeof l.target === 'string' ? l.target === node.id : (l.target as any).id === node.id)
+      );
+      
+      const neighbors = new Set(connectedLinks.map(l => {
+        const sId = typeof l.source === 'string' ? l.source : (l.source as any).id;
+        const tId = typeof l.target === 'string' ? l.target : (l.target as any).id;
+        return sId === node.id ? tId : sId;
+      }));
+
+      const clusterNodes = nodes.filter(n => n.cluster === node.cluster).length;
+
+      metricsMap[node.id] = {
+        degree: connectedLinks.length,
+        centrality: connectedLinks.length / (totalNodes - 1),
+        neighborCount: neighbors.size,
+        clusterShare: clusterNodes / totalNodes
+      };
+    });
+    return metricsMap;
+  }, [nodes, links]);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -378,6 +414,32 @@ export default function App() {
                   <p className="text-lg text-slate-200 leading-relaxed font-medium italic border-l-2 border-amber-500/30 pl-4">
                     {selectedNode.description}
                   </p>
+                </div>
+
+                {/* NetworkX Quantitative Metrics Section */}
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-mono font-black text-slate-600 uppercase tracking-[0.3em] flex items-center gap-3 border-b border-white/5 pb-2">
+                    <Maximize2 className="w-3 h-3" /> Kvantitativna_Analiza (NetworkX)
+                  </h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { label: 'Stupanj (Degree)', value: nodeMetrics[selectedNode.id].degree, unit: 'veza', sub: 'Ukupan broj konekcija' },
+                      { label: 'Centralnost', value: (nodeMetrics[selectedNode.id].centrality * 100).toFixed(1), unit: '%', sub: 'Utjecaj u cijeloj mreži' },
+                      { label: 'Susjedi', value: nodeMetrics[selectedNode.id].neighborCount, unit: 'čvorova', sub: 'Jedinstveni entiteti' },
+                      { label: 'Udio Klastera', value: (nodeMetrics[selectedNode.id].clusterShare * 100).toFixed(1), unit: '%', sub: 'Veličina skupine' },
+                    ].map((m, i) => (
+                      <div key={i} className="bg-white/5 border border-white/5 rounded-xl p-3 flex flex-col justify-between">
+                         <div>
+                           <p className="text-[8px] font-mono font-bold text-slate-500 uppercase">{m.label}</p>
+                           <p className="text-[7px] font-mono text-slate-600 leading-none mb-1">{m.sub}</p>
+                         </div>
+                         <div className="flex items-baseline gap-1 mt-2">
+                           <span className="text-xl font-black text-white leading-none">{m.value}</span>
+                           <span className="text-[9px] font-bold text-amber-500/60 uppercase">{m.unit}</span>
+                         </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="space-y-6">

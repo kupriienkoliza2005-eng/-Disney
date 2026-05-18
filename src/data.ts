@@ -109,6 +109,22 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'maid_marian', name: 'Maid Marian', type: 'character', description: 'Robinova ljubav; njezina prisutnost u Nottinghamu je preteča plemstva u Zootopiji.', movie: 'Robin Hood', cluster: 'Srednji Vijek' },
     { id: 'sid', name: 'Sid', type: 'character', description: 'Dječak koji muči igračke; njegova trauma je stvorila mračnije teorije o svijetu predmeta.', movie: 'Priča o igračkama', cluster: 'Moderna' },
     
+    // Pixar Proširenje (Monsters, Incredibles, Brave, more)
+    { id: 'merida', name: 'Merida', type: 'character', description: 'Princeza koja je otkrila drevnu magiju preobražaja. Njezin susret s Vješticom je početak Pixarove vremenske linije.', movie: 'Merida Hrabra', cluster: 'Drevna Škotska' },
+    { id: 'witch_boo', name: 'Vještica (Boo)', type: 'character', description: 'Zagonetna starica koja rezbari drvo. Postoji teorija da je ona zapravo odrasla Boo koja putuje kroz vrijeme tražeći Sulleyja.', movie: 'Merida Hrabra', cluster: 'Drevna Škotska' },
+    { id: 'sulley', name: 'Sulley', type: 'character', description: 'Čudovište koje sakuplja dječje vrisak/smijeh. Njegov svijet koristi vrata kao portale kroz vrijeme.', movie: 'Čudovišta iz ormara', cluster: 'Monstropolis' },
+    { id: 'mike', name: 'Mike Wazowski', type: 'character', description: 'Najbolji Sulleyjev prijatelj. Njegova energija i humor su ključni za stabilnost Monstropolisa.', movie: 'Čudovišta iz ormara', cluster: 'Monstropolis' },
+    { id: 'boo', name: 'Boo', type: 'character', description: 'Djevojčica koja je ušla u svijet čudovišta i zauvijek promijenila Sulleyja.', movie: 'Čudovišta iz ormara', cluster: 'Monstropolis' },
+    { id: 'mr_incredible', name: 'Bob Parr', type: 'character', description: 'Gospodin Nevjerojatni. Jedan od prvih "supera" čije moći sugeriraju evoluciju mašte u snagu.', movie: 'Izbavitelji', cluster: 'Doba Heroja' },
+    { id: 'elastigirl', name: 'Helen Parr', type: 'character', description: 'Elastika. Njezina fleksibilnost je fizički ekvivalent magije transformacije.', movie: 'Izbavitelji', cluster: 'Doba Heroja' },
+    { id: 'jack_jack', name: 'Jack-Jack', type: 'character', description: 'Beba s neograničenim spekrom moći, uključujući putovanje kroz dimenzije i promjenu oblika.', movie: 'Izbavitelji', cluster: 'Doba Heroja' },
+    { id: 'mcqueen', name: 'Munjevit Jurić', type: 'character', description: 'Trkaći auto u svijetu bez ljudi. Dokaz ere u kojoj su strojevi (BnL) preuzeli dominaciju.', movie: 'Auti', cluster: 'Era Strojeva' },
+    { id: 'mater', name: 'Vučko', type: 'character', description: 'Lojalni kamion za vuču koji čuva uspomene na staru tehnologiju.', movie: 'Auti', cluster: 'Era Strojeva' },
+    { id: 'joy', name: 'Radost', type: 'character', description: 'Emocija koja upravlja ljudskom sviješću. Njezina priroda je ista ona "iskra" koja pokreće duše u Cocou.', movie: 'Izvrnuto obrnuto', cluster: 'Unutarnji Svijet' },
+    { id: 'sadness', name: 'Tuga', type: 'character', description: 'Neophodna emocija za dublje razumijevanje sjećanja i empatije.', movie: 'Izvrnuto obrnuto', cluster: 'Unutarnji Svijet' },
+    { id: 'anton_ego', name: 'Anton Ego', type: 'character', description: 'Strogi kritičar hrane čije je djetinjstvo povezano s toplinom doma i magijom kuhanja.', movie: 'Juhu-hu', cluster: 'Moderna' },
+    { id: 'mei_lee', name: 'Mei Lee', type: 'character', description: 'Djevojčica koja se pretvara u crvenu pandu, koristeći drevnu magiju predaka sličnu Mulaninoj.', movie: 'Turning Red', cluster: 'Moderna' },
+
     // Nove Teorije
     { id: 'bnl_corp', name: 'BnL Korporacija', type: 'theory', description: 'Megakorporacija koja stoji iza tehnologije u Priči o igračkama, Nebesima i Wall-E.', movie: 'Teorija', cluster: 'Teorije' },
     { id: 'teorija_pixar', name: 'Ujedinjena Pixar Teorija', type: 'theory', description: 'Sve Pixarove priče su u istoj vremenskoj liniji od antičkog doba do Wall-E ere.', movie: 'Teorija', cluster: 'Teorije' },
@@ -228,6 +244,23 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { source: 'cheshire_cat', target: 'ralph', type: 'magic', description: 'Mačak koji nestaje i digitalni glitch dijele istu metafizičku nestabilnost.' },
     { source: 'ego', target: 'wall_e', type: 'hidden_mickey', description: 'Među hrpama otpada, tri zupčanika su savršeno posložena.' },
     { source: 'ego', target: 'baymax', type: 'hidden_mickey', description: 'U odsjaju vizira, Mickey se smiješi.' },
-    { source: 'ego', target: 'robin_hood', type: 'hidden_mickey', description: 'Šerifov novčić nosi kraljevski žig s tri kruga.' }
+    { source: 'ego', target: 'robin_hood', type: 'hidden_mickey', description: 'Šerifov novčić nosi kraljevski žig s tri kruga.' },
+
+    // Pixar Proširenje Veze
+    { source: 'merida', target: 'witch_boo', type: 'theory', description: 'Teorija da je Vještica zapravo ostarjela Boo koja je naučila magiju vrata.' },
+    { source: 'witch_boo', target: 'sulley', type: 'easter_egg', description: 'U vještičinoj kolibi vidi se drveni kip Sulleyja.' },
+    { source: 'sulley', target: 'mike', type: 'family', description: 'Nerazdvojni kolege i najbolji prijatelji.' },
+    { source: 'sulley', target: 'boo', type: 'family', description: 'Veza djeteta i čudovišta koja je promijenila energetski sustav njihova svijeta.' },
+    { source: 'mr_incredible', target: 'elastigirl', type: 'family', description: 'Temelj obitelji superheroja.' },
+    { source: 'mr_incredible', target: 'bnl_corp', type: 'theory', description: 'Teorija da je BnL rano financirao i kontrolirao heroje prije njihova povlačenja.' },
+    { source: 'jack_jack', target: 'mr_incredible', type: 'family', description: 'Beba s moćima koja nadilazi sve heroje.' },
+    { source: 'mcqueen', target: 'mater', type: 'family', description: 'Najveće prijateljstvo u eri bez ljudske prisutnosti.' },
+    { source: 'mcqueen', target: 'bnl_corp', type: 'theory', description: 'Strojevi koji su evoluirali do ljudskih osobnosti nakon što je BnL napustio Zemlju.' },
+    { source: 'joy', target: 'sadness', type: 'family', description: 'Svjetlo i sjena ljudske psihe.' },
+    { source: 'joy', target: 'miguel', type: 'magic', description: 'Unutarnja duhovna "iskra" koja povezuje svijet osjećaja sa svijetom predaka.' },
+    { source: 'anton_ego', target: 'remy', type: 'easter_egg', description: 'Okus ratatouillea vratio je Ega u djetinjstvo, povezujući generacije.' },
+    { source: 'mei_lee', target: 'mulan', type: 'magic', description: 'Duhovno nasljeđe životinja zaštitnika koje se prenosi kroz generacije.' },
+    { source: 'mei_lee', target: 'ego', type: 'hidden_mickey', description: 'Skriven u dizajnu njezina rodnog grada i hrama.' },
+    { source: 'teorija_pixar', target: 'merida', type: 'theory', description: 'Meridin susret s magijom postavlja temelje za sve kasnije magijske i tech događaje u Pixar univerzumu.' }
   ]
 };
