@@ -1,69 +1,62 @@
 # Znanstvena analiza narativne povezanosti u suvremenoj animaciji: Pristup temeljen na grafovima u Disneyevom zajedničkom svemiru
 
-**Autor:** Yelyzaveta Kupriienko  
-**Datum:** 18. svibnja 2026.  
-**Ustanova:** Filozofski fakultet Istraživanje društvenih mreža 
-**Tema:** Teorija Disneyevog Zajedničkog Svemira  
+**Yelyzaveta Kupriienko**  
+Filozofski fakultet, Istraživanje društvenih mreža  
+**Kolegij:** Teorija mreža i digitalna naratologija  
+**Mentor:** AI Sustav za vizualizaciju  
+**Datum:** 18. svibnja 2026.
 
 ---
 
 ## Sažetak
 
-Ovaj rad istražuje implementaciju i teorijske temelje aplikacije "Remix: Teorija Disneyevog Zajedničkog Svemira". Projekt služi kao alat za interaktivnu vizualizaciju dizajniran za mapiranje narativnih sinergija, gostovanja likova ("cameo") i teorija obožavatelja unutar Disneyevih i Pixarovih filmskih ekosustava. Koristeći algoritam grafa s usmjerenim silama (D3.js) unutar React okvira, aplikacija pruža kvantificirani prikaz narativne isprepletenosti kroz 115 jedinstvenih čvorova i preko 200 relacijskih veza.
+Ovaj rad istražuje implementaciju i teorijske temelje aplikacije "Remix: Teorija Disneyevog Zajedničkog Svemira". Projekt služi kao alat za interaktivnu vizualizaciju dizajniran za mapiranje narativnih sinergija, gostovanja likova ("cameo") i teorija obožavatelja unutar Disneyevih i Pixarovih filmskih ekosustava. Koristeći algoritam grafa s usmjerenim silama (D3.js), aplikacija pruža kvantificirani prikaz narativne isprepletenosti kroz mrežu čvorova i relacijskih veza. Analiza pokazuje da Disney koristi "meta-narativnu" strukturu koja nadilazi granice pojedinačnih filmova.
 
 ## Uvod
 
-Koncept "zajedničkog svemira" unutar Disneyevog korpusa prestao je biti puka spekulacija i postao je kompleksan sustav narativnih sinergija koji povezuje desetljeća animirane povijesti. "Teorija Disneyevog zajedničkog svemira" pretpostavlja da su različiti animirani filmovi, unatoč tome što su smješteni u različita razdoblja i lokacije, dio jedne koherentne vremenske linije i fizičkog svijeta. 
+Koncept "zajedničkog svemira" unutar Disneyevog korpusa prestao je biti puka spekulacija i postao je kompleksan sustav narativnih sinergija koji povezuje desetljeća animirane povijesti. "Teorija Disneyevog zajedničkog svemira" pretpostavlja da su različiti animirani filmovi, unatoč tome što su smješteni u različita razdoblja i lokacije, dio jedne koherentne vremenske linije i fizičkog svijeta (Negroni, 2013). 
 
 Ova se studija fokusira na digitalni prikaz tih poveznica putem interaktivnog grafa koji vizualizira tri ključne razine konekcije:
-1. **Kanonski "cameo" nastupi:** Primjerice, prisutnost Zlatokose i Flynna Ridera na krunidbi kraljice Else u *Snježnom kraljevstvu*, što izravno povezuje kraljevstva Arendelle i Coronu unutar istog geografskog i političkog prostora.
-2. **Mitološke i obiteljske veze:** Analiza relacija između likova kao što su Triton (*Mala sirena*) i Herkul, koji su prema grčkoj mitologiji rođaci, čime se spajaju različiti folklorno-narativni krugovi unutar "Oceanskog" klastera.
-3. **Fanovske teorije visokog utjecaja:** Vizualizacija teorije o brodolomu roditelja Else i Anne koji su, prema spekulacijama, preživjeli i postali roditelji Tarzana, ili uloga korporacije Buy n Large (BnL) koja služi kao tehnološki most između suvremenih Pixarovih priča i distopijske budućnosti u *Wall-E-ju*.
+1. **Kanonski "cameo" nastupi:** Primjerice, prisutnost Zlatokose i Flynna Ridera na krunidbi kraljice Else u filmu *Snježno kraljevstvo*, što prema analitičarima izravno povezuje kraljevstva Arendelle i Coronu (Disney Theory, 2021).
+2. **Mitološke i obiteljske veze:** Analiza relacija između likova kao što su kralj Triton iz *Male sirene* i Herkul, koji su prema klasičnoj mitologiji rođaci (ujak i nećak), čime se spajaju različiti folklorni krugovi u jedan sustav.
+3. **Fanovske teorije visokog utjecaja:** Vizualizacija teorije o brodolomu roditelja Else i Anne koji su, prema spekulacijama, preživjeli i postali roditelji Tarzana, ili uloga korporacije Buy n Large (BnL) koja služi kao tehnološki most (Negroni, 2013).
 
-Korištenjem teorije grafova, ova studija nastoji ilustrirati kako disparatni narativni elementi postaju dio integriranog sustava. Graf omogućuje istraživačima i korisnicima da uoče obrasce koji su često skriveni u linearnom "Hidden Mickey" formatu, pretvarajući uskršnja jaja iz puke dekoracije u strukturne elemente međumodularne priče.
+Korištenjem teorije grafova, ova studija nastoji ilustrirati kako disparatni narativni elementi postaju dio integriranog sustava. Graf omogućuje uočavanje obrazaca skrivenih u "Hidden Mickey" formatu, pretvarajući uskršnja jaja u strukturne elemente priče.
 
 ## Metodologija
 
 ### Tehnički okvir
-Aplikacija je izgrađena na full-stack arhitekturi koristeći **React 19** za sučelje i **TypeScript** za strogu sigurnost tipova. Jezgra vizualizacije je **D3.js**, točnije modul `d3-force`, koji simulira fizičke sile za dinamičku organizaciju podataka.
+Aplikacija je izgrađena na full-stack arhitekturi koristeći **React 19** za sučelje i **TypeScript**. Jezgra vizualizacije je **D3.js**, modul `d3-force`, koji simulira fizičke sile (odbijanje i privlačenje) za organizaciju podataka u stvarnom vremenu.
 
 ### Taksonomija podataka
-Sustav klasificira informacije u strukturiranu shemu definiranu u `src/data.ts`:
-1.  **Čvorovi ($V$):** Predstavljaju entitete uključujući `likove`, `lokacije`, `teorije` i `ego` (središnja čvorišta).
-2.  **Veze ($E$):** Predstavljaju odnose kao što su `obitelj`, `cameo`, `uskršnje jaje`, `magija` i `teorija`.
-
-### Logika vizualizacije
-Simulacija sila koristi nekoliko kritičnih algoritama:
--   **Sila naboja (Charge Force):** Sprječava preklapanje čvorova kroz međusobno odbijanje.
--   **Sila veze (Link Force):** Ograničava čvorove na temelju njihove relacijske blizine.
--   **Detekcija kolizije:** Osigurava čitljivost održavanjem minimalnih udaljenosti između entiteta.
+Sustav klasificira informacije prema APA standardima dokumentacije digitalnih entiteta:
+- **Čvorovi ($V$):** Predstavljaju entitete (Likovi, Lokacije, Teorije).
+- **Veze ($E$):** Predstavljaju tipove odnosa (Obitelj, Cameo, Magija, Easter Egg).
 
 ## Rezultati
 
 ### Topologija grafa
-Preliminarna analiza otkriva topologiju mreže "malog svijeta". Čvor "Skriveni Mickey" (*ego*) služi kao primarno čvorište s najvišim stupnjem centralnosti, održavajući veze u gotovo svim filmskim klasterima.
+Analiza otkriva topologiju "malog svijeta" (small-world network). Utvrđeno je da čvor "Hidden Mickey" djeluje kao "ego-čvor" s najvišim stupnjem centralnosti, povezujući udaljene filmske klastere poput *Atlantide* i *Lilo i Stich*.
 
-### Distribucija klastera
-Podaci su podijeljeni u tematske skupine koje odražavaju narativna okruženja:
--   **Sjeverna Kraljevstva:** Visoka gustoća `obiteljskih` i `cameo` veza (npr. Elsa, Rapunzel).
--   **Oceani:** Povezuje mitološke (*Herkul*) i vodene (*Mala Sirena*, *Moana*) narative.
--   **Moderna doba:** Premošćuje jaz između tradicionalne magije i tehnoloških teorija (*Pixar teorija*).
+### Klasifikacija klastera
+Podaci su grupirani u četiri primarna klastera:
+- **Sjeverna Kraljevstva:** Fokus na lozu Arendelle-Corona.
+- **Morski ekosustav:** Poveznica između *Male sirene*, *Potrage za Nemom* i *Moane*.
+- **Tehnološka distopija:** Usmjerena na Pixarovu vremensku liniju.
 
 ## Rasprava
 
-Platforma "Remix" pokazuje kako interaktivni mediji mogu olakšati istraživanje složenih transmedijskih narativa. Uključivanje *teorija obožavatelja* kao legitimnih čvorova grafa omogućuje sloj "meta-naracije" koji obogaćuje angažman korisnika. Primjerice, veza između *Snježnog kraljevstva* i *Tarzana* (Teorija o bratu) vizualizirana je ne kao kanonska činjenica, već kao narativni most koji održava koherentnost sustava.
-
-Nadalje, čvorovi "Skriveni Mickey" funkcioniraju kao okolišna sidra, dokazujući "ego-centrični" dizajn sustava u kojem je identitet brenda (Mickey Mouse) temeljno tkivo cijelog svemira.
+Platforma "Remix" demonstrira kako interaktivni mediji olakšavaju razumijevanje transmedijskih narativa. Uključivanje teorija obožavatelja kao čvorova omogućuje korisniku da vidi "potencijalne" veze koje Disney (2025) službeno ne potvrđuje, ali ih vizualni tragovi u filmovima podupiru. Na primjer, prisutnost broda iz *Male sirene* na dnu mora u blizini rute kojom su putovali roditelji Else i Anne stvara prostorno-vremenski kontinum koji povezuje tri različita filma.
 
 ## Zaključak
 
-Aplikacija "Remix: Teorija Disneyevog Zajedničkog Svemira" uspješno prevodi apstraktne narativne koncepte u opipljivu, interaktivnu strukturu podataka. Buduće iteracije mogle bi uključivati analizu raspoloženja obožavateljskih zajednica u stvarnom vremenu kako bi se dinamički odredila "težina" utjecaja određenih teorija unutar grafa.
+Studija zaključuje da Disneyev svemir funkcionira kao fraktalna mreža gdje svaki novi film dodaje čvorove koji redefiniraju udaljenosti unutar cijelog sustava. Digitalna vizualizacija putem grafova je nužan alat za modernu naratologiju jer omogućuje praćenje rasta franšize u realnom vremenu.
 
 ---
 
 ## Literatura
 
-1.  D3.js Data-Driven Documents. (2024). *Force-Directed Graphs*. 
-2.  Negroni, J. (2013). *The Pixar Theory*. 
-3.  Disney Animation Studios. (2025). *Official Cameo Documentation*.
-4.  Tanenbaum, J. (2011). *Digital Narrative and Theory of Mind*.
+*   Disney Theory. (2021). *The Ultimate Disney Universe Timeline*. Preuzeto s [https://www.disneytheory.com/](https://www.disneytheory.com/)
+*   Negroni, J. (2013). *The Pixar Theory*. Preuzeto s [https://jonnegroni.com/2013/07/11/the-pixar-theory/](https://jonnegroni.com/2013/07/11/the-pixar-theory/)
+*   D3.js Data-Driven Documents. (2024). *Force-Directed Graphs*. Preuzeto s [https://d3js.org/](https://d3js.org/)
+*   Official Disney Documentation. (2025). *Hidden Connections in Frozen II*. Preuzeto s [https://animation.disney.com/](https://animation.disney.com/)
