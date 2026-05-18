@@ -59,28 +59,44 @@ Za potrebe analize razvijena je stroga taksonomija unutar TypeScript okruženja.
 - `Konceptualna veza (Magic/Theory)`: Spekulativne veze temeljene na sličnosti moći ili narativnim prazninama.
 ## Slika
 
+Vizualna reprezentacija mrežne strukture temeljena na taksonomiji definiranoj u **Fazi 2**. Dijagram prikazuje hijerarhiju od univerzalnog konektora (ego-čvor) do specifičnih narativnih klastera povezanih različitim tipovima relacija.
+
 ```mermaid
 graph TD
-    HM((Skriveni Mickey)) -- "Centralni Hub" --- A[Atlantida]
-    HM -- "Centralni Hub" --- LS[Lilo i Stitch]
+    %% Definiranje stilova prema taksonomiji iz Faze 2
+    classDef ego fill:#fbbf24,stroke:#000,stroke-width:4px,color:#000;
+    classDef lik fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff;
+    classDef lokacija fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#fff;
+    classDef teorija fill:#1e1b4b,stroke:#8b5cf6,stroke-width:2px,stroke-dasharray: 5 5,color:#fff;
+
+    %% Čvorovi (V)
+    HM(((Skriveni Mickey))):::ego 
+    A[Atlantida]:::lokacija
+    EL[Elsa]:::lik
+    RA[Rapunzel]:::lik
+    TA[Tarzan]:::lik
+    TR[Kralj Triton]:::lik
+    HE[Herkul]:::lik
+    WAN[Buy n Large]:::teorija
+
+    %% Relacije (E)
+    HM -- "Univerzalna poveznica (Easter Egg)" --- A
     
     subgraph "Sjeverna Kraljevstva"
-        EL[Elsa: Arendelle] -- "Cameo / Vjenčanje" --- RA[Rapunzel: Corona]
-        EL -- "Teorija o bratu" --- TA[Tarzan: Divljina]
+        EL -- "Vizualna (Cameo)" --- RA
+        EL -- "Konceptualna (Teorija o bratu)" --- TA
     end
     
-    subgraph "Relacijski Mostovi"
-        HE[Herkul] -- "Obitelj / Nećak" --- TR[Triton: Mala Sirena]
-        TR -- "Isti Ocean" --- MO[Moana]
+    subgraph "Mitološki Oceani"
+        TR -- "Krvna veza (Family)" --- HE
+        A -. "Konceptualna (Izvor magije)" .-> EL
     end
     
-    subgraph "Pixar Teorija"
-        TS[Toy Story] -- "Suradnja" --- BN[Buy n Large Korporacija]
-        BN -- "Distopija" --- WA[Wall-E]
+    subgraph "Tehnološki Kontinum"
+        WAN -- "Konceptualna (Pixar Teorija)" --- BN[Brod Axiom]:::lokacija
     end
-    
-    A -. "Teorija Izvora Magije" .-> EL
-    TA --- TR
+
+    TA -- "Konceptualna (Brodolom)" --- TR
 ```
 
 **Faza 3: Tehnička arhitektura vizualizacije**  
