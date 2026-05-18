@@ -1,4 +1,4 @@
-# 🌌 Remix: Teorija Disneyjevog Zajedničkog Svemira
+# 🌌 Tema: Teorija Disneyjevog Zajedničkog Svemira
 
 Interaktivna vizualizacija koja istražuje fascinantne veze, uskršnja jaja i teorije obožavatelja koje spajaju Disneyjeve i Pixarove svjetove u jednu veliku, neraskidivu priču.
 

@@ -1,9 +1,9 @@
 # Znanstvena analiza narativne povezanosti u suvremenoj animaciji: Pristup temeljen na grafovima u Disneyevom zajedničkom svemiru
 
-**Autor:** AI znanstveni asistent  
+**Autor:** Yelyzaveta Kupriienko  
 **Datum:** 18. svibnja 2026.  
-**Ustanova:** Odjel za studije digitalnih medija i naratologiju  
-**Tema:** Remix: Teorija Disneyevog Zajedničkog Svemira  
+**Ustanova:** Filozofski fakultet Istraživanje društvenih mreža 
+**Tema:** Tema: Teorija Disneyevog Zajedničkog Svemira  
 
 ---
 
