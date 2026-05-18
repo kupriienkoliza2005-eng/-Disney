@@ -24,18 +24,29 @@ Ovaj rad polazi od hipoteze da se Disneyev narativni sustav može promatrati kao
 Primjenom teorije grafova na ove baze podataka, ova studija nastoji preobraziti linearne popise trivijalnosti u nelinearno, interaktivno iskustvo koje reflektira stvarnu složenost suvremenog pripovijedanja.
 
 ## Metodologija
-## Method
+
 Metodološki pristup istraživanju bio je kombiniran, obuhvaćajući kvalitativnu analizu sadržaja filmskih predložaka i kvantitativnu modelaciju mrežnih podataka. Proces je bio podijeljen u tri faze: ekstrakcija podataka, taksonomija i tehnička vizualizacija.
 
 ```mermaid
-graph TD
-    A[Izvori podataka: Disney Wiki, Arhiv, Fan Teorije] --> B[Ekstrakcija podataka: Identifikacija čvorova i veza]
-    B --> C[Mapiranje taksonomije: TypeScript Shema]
-    C --> D[D3.js Force Simulation: Fizički izračun položaja]
-    D --> E[React State Management: Stanje čvora i veze]
-    E --> F[SVG Renderiranje: Interaktivno sučelje]
-    F --> G[Interakcija korisnika: Zoom/Click/Drag]
-    G --> E
+graph LR
+    subgraph "Sloj Podataka (Data Layer)"
+        DS[data.ts: Elsa, Rapunzel, Cameo Veza]
+    end
+    
+    subgraph "Procesiranje (D3 Simulation)"
+        SF[Force Simulation]
+        SF -- "Privlačenje (Link)" --> EL[Čvor: Elsa]
+        SF -- "Privlačenje (Link)" --> RA[Čvor: Rapunzel]
+    end
+    
+    subgraph "Korisničko Sučelje (React/SVG)"
+        SVG[Vizualna linija između Arendelle i Corone]
+        Panel[Bočna traka: Objašnjenje vjenčanog cameo-a]
+    end
+    
+    DS --> SF
+    SF --> SVG
+    SVG -- "Korisnički klik" --> Panel
 ```
 
 **Faza 1: Ekstrakcija i selekcija podataka**  
