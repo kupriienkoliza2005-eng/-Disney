@@ -57,6 +57,31 @@ Za potrebe analize razvijena je stroga taksonomija unutar TypeScript okruženja.
 - `Poveznica putem krvi (Family)`: Najjači stupanj povezanosti.
 - `Vizualna referenca (Cameo/Easter Egg)`: Dokazana prisutnost u istom kadru.
 - `Konceptualna veza (Magic/Theory)`: Spekulativne veze temeljene na sličnosti moći ili narativnim prazninama.
+## Slika
+
+```mermaid
+graph TD
+    HM((Skriveni Mickey)) -- "Centralni Hub" --- A[Atlantida]
+    HM -- "Centralni Hub" --- LS[Lilo i Stitch]
+    
+    subgraph "Sjeverna Kraljevstva"
+        EL[Elsa: Arendelle] -- "Cameo / Vjenčanje" --- RA[Rapunzel: Corona]
+        EL -- "Teorija o bratu" --- TA[Tarzan: Divljina]
+    end
+    
+    subgraph "Relacijski Mostovi"
+        HE[Herkul] -- "Obitelj / Nećak" --- TR[Triton: Mala Sirena]
+        TR -- "Isti Ocean" --- MO[Moana]
+    end
+    
+    subgraph "Pixar Teorija"
+        TS[Toy Story] -- "Suradnja" --- BN[Buy n Large Korporacija]
+        BN -- "Distopija" --- WA[Wall-E]
+    end
+    
+    A -. "Teorija Izvora Magije" .-> EL
+    TA --- TR
+```
 
 **Faza 3: Tehnička arhitektura vizualizacije**  
 Sustav je implementiran koristeći **React 18** i **D3.js** (Data-Driven Documents). Izbor D3.js bio je diktiran potrebom za algoritmom sa simulacijom sila (`d3-force`). Parametri simulacije pažljivo su kalibrirani kako bi se izbjeglo vizualno zagušenje:
