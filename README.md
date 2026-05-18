@@ -1,11 +1,32 @@
-<div align="center">
+# 🌌 Remix: Teorija Disneyjevog Zajedničkog Svemira
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Interaktivna vizualizacija koja istražuje fascinantne veze, uskršnja jaja i teorije obožavatelja koje spajaju Disneyjeve i Pixarove svjetove u jednu veliku, neraskidivu priču.
 
-  <h1>Built with AI Studio</h2>
+![Disney Connections](./src/assets/images/disney_connections_banner_1779108363166.png)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🎨 O Projektu
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+Ova aplikacija omogućuje korisnicima da istraže **preko 80 likova i lokacija** kroz dinamički graf. Saznajte kako su Elsa, Tarzan i Ariel povezani, otkrijte tajne BnL korporacije i pratite tragove "Skrivenog Mickeyja" kroz sve ključne trenutke Disneyjeve povijesti.
 
-</div>
+### Ključne Značajke:
+- **Interaktivni Graf:** Povucite, zumirajte i istražite čvorove koji predstavljaju likove, teorije i lokacije.
+- **Veze i Teorije:** Svaka linija nosi priču – od obiteljskih poveznica do "cameo" uloga i fanovskih teorija.
+- **Klasteri (Skupine):** Likovi su organizirani po tematskim skupinama kao što su *Sjeverna Kraljevstva*, *Oceani*, *Divljina* i *Moderna doba*.
+- **Detaljne Informacije:** Klikom na čvor ili vezu otkrivate duboku pozadinu i opis svake stavke.
+
+## 🛠️ Tehnologije
+- **React 19** & **TypeScript**
+- **D3.js** za naprednu vizualizaciju grafa
+- **Tailwind CSS** za polirani, moderni dizajn
+- **Framer Motion** za glatke animacije
+- **Lucide React** za ikone
+
+## 📖 Tematske Skupine
+- **Sjeverna Kraljevstva:** Frozen, Tangled.
+- **Oceani:** Mala Sirena, Moana, Potraga za Nemom.
+- **Divljina:** Kralj Lavova, Tarzan.
+- **Teorije:** Ujedinjena Pixar teorija, Teorija roditelja i mnoge druge.
+- **Tajne:** Atlantis, Treasure Planet.
+
+---
+*Izgrađeno s ljubavlju prema Disney magiji i moći zajedničkog pripovijedanja.*
