@@ -2,8 +2,7 @@
 
 **Autor:** Yelyzaveta Kupriienko  
 **Ustanova:** Filozofski fakultet, Odsjek za informacijske znanosti  
-**Kolegij:** Istraživanje društvenih mreža i digitalna naratologija  
-**Mentor:** AI Sustav za vizualizaciju podataka  
+**Kolegij:** Istraživanje društvenih mreža 
 **Datum:** 18. svibnja 2026.
 
 ---
@@ -25,8 +24,19 @@ Ovaj rad polazi od hipoteze da se Disneyev narativni sustav može promatrati kao
 Primjenom teorije grafova na ove baze podataka, ova studija nastoji preobraziti linearne popise trivijalnosti u nelinearno, interaktivno iskustvo koje reflektira stvarnu složenost suvremenog pripovijedanja.
 
 ## Metodologija
-
+## Method
 Metodološki pristup istraživanju bio je kombiniran, obuhvaćajući kvalitativnu analizu sadržaja filmskih predložaka i kvantitativnu modelaciju mrežnih podataka. Proces je bio podijeljen u tri faze: ekstrakcija podataka, taksonomija i tehnička vizualizacija.
+
+```mermaid
+graph TD
+    A[Izvori podataka: Disney Wiki, Arhiv, Fan Teorije] --> B[Ekstrakcija podataka: Identifikacija čvorova i veza]
+    B --> C[Mapiranje taksonomije: TypeScript Shema]
+    C --> D[D3.js Force Simulation: Fizički izračun položaja]
+    D --> E[React State Management: Stanje čvora i veze]
+    E --> F[SVG Renderiranje: Interaktivno sučelje]
+    F --> G[Interakcija korisnika: Zoom/Click/Drag]
+    G --> E
+```
 
 **Faza 1: Ekstrakcija i selekcija podataka**  
 Primarni izvori podataka bili su službeni Disneyevi arhivski materijali, transkripti filmova te baze podataka prikupljene od strane fanovskih zajednica (npr. Disney Wiki). Fokus je bio na identifikaciji čvorova (likova i lokacija) koji imaju barem jednu poveznicu s entitetom iz drugog filma. Iz istraživanja su isključeni generički likovi bez narativne težine kako bi se očuvala čitljivost grafa.
