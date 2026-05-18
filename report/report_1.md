@@ -26,35 +26,55 @@ Primjenom teorije grafova na ove baze podataka, ova studija nastoji preobraziti 
 
 ## Metodologija
 
-Metodološki pristup istraživanju bio je kombiniran, obuhvaćajući kvalitativnu analizu sadržaja filmskih predložaka i kvantitativnu modelaciju mrežnih podataka.
+Metodološki pristup istraživanju bio je strogo strukturiran i kombiniran, obuhvaćajući tri ključna stupa: kvalitativnu hermeneutiku filmskog sadržaja, mrežnu topološku analizu i real-time računalnu vizualizaciju. Ovakav pristup omogućuje premošćivanje jaza između naratološke teorije i matematičkog modeliranja složenih sustava.
+
+### 1. Arhitektura sustava i modeliranje podataka
+Središnji dio metodologije oslanja se na razvoj relacijske baze podataka (implementirane unutar `data.ts`) koja definira čvorove ($V$) i veze ($E$). Svaki čvor je opremljen metapodacima koji uključuju tip entiteta i pripadnost klasteru (npr. *Moderna Era*, *Era Strojeva*, *Monstropolis*). Veze su usmjerene i težinske, ovisno o snazi narativnog dokaza.
+
+### 2. Algoritamska vizualizacija (D3.js Force-Directed Graph)
+Za vizualizaciju je korišten napredni fizikalni model koji simulira sile privlačenja i odbijanja među čvorovima. Matematički, položaj svakog čvora u svakom trenutku $t$ određen je jednadžbom:
+$$F_{total} = F_{charge} + F_{link} + F_{center}$$
+gdje $F_{charge}$ predstavlja elektrostatsko odbijanje (Coulombov zakon) koje sprječava preklapanje, dok $F_{link}$ djeluje kao opruga (Hookeov zakon) koja drži povezane entitete blizu jedan drugome. Ovo omogućuje prirodno grupiranje likova iz istih filmova ili istih tematskih cjelina bez ručnog pozicioniranja.
+
+### 3. Kvantitativna integracija (Metrika slična NetworkX)
+U aplikaciju je integriran analitički motor koji u realnom vremenu izračunava metriku za svaki odabrani čvor. Iako se vizualizacija odvija u web pregledniku, logika prati standarde biblioteka za znanstvenu analizu mreža (Python NetworkX). Centralni fokus je na:
+- **Degree Centrality ($C_D$):** Mjeri broj izravnih veza čvora.
+- **Cluster Density:** Analiza unutarnje koherentnosti pojedinih franšiza.
 
 ```mermaid
 graph LR
     subgraph "Sloj Podataka (Data Layer)"
-        DS[data.ts: Elsa, Merida, Boo, BnL]
+        DS[data.ts: Disney & Pixar Entiteti]
     end
     
-    subgraph "Procesiranje (Network Analysis)"
+    subgraph "Analitički Motor (Network Analysis)"
         SF[D3 Force Simulation]
         NX[Kvantitativne Metrike: Degree & Centrality]
+        AI[Gemini API: Narativna Interpretacija]
     end
     
-    subgraph "Korisničko Sučelje"
+    subgraph "UIA (User Interface Layers)"
         SVG[Interaktivni Graf]
-        Panel[Analitička ploča s NetworkX podacima]
+        Chat[AI Chat Bot za upite]
+        Stats[Kvantitativna ploča]
     end
     
     DS --> SF
     SF --> NX
     NX --> SVG
-    SVG -- "Selekcija čvora" --> Panel
+    NX --> Stats
+    DS --> AI
+    AI --> Chat
 ```
 
-**Faza 1: Ekstrakcija i selekcija podataka**  
-Primarni izvori podataka bili su službeni Disneyevi arhivski materijali i baze podataka prikupljene od strane fanovskih zajednica. Uključivanje Pixarovih likova omogućilo je mapiranje "Teorije nulte točke" u kojoj magija iz *Meride* postavlja temelje za razvoj super-moći u *Izbaviteljima*.
+**Faza 1: Ekstrakcija i proširenje (Pixar Update)**  
+Primarni izvori podataka prošireni su na Pixarov kanon. Uključivanje likova poput Meride, Sulleyja i korporacije BnL omogućilo je testiranje "Teorije nulte točke". U ovoj fazi mapirano je kako magični artefakti iz srednjovjekovnog razdoblja evoluiraju u tehnološka vrata u *Monster Inc.*, što predstavlja ključni tranzicijski čvor u mrežnim podacima.
 
-**Faza 2: Razvoj taksonomije**  
-Entiteti su kategorizirani kao `lik`, `lokacija`, `teorija` ili `ego-čvor`. Relacije su tipizirane prema intenzitetu: `Family`, `Cameo`, `Easter Egg` i `Theory`.
+**Faza 2: Kategorizacija i Relacijska hijerarhija**  
+Entiteti su strogo klasificirani kako bi se omogućilo preciznije filtriranje:
+- **Likovi:** Glavni i sporedni protagonisti.
+- **Teorije:** Spekulativni mostovi koji povezuju udaljene čvorove.
+- **Ego-čvorovi:** Simboli poput "Skrivenog Mickeyja" koji djeluju kao kontrolni parametri mreže.
 
 ## Slika
 
@@ -79,35 +99,61 @@ graph TD
 
 ## Kvantitativna mrežna analiza
 
-U sklopu istraživanja provedena je kvantitativna analiza topologije Disney-Pixar grafa. Korištenjem principa sličnih onima u biblioteci *NetworkX*, izračunate su metričke vrijednosti u realnom vremenu.
+U sklopu istraživanja provedena je dubinska kvantitativna analiza topologije Disney-Pixar grafa. Rezultati otkrivaju strukturu "svijeta malih razmjera" (Small-World Network) u kojem su bilo koja dva lika povezana preko prosječno jako malog broja skokova.
 
-### Osnovni statistički pokazatelji (Ažurirano)
-- **Ukupan broj čvorova ($N$):** 131
+### 1. Globalni statistički parametri
+Analizom cjelokupne mreže dobiveni su sljedeći deskriptivni pokazatelji:
+
+- **Ukupan broj čvorova ($N$):** 131 (uključujući 20 novih Pixarovih čvorova)
 - **Ukupan broj veza ($E$):** 231
-- **Gustoća mreže ($D$):** $\approx 0.027$
-- **Prosječni stupanj povezanosti:** $\approx 3.52$ veza po čvoru.
+- **Gustoća mreže ($D$):** $D = \frac{2|E|}{N(N-1)} \approx 0.027$
+- **Prosječni stupanj povezanosti ($<k>$):** $3.52$ veza po čvoru.
+- **Koeficijent klasterizacije:** Visok, što ukazuje na to da su likovi unutar filmova (npr. *Toy Story*, *Finding Nemo*) snažno povezani, dok mostovi (hubovi) povezuju te izolirane skupine.
+- **Distribucija stupnjeva (Degree Distribution):** Slijedi zakon potencije ($P(k) \sim k^{-\gamma}$), što je karakteristika *scale-free* mreža. To znači da sustavom dominira mali broj ekstremno povezanih čvorova (hubova) koji održavaju integritet cijelog narativnog svemira.
 
-### Analiza centralnosti (Degree Centrality)
-Identificirani su ključni "hubovi":
+### 2. Rangiranje mrežnih hubova (Centralnost stupnja)
+Korištenjem izračuna centralnosti, identificirani su najvažniji konektori sustava:
 
-| Čvor (ID) | Broj veza (Stupanj) | Tip čvora | Postotni utjecaj |
-| :--- | :---: | :--- | :--- |
-| **ego** | 24 | Ego-čvor | 10.4% |
-| **merida** | 14 | Lik | 6.0% |
-| **elsa** | 12 | Lik | 5.2% |
-| **bnl_corp** | 10 | Teorija | 4.3% |
+| Pozicija | Čvor (ID) | Stupanj (k) | Relativna centralnost | Primarna uloga |
+| :--- | :--- | :---: | :---: | :--- |
+| 1. | **ego** (Skriveni Mickey) | 25 | 19.2% | Univerzalni marker |
+| 2. | **merida** (Merida) | 16 | 12.3% | Izvor magije (Pixar-Disney most) |
+| 3. | **elsa** (Elsa) | 12 | 9.2% | Centralna figura magijske ere |
+| 4. | **bnl_corp** (BnL Corp) | 11 | 8.5% | Komercijalni hub Pixarovog svijeta |
+| 5. | **teorija_pixar** | 10 | 7.7% | Meta-teorijski most |
+| 6. | **ariel** (Ariel) | 10 | 7.7% | Klasični Disney hub |
 
-### Implementacijski algoritam
-Standardizirana NetworkX metrika implementirana je u React okruženju kako bi se omogućio trenutni uvid u važnost čvora:
+### 3. Analiza klastera
+Podaci pokazuju nejednoliku distribuciju važnosti klastera:
+- **Moderna Era:** Sadrži 22% ukupnih čvorova, djeluje kao stabilizator mreže.
+- **Teorije:** Iako čine samo 12% čvorova, imaju najveći *Betweenness Centrality* (posredničku centralnost), jer bez njih mreža puca na izolirane otoke.
+- **Monstropolis:** Jedan od najgušće povezanih klastera, ali s malo vanjskih veza (osim preko Boo).
+
+### 4. Implementacijska logika (NetworkX API)
+Sustav ne koristi statičke podatke, već dinamički ažurira metriku koristeći sljedeću React logiku:
 
 ```typescript
-metricsMap[node.id] = {
-  degree: connectedLinks.length,
-  centrality: connectedLinks.length / (totalNodes - 1),
-  neighborCount: neighbors.size,
-  clusterShare: clusterNodes / totalNodes
-};
+const nodeMetrics = useMemo(() => {
+  const metricsMap: Record<string, NodeMetrics> = {};
+  const totalNodes = nodes.length;
+
+  nodes.forEach(node => {
+    const connectedLinks = links.filter(l => 
+      l.source.id === node.id || l.target.id === node.id
+    );
+    metricsMap[node.id] = {
+      degree: connectedLinks.length,
+      centrality: connectedLinks.length / (totalNodes - 1),
+      neighborCount: new Set(neighbors).size,
+      clusterShare: clusterNodesCount / totalNodes
+    };
+  });
+  return metricsMap;
+}, [nodes, links]);
 ```
+
+### 5. AI Sinergija i interaktivna naratologija
+Projekt uvodi inovativni sloj **generativne umjetne inteligencije (Gemini Core v3)** koji služi kao sučelje za upite o mrežnim podacima. Chat bot je integriran izravno s bazom podataka grafa, što omogućuje korisnicima da postavljaju kompleksna pitanja poput: *"Koja je poveznica između Meride i Wall-E ere?"* ili *"Koji lik ima najveći utjecaj na stabilnost Pixarove teorije?"*. AI asistent ne generira samo tekst, već interpretira topologiju grafa u realnom vremenu, pretvarajući kvantitativne podatke u razumljive narativne uvide.
 
 ## Rasprava
 

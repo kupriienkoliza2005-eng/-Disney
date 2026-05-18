@@ -18,7 +18,11 @@ import {
   Activity,
   Shield,
   Zap,
-  Globe
+  Globe,
+  MessageSquare,
+  Send,
+  Loader2,
+  Cpu
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -51,6 +55,49 @@ export default function App() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isLegendOpen, setIsLegendOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<{ role: 'user' | 'model', text: string }[]>([]);
+  const [currentInput, setCurrentInput] = useState('');
+  const [isAiLoading, setIsAiLoading] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMessages]);
+
+  const handleSendMessage = async () => {
+    if (!currentInput.trim() || isAiLoading) return;
+
+    const userMsg = currentInput;
+    setCurrentInput('');
+    setChatMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setIsAiLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMsg,
+          history: chatMessages
+        })
+      });
+      
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+      
+      setChatMessages(prev => [...prev, { role: 'model', text: data.text }]);
+    } catch (err: any) {
+      console.error("Chat Error:", err);
+      setChatMessages(prev => [...prev, { role: 'model', text: "Oprostite, došlo je do greške u komunikaciji s AI sustavom." }]);
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
 
   // Use refs for nodes and links to keep them stable across renders while simulation is running
   const nodes: SimulationNode[] = useMemo(() => graphData.nodes.map(n => ({ ...n })), []);
@@ -314,6 +361,18 @@ export default function App() {
           >
             <Layers className="w-5 h-5" />
           </button>
+          
+          <button 
+            onClick={() => setIsChatOpen(!isChatOpen)}
+            className={cn(
+              "bg-slate-900/40 backdrop-blur-xl border p-2.5 rounded-full transition-all shadow-xl hover:scale-110 relative",
+              isChatOpen ? "border-blue-500/50 text-blue-400" : "border-white/5 text-slate-400"
+            )}
+            title="Interaktivni AI Chat"
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-[#020204] animate-pulse" />
+          </button>
         </div>
       </header>
 
@@ -370,7 +429,101 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Detail Sidebar */}
+      {/* AI Chat Drawer */}
+      <AnimatePresence>
+        {isChatOpen && (
+          <motion.div 
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            className="absolute bottom-24 right-10 w-[400px] h-[550px] bg-[#0c0c14]/95 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.6)] z-50 flex flex-col overflow-hidden"
+          >
+            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-6 border-b border-white/5 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                  <Cpu className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black tracking-tight uppercase">AI Asistent Svemira</h3>
+                  <p className="text-[8px] font-mono font-bold text-blue-400 uppercase tracking-widest">Online // Analitički_Mod_Aktiviran</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsChatOpen(false)}
+                className="p-1 hover:bg-white/5 rounded-full text-slate-500 hover:text-white transition-all"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar">
+              {chatMessages.length === 0 && (
+                <div className="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-50">
+                  <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
+                    <Sparkles className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white uppercase italic">Sustav spreman</p>
+                    <p className="text-xs text-slate-500 mt-1">Pitaj me o bilo kojem liku, teoriji ili kvantitativnoj mrežnoj analizi Disney svemira.</p>
+                  </div>
+                </div>
+              )}
+              
+              {chatMessages.map((msg, i) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  key={i} 
+                  className={cn(
+                    "flex flex-col max-w-[85%]",
+                    msg.role === 'user' ? "ml-auto items-end" : "mr-auto items-start"
+                  )}
+                >
+                   <div className={cn(
+                     "px-4 py-3 rounded-2xl text-xs font-medium leading-relaxed",
+                     msg.role === 'user' 
+                       ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(37,99,235,0.3)]" 
+                       : "bg-white/5 border border-white/10 text-slate-200 rounded-bl-none"
+                   )}>
+                     {msg.text}
+                   </div>
+                   <span className="text-[8px] font-mono font-black text-slate-600 uppercase mt-1.5 tracking-widest">
+                     {msg.role === 'user' ? 'Korisnik_H01' : 'Gemini_Core_v3'}
+                   </span>
+                </motion.div>
+              ))}
+              
+              {isAiLoading && (
+                <div className="flex items-center gap-3 text-blue-500">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-[10px] font-mono font-black uppercase tracking-widest animate-pulse">Procesiranje_Podataka...</span>
+                </div>
+              )}
+              <div ref={chatEndRef} />
+            </div>
+
+            <div className="p-4 bg-white/5 border-t border-white/5">
+              <div className="relative">
+                <input 
+                  type="text"
+                  value={currentInput}
+                  onChange={(e) => setCurrentInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Utipkaj upit naracije..."
+                  className="w-full bg-slate-900 border border-white/10 rounded-2xl pl-5 pr-14 py-4 text-xs focus:outline-none focus:border-blue-500/50 transition-all font-medium"
+                />
+                <button 
+                  onClick={handleSendMessage}
+                  disabled={isAiLoading || !currentInput.trim()}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg transition-all active:scale-95"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {(selectedNode || selectedLink) && (
           <motion.div 
