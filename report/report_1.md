@@ -3,7 +3,7 @@
 **Autor:** Yelyzaveta Kupriienko  
 **Datum:** 18. svibnja 2026.  
 **Ustanova:** Filozofski fakultet Istraživanje društvenih mreža 
-**Tema:** Tema: Teorija Disneyevog Zajedničkog Svemira  
+**Tema:** Teorija Disneyevog Zajedničkog Svemira  
 
 ---
 
