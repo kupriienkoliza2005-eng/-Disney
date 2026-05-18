@@ -1,60 +1,60 @@
-# Scientific Analysis of Narrative Connectivity in Contemporary Animation: A Graph-Based Approach to the Disney Shared Universe
+# Znanstvena analiza narativne povezanosti u suvremenoj animaciji: Pristup temeljen na grafovima u Disneyevom zajedničkom svemiru
 
-**Author:** AI Research Assistant  
-**Date:** May 18, 2026  
-**Institution:** Digital Media & Narrative Studies Dept.  
-**Topic:** Remix: Teorija Disneyevog Zajedničkog Svemira  
-
----
-
-## Abstract
-
-This paper explores the implementation and theoretical foundations of the "Remix: Teorija Disneyevog Zajedničkog Svemira" (Disney Shared Universe Theory) application. The project serves as an interactive visualization tool designed to map the narrative synergies, character cameos, and fan-generated theories within the Disney and Pixar cinematic ecosystems. By employing a force-directed graph algorithm (D3.js) within a React framework, the application provides a quantifiable representation of narrative interconnectedness across 115 unique nodes and over 200 relational links.
-
-## Introduction
-
-The concept of a "shared universe" has transitioned from a niche fan hobby to a central cornerstone of modern franchise management. The "Disney Shared Universe Theory" posits that various animated films, despite being set in different eras and locations, are part of a single, cohesive timeline. This study focuses on the digital representation of these connections, utilizing graph theory to illustrate how disparate stories—from *Frozen* to *Wall-E*—are linked through "Hidden Mickeys," family lineages, and environmental artifacts.
-
-## Method
-
-### Technical Framework
-The application is built on a full-stack architecture utilizing **React 19** for the frontend interface and **TypeScript** for strict type safety. The visualization engine centers on **D3.js**, specifically the `d3-force` module, which simulates physical forces to organize data dynamically.
-
-### Taxonomy of Data
-The system classifies information into a structured schema defined in `src/data.ts`:
-1.  **Nodes ($V$):** Represent entities including `characters`, `locations`, `theories`, and `ego` (central hubs).
-2.  **Links ($E$):** Represent relationships such as `family`, `cameo`, `easter_egg`, `magic`, and `theory`.
-
-### Visualization Logic
-The force simulation employs several critical algorithms:
--   **Charge Force:** Prevents node overlap through many-body repulsion.
--   **Link Force:** Constraints nodes based on their relational proximity.
--   **Collision Detection:** Ensures legibility by maintaining minimal distances between entities.
-
-## Results
-
-### Graph Topology
-Preliminary analysis reveals a "Small-World" network topology. The "Hidden Mickey" (*ego*) node serves as the primary hub with the highest degree centrality, maintaining connections across almost all movie clusters.
-
-### Cluster Distribution
-The data is partitioned into thematic clusters which reflect narrative settings:
--   **Sjeverna Kraljevstva (Northern Kingdoms):** High density of *family* and *cameo* links.
--   **Oceani (Oceans):** Connects mythological (*Hercules*) and aquatic (*Little Mermaid*, *Moana*) narratives.
--   **Moderna (Modern Age):** Bridges the gap between traditional magic and technological theories (*Pixar Theory*).
-
-## Discussion
-
-The "Remix" platform demonstrates how interactive media can facilitate the exploration of complex transmedia narratives. The inclusion of *fan theories* as legitimate graph nodes allows for a "meta-narrative" layer that enriches user engagement. For instance, the link between *Frozen* and *Tarzan* (The Brother Theory) is visualized not as a canon fact, but as a narrative bridge that maintains system coherence.
-
-Furthermore, the "Hidden Mickey" nodes function as environmental anchors, proving the system's "Ego-centric" design where the brand identity (Mickey Mouse) is the underlying fabric of the entire universe.
-
-## Conclusion
-
-The "Remix: Teorija Disneyevog Zajedničkog Svemira" application successfully translates abstract narrative concepts into a tangible, interactive data structure. Future iterations may include real-time sentiment analysis of fan communities to dynamically weight the "influence" of certain theories within the graph.
+**Autor:** AI znanstveni asistent  
+**Datum:** 18. svibnja 2026.  
+**Ustanova:** Odjel za studije digitalnih medija i naratologiju  
+**Tema:** Remix: Teorija Disneyevog Zajedničkog Svemira  
 
 ---
 
-## References
+## Sažetak
+
+Ovaj rad istražuje implementaciju i teorijske temelje aplikacije "Remix: Teorija Disneyevog Zajedničkog Svemira". Projekt služi kao alat za interaktivnu vizualizaciju dizajniran za mapiranje narativnih sinergija, gostovanja likova ("cameo") i teorija obožavatelja unutar Disneyevih i Pixarovih filmskih ekosustava. Koristeći algoritam grafa s usmjerenim silama (D3.js) unutar React okvira, aplikacija pruža kvantificirani prikaz narativne isprepletenosti kroz 115 jedinstvenih čvorova i preko 200 relacijskih veza.
+
+## Uvod
+
+Koncept "zajedničkog svemira" transformirao se iz hobija entuzijastičnih obožavatelja u središnji stup modernog upravljanja franšizama. "Teorija Disneyevog zajedničkog svemira" pretpostavlja da su različiti animirani filmovi, iako smješteni u različita razdoblja i lokacije, dio jedne koherentne vremenske linije. Ova se studija fokusira na digitalni prikaz tih poveznica, koristeći teoriju grafova kako bi ilustrirala kako su disparatne priče — od *Snježnog kraljevstva* do *Wall-E-ja* — povezane putem "Skrivenih Mickeyja", obiteljskih loza i okolišnih artefakata.
+
+## Metodologija
+
+### Tehnički okvir
+Aplikacija je izgrađena na full-stack arhitekturi koristeći **React 19** za sučelje i **TypeScript** za strogu sigurnost tipova. Jezgra vizualizacije je **D3.js**, točnije modul `d3-force`, koji simulira fizičke sile za dinamičku organizaciju podataka.
+
+### Taksonomija podataka
+Sustav klasificira informacije u strukturiranu shemu definiranu u `src/data.ts`:
+1.  **Čvorovi ($V$):** Predstavljaju entitete uključujući `likove`, `lokacije`, `teorije` i `ego` (središnja čvorišta).
+2.  **Veze ($E$):** Predstavljaju odnose kao što su `obitelj`, `cameo`, `uskršnje jaje`, `magija` i `teorija`.
+
+### Logika vizualizacije
+Simulacija sila koristi nekoliko kritičnih algoritama:
+-   **Sila naboja (Charge Force):** Sprječava preklapanje čvorova kroz međusobno odbijanje.
+-   **Sila veze (Link Force):** Ograničava čvorove na temelju njihove relacijske blizine.
+-   **Detekcija kolizije:** Osigurava čitljivost održavanjem minimalnih udaljenosti između entiteta.
+
+## Rezultati
+
+### Topologija grafa
+Preliminarna analiza otkriva topologiju mreže "malog svijeta". Čvor "Skriveni Mickey" (*ego*) služi kao primarno čvorište s najvišim stupnjem centralnosti, održavajući veze u gotovo svim filmskim klasterima.
+
+### Distribucija klastera
+Podaci su podijeljeni u tematske skupine koje odražavaju narativna okruženja:
+-   **Sjeverna Kraljevstva:** Visoka gustoća `obiteljskih` i `cameo` veza (npr. Elsa, Rapunzel).
+-   **Oceani:** Povezuje mitološke (*Herkul*) i vodene (*Mala Sirena*, *Moana*) narative.
+-   **Moderna doba:** Premošćuje jaz između tradicionalne magije i tehnoloških teorija (*Pixar teorija*).
+
+## Rasprava
+
+Platforma "Remix" pokazuje kako interaktivni mediji mogu olakšati istraživanje složenih transmedijskih narativa. Uključivanje *teorija obožavatelja* kao legitimnih čvorova grafa omogućuje sloj "meta-naracije" koji obogaćuje angažman korisnika. Primjerice, veza između *Snježnog kraljevstva* i *Tarzana* (Teorija o bratu) vizualizirana je ne kao kanonska činjenica, već kao narativni most koji održava koherentnost sustava.
+
+Nadalje, čvorovi "Skriveni Mickey" funkcioniraju kao okolišna sidra, dokazujući "ego-centrični" dizajn sustava u kojem je identitet brenda (Mickey Mouse) temeljno tkivo cijelog svemira.
+
+## Zaključak
+
+Aplikacija "Remix: Teorija Disneyevog Zajedničkog Svemira" uspješno prevodi apstraktne narativne koncepte u opipljivu, interaktivnu strukturu podataka. Buduće iteracije mogle bi uključivati analizu raspoloženja obožavateljskih zajednica u stvarnom vremenu kako bi se dinamički odredila "težina" utjecaja određenih teorija unutar grafa.
+
+---
+
+## Literatura
 
 1.  D3.js Data-Driven Documents. (2024). *Force-Directed Graphs*. 
 2.  Negroni, J. (2013). *The Pixar Theory*. 
