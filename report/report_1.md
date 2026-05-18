@@ -13,7 +13,14 @@ Ovaj rad istražuje implementaciju i teorijske temelje aplikacije "Remix: Teorij
 
 ## Uvod
 
-Koncept "zajedničkog svemira" transformirao se iz hobija entuzijastičnih obožavatelja u središnji stup modernog upravljanja franšizama. "Teorija Disneyevog zajedničkog svemira" pretpostavlja da su različiti animirani filmovi, iako smješteni u različita razdoblja i lokacije, dio jedne koherentne vremenske linije. Ova se studija fokusira na digitalni prikaz tih poveznica, koristeći teoriju grafova kako bi ilustrirala kako su disparatne priče — od *Snježnog kraljevstva* do *Wall-E-ja* — povezane putem "Skrivenih Mickeyja", obiteljskih loza i okolišnih artefakata.
+Koncept "zajedničkog svemira" unutar Disneyevog korpusa prestao je biti puka spekulacija i postao je kompleksan sustav narativnih sinergija koji povezuje desetljeća animirane povijesti. "Teorija Disneyevog zajedničkog svemira" pretpostavlja da su različiti animirani filmovi, unatoč tome što su smješteni u različita razdoblja i lokacije, dio jedne koherentne vremenske linije i fizičkog svijeta. 
+
+Ova se studija fokusira na digitalni prikaz tih poveznica putem interaktivnog grafa koji vizualizira tri ključne razine konekcije:
+1. **Kanonski "cameo" nastupi:** Primjerice, prisutnost Zlatokose i Flynna Ridera na krunidbi kraljice Else u *Snježnom kraljevstvu*, što izravno povezuje kraljevstva Arendelle i Coronu unutar istog geografskog i političkog prostora.
+2. **Mitološke i obiteljske veze:** Analiza relacija između likova kao što su Triton (*Mala sirena*) i Herkul, koji su prema grčkoj mitologiji rođaci, čime se spajaju različiti folklorno-narativni krugovi unutar "Oceanskog" klastera.
+3. **Fanovske teorije visokog utjecaja:** Vizualizacija teorije o brodolomu roditelja Else i Anne koji su, prema spekulacijama, preživjeli i postali roditelji Tarzana, ili uloga korporacije Buy n Large (BnL) koja služi kao tehnološki most između suvremenih Pixarovih priča i distopijske budućnosti u *Wall-E-ju*.
+
+Korištenjem teorije grafova, ova studija nastoji ilustrirati kako disparatni narativni elementi postaju dio integriranog sustava. Graf omogućuje istraživačima i korisnicima da uoče obrasce koji su često skriveni u linearnom "Hidden Mickey" formatu, pretvarajući uskršnja jaja iz puke dekoracije u strukturne elemente međumodularne priče.
 
 ## Metodologija
 
