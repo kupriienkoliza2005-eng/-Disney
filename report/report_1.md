@@ -1,7 +1,7 @@
 # Kako nasmješeni miš povezuje djetinjstvo i baze podataka: Sveobuhvatna mrežna analiza Disneyevog i Pixarovog narativnog meta-svemira
 
 **Autorica:** Yelyzaveta Kupriienko  
-**Ustanova:** Filozofski fakultet, Odsjek za informacijske znanosti  
+**Ustanova:** Filozofski fakultet, Odsjek za Pedagogiju  
 **Kolegij:** Istraživanje društvenih mreža  
 **Datum:** 19. svibnja 2026.
 
