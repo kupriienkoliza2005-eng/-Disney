@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import { motion, AnimatePresence } from 'motion/react';
+import ReactMarkdown from 'react-markdown';
 import { graphData, Node, Link } from './data';
 import { 
   Info, 
@@ -59,7 +60,19 @@ export default function App() {
   const [chatMessages, setChatMessages] = useState<{ role: 'user' | 'model', text: string }[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isAiLoading, setIsAiLoading] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [isComparisonOpen, setIsComparisonOpen] = useState(false);
+  const [reportContent, setReportContent] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isReportOpen && !reportContent) {
+      fetch('/report/report_1.md')
+        .then(r => r.text())
+        .then(text => setReportContent(text))
+        .catch(err => console.error("Error loading report:", err));
+    }
+  }, [isReportOpen, reportContent]);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -361,6 +374,23 @@ export default function App() {
           >
             <Layers className="w-5 h-5" />
           </button>
+
+          <button 
+            onClick={() => setIsReportOpen(true)}
+            className="bg-slate-900/40 backdrop-blur-xl border border-white/5 p-2.5 rounded-full transition-all shadow-xl hover:scale-110 text-slate-400 hover:text-white"
+            title="Pročitaj Znanstveni Izvještaj"
+          >
+            <BookOpen className="w-5 h-5" />
+          </button>
+
+          <button 
+            onClick={() => setIsComparisonOpen(true)}
+            className="bg-slate-900/40 backdrop-blur-xl border border-white/5 px-4 py-2 rounded-full transition-all shadow-xl hover:scale-110 text-slate-400 hover:text-white flex items-center gap-2 text-[10px] font-black uppercase tracking-widest bg-gradient-to-r from-amber-500/10 to-transparent hover:from-amber-500/20"
+            title="Usporedba Popularnosti Igranih Filmova"
+          >
+            <Activity className="w-4 h-4 text-amber-500" />
+            Usporedba_Filmova
+          </button>
           
           <button 
             onClick={() => setIsChatOpen(!isChatOpen)}
@@ -480,12 +510,12 @@ export default function App() {
                   )}
                 >
                    <div className={cn(
-                     "px-4 py-3 rounded-2xl text-xs font-medium leading-relaxed",
+                     "px-4 py-3 rounded-2xl text-xs font-medium leading-relaxed markdown-body",
                      msg.role === 'user' 
                        ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(37,99,235,0.3)]" 
                        : "bg-white/5 border border-white/10 text-slate-200 rounded-bl-none"
                    )}>
-                     {msg.text}
+                     <ReactMarkdown>{msg.text}</ReactMarkdown>
                    </div>
                    <span className="text-[8px] font-mono font-black text-slate-600 uppercase mt-1.5 tracking-widest">
                      {msg.role === 'user' ? 'Korisnik_H01' : 'Gemini_Core_v3'}
@@ -524,6 +554,237 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Report Modal */}
+      <AnimatePresence>
+        {isReportOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-20 bg-black/80 backdrop-blur-md"
+            onClick={() => setIsReportOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-[#0c0c14] border border-white/10 w-full max-w-4xl max-h-full overflow-hidden rounded-3xl shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-black" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-black tracking-tight uppercase">Znanstvena Analiza Svemira</h3>
+                    <p className="text-[8px] font-mono font-bold text-amber-500 uppercase tracking-widest">Dokumentacija_v1.0 // 2026</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsReportOpen(false)}
+                  className="p-2 hover:bg-white/5 rounded-full text-slate-500 hover:text-white transition-all shadow-lg"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-10 md:p-16 prose prose-invert prose-amber max-w-none no-scrollbar markdown-body">
+                <ReactMarkdown>{reportContent || "Učitavanje izvještaja..."}</ReactMarkdown>
+              </div>
+              <div className="p-4 bg-white/5 border-t border-white/5 flex justify-center">
+                 <button 
+                   onClick={() => setIsReportOpen(false)}
+                   className="px-8 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-400 transition-all"
+                 >
+                   Zatvori_Arhivu
+                 </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isComparisonOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-14 bg-black/85 backdrop-blur-md"
+            onClick={() => setIsComparisonOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 30 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 30 }}
+              className="bg-[#0b0b13] border border-white/10 w-full max-w-5xl h-[85vh] overflow-hidden rounded-3xl shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+                    <Activity className="w-5 h-5 text-black animate-pulse" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-black tracking-tight uppercase">Komparativna Analiza Igranih Filmova (Live-Action)</h3>
+                    <p className="text-[8px] font-mono font-bold text-amber-500 uppercase tracking-widest">Kvantitativni Podaci & Ocjene Gledatelja // 2026</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsComparisonOpen(false)}
+                  className="p-2 hover:bg-white/5 rounded-full text-slate-500 hover:text-white transition-all shadow-lg"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="flex-grow overflow-y-auto p-8 md:p-10 space-y-8 no-scrollbar">
+                {/* Kvantitativni Sažetak */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-amber-500/5 border border-amber-500/20 p-5 rounded-2xl flex flex-col justify-between">
+                    <div>
+                      <span className="text-[8px] font-mono font-black text-amber-500 uppercase tracking-widest block mb-1">CRITICAL LEADER</span>
+                      <h4 className="text-xl font-black italic uppercase leading-tight text-white">Mary Poppins (1964)</h4>
+                      <p className="text-xs text-slate-400 mt-2">Vrhunac kvalitete sa stabilnom ocjenom od <strong className="text-amber-500">8.4/10</strong> i pet osvojenih Oscara pod vodstvom Julie Andrews.</p>
+                    </div>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="text-2xl font-black text-white">8.4</span>
+                      <span className="text-[10px] text-slate-400">IMDb / Najviša</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-500/5 border border-blue-500/20 p-5 rounded-2xl flex flex-col justify-between">
+                    <div>
+                      <span className="text-[8px] font-mono font-black text-blue-400 uppercase tracking-widest block mb-1">POPULARITY LEADER</span>
+                      <h4 className="text-xl font-black italic uppercase leading-tight text-white">Pirati s Kariba (2003)</h4>
+                      <p className="text-xs text-slate-400 mt-2">Najveći hit s preko <strong className="text-blue-400">1.2 milijuna</strong> glasova gledatelja i ocjenom od <strong className="text-blue-400">8.1/10</strong>.</p>
+                    </div>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="text-2xl font-black text-white">1.2M+</span>
+                      <span className="text-[10px] text-slate-400">Glasova / Globalno</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-emerald-500/5 border border-emerald-500/20 p-5 rounded-2xl flex flex-col justify-between">
+                    <div>
+                      <span className="text-[8px] font-mono font-black text-emerald-400 uppercase tracking-widest block mb-1">GRAPH METRIC INTEGRATION</span>
+                      <h4 className="text-xl font-black italic uppercase leading-tight text-white">Igrani Svemir</h4>
+                      <p className="text-xs text-slate-400 mt-2">Dodavanjem <strong className="text-emerald-400">9 igranih filmova</strong> i <strong className="text-emerald-400">9 glumica</strong> graf je narastao na ukupno 141 čvor i 242 relacijske veze.</p>
+                    </div>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="text-2xl font-black text-white">141</span>
+                      <span className="text-[10px] text-slate-400">Čvorova / Prošireno</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tablica s podacima */}
+                <div className="bg-slate-900/40 border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="p-4 bg-white/5 border-b border-white/5 flex justify-between items-center">
+                    <span className="text-[9px] font-mono font-black text-slate-400 uppercase tracking-widest">Benchmark tablica (Poredano po ocjeni gledatelja)</span>
+                    <span className="text-[8px] font-mono font-bold text-amber-500">Pobjednik označen zlatnim rubom</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs text-slate-300 font-sans border-collapse">
+                      <thead className="bg-[#05050a] text-[9px] font-mono uppercase text-slate-500 border-b border-white/5">
+                        <tr>
+                          <th className="p-4 font-black">Rank</th>
+                          <th className="p-4 font-black">Film</th>
+                          <th className="p-4 font-black">Glavna Glumica</th>
+                          <th className="p-4 font-black">Glavni Lik u Grafu</th>
+                          <th className="p-4 font-black text-center">IMDb Ocjena</th>
+                          <th className="p-4 font-black text-right">Glasovi</th>
+                          <th className="p-4 font-black text-right">Zarada</th>
+                          <th className="p-4 font-black text-center">Mrežne veze</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {[
+                          { movie: "Mary Poppins (1964)", actress: "Julie Andrews", character: "Mary Poppins", ranking: 1, rating: 8.4, votes: "185k+", budget: "6M", boxoffice: "102M", connections: 3, isWinner: true },
+                          { movie: "Pirati s Kariba (2003)", actress: "Keira Knightley", character: "Elizabeth Swann", ranking: 2, rating: 8.1, votes: "1.2M+", budget: "140M", boxoffice: "654M", connections: 4, isWinner: false },
+                          { movie: "Knjiga o džungli (2016)", actress: "Scarlett Johansson", character: "Kaa (Glas)", ranking: 3, rating: 7.4, votes: "280k+", budget: "177M", boxoffice: "966M", connections: 1, isWinner: false },
+                          { movie: "Cruella (2021)", actress: "Emma Stone", character: "Cruella de Vil", ranking: 4, rating: 7.3, votes: "250k+", budget: "100M", boxoffice: "233M", connections: 3, isWinner: false },
+                          { movie: "Ljepotica i Zvijer (2017)", actress: "Emma Watson", character: "Belle (Igrana)", ranking: 5, rating: 7.1, votes: "310k+", budget: "160M", boxoffice: "1.26B", connections: 4, isWinner: false },
+                          { movie: "Gospodarica Zla (2014)", actress: "Angelina Jolie", character: "Maleficent (Igrana)", ranking: 6, rating: 6.9, votes: "380k+", budget: "180M", boxoffice: "758M", connections: 3, isWinner: false },
+                          { movie: "Aladin (2019)", actress: "Naomi Scott", character: "Jasmine (Igrana)", ranking: 7, rating: 6.9, votes: "270k+", budget: "183M", boxoffice: "1.05B", connections: 4, isWinner: false },
+                          { movie: "Pepeljuga (2015)", actress: "Lily James", character: "Pepeljuga (Igrana)", ranking: 8, rating: 6.9, votes: "190k+", budget: "95M", boxoffice: "542M", connections: 4, isWinner: false },
+                          { movie: "Alisa u zemlji čudesa (2010)", actress: "Mia Wasikowska", character: "Alice (Igrana)", ranking: 9, rating: 6.4, votes: "430k+", budget: "200M", boxoffice: "1.02B", connections: 4, isWinner: false },
+                          { movie: "Mulan (2020)", actress: "Liu Yifei", character: "Mulan (Igrana)", ranking: 10, rating: 5.7, votes: "90k+", budget: "200M", boxoffice: "70M", connections: 3, isWinner: false }
+                        ].map((m, idx) => (
+                          <tr 
+                            key={idx} 
+                            className={cn(
+                              "hover:bg-white/5 transition-colors",
+                              m.isWinner && "bg-amber-500/10 hover:bg-amber-500/15 border-l-2 border-l-amber-500"
+                            )}
+                          >
+                            <td className="p-4 font-mono font-bold text-slate-500">#{m.ranking}</td>
+                            <td className="p-4 font-bold text-white flex items-center gap-2">
+                              {m.movie}
+                              {m.isWinner && <span className="text-[8px] bg-amber-500/20 text-amber-400 font-mono font-black py-0.5 px-1.5 rounded border border-amber-500/25">WINNER</span>}
+                            </td>
+                            <td className="p-4 text-slate-300">{m.actress}</td>
+                            <td className="p-4 text-slate-400 font-mono">{m.character}</td>
+                            <td className="p-4 text-center">
+                              <div className="flex items-center justify-center gap-2">
+                                <span className={cn(
+                                  "font-black px-2 py-0.5 rounded",
+                                  m.rating >= 8.0 ? "bg-amber-500/20 text-amber-400" : m.rating >= 7.0 ? "bg-blue-500/20 text-blue-400" : "bg-slate-800 text-slate-500"
+                                )}>
+                                  {m.rating.toFixed(1)}
+                                </span>
+                                <div className="w-16 bg-slate-800 h-1.5 rounded-full overflow-hidden hidden sm:block">
+                                  <div 
+                                    className={cn(
+                                      "h-full rounded-full",
+                                      m.rating >= 8.0 ? "bg-amber-500" : m.rating >= 7.0 ? "bg-blue-500" : "bg-slate-600"
+                                    )} 
+                                    style={{ width: `${(m.rating / 10) * 100}%` }} 
+                                  />
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 text-right font-mono text-slate-400">{m.votes}</td>
+                            <td className="p-4 text-right font-mono font-bold text-emerald-400">{m.boxoffice}</td>
+                            <td className="p-4 text-center font-mono text-slate-400">{m.connections} veze</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Kvantitativni opis & Detaljno Objašnjenje */}
+                <div className="bg-white/5 border border-white/5 p-6 rounded-2xl space-y-4">
+                  <h4 className="text-[10px] font-mono font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                    <Info className="w-4 h-4 text-amber-500" /> Kvantitativni Osvrt i Analiza Gledanosti
+                  </h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Usporedbom ključnih igranih (Live-Action) i hibridnih filmova iz Disneyjevog studija, razvidno je da publika i kritičari ne vrednuju sve adaptacije jednako. Klasični film <strong>Mary Poppins (1964)</strong> i dalje drži apsolutno vodstvo s ocjenom <strong>8.4/10</strong>, što je ponajviše rezultat neponovljive izvedbe <strong>Julie Andrews</strong> i integracije revolucionarnih muzičkih i vizualnih elemenata tog vremena. 
+                  </p>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    S druge strane, u rangu modernih spektakala, <strong>Pirati s Kariba (2003)</strong> prednjače u pogledu masivne gledanosti sa zapanjujućih <strong>1.2 milijuna glasova publike</strong> i ocjenom <strong>8.1/10</strong>. Filmovi poput <em>Ljepotice i Zvijeri (2017)</em> (Emma Watson) i <em>Aladina (2019)</em> (Naomi Scott) uspijevaju premašiti mističnu granicu od <strong>1 milijarde dolara</strong> zarade na kino-blagajnama unatoč umjerenijim ocjenama publike (~7.1 i ~6.9).
+                  </p>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Ovi podaci su ugrađeni u naš graf povezivanjem ovih igranih svjetova s klasičnim animiranim likovima. Na primjer, Posejdonov trozubac koji Jack Sparrow očajnički traži za poništavanje morskih prokletstava je isti onaj artefakt koji posjeduje Kralj Triton, premošćujući tako igrani i crtani Disney svemir u koherentnu cjelinu.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-white/5 border-t border-white/5 flex justify-center">
+                 <button 
+                   onClick={() => setIsComparisonOpen(false)}
+                   className="px-8 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-400 transition-all"
+                 >
+                   Zatvori_Komparaciju
+                 </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {(selectedNode || selectedLink) && (
           <motion.div 
@@ -564,9 +825,9 @@ export default function App() {
                   <h4 className="text-[10px] font-mono font-black text-slate-600 uppercase tracking-[0.3em] flex items-center gap-3">
                     <Activity className="w-3 h-3" /> Analiza_Dosjea
                   </h4>
-                  <p className="text-lg text-slate-200 leading-relaxed font-medium italic border-l-2 border-amber-500/30 pl-4">
-                    {selectedNode.description}
-                  </p>
+                  <div className="text-lg text-slate-200 leading-relaxed font-medium italic border-l-2 border-amber-500/30 pl-4 markdown-body">
+                    <ReactMarkdown>{selectedNode.description}</ReactMarkdown>
+                  </div>
                 </div>
 
                 {/* NetworkX Quantitative Metrics Section */}

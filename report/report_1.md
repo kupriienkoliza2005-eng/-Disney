@@ -9,18 +9,19 @@
 
 ## Sažetak
 
-Ovaj rad predstavlja sveobuhvatnu znanstvenu analizu i tehničku implementaciju projekta "Remix: Teorija Disneyevog Zajedničkog Svemira", proširenog integracijom **Pixarove ujedinjene teorije**. Primarni cilj istraživanja bio je razviti i primijeniti sustav za interaktivnu vizualizaciju koji omogućuje mapiranje kompleksnih narativnih sinergija, skrivenih poveznica ("easter eggs") i teorija obožavatelja unutar Disneyevih i Pixarovih kinematografskih ekosustava. Koristeći napredni algoritam grafa s usmjerenim silama (Force-Directed Graph) implementiran putem D3.js biblioteke, studija kvantificira narativnu isprepletenost kroz mrežu od preko **135 jedinstvenih čvorova** i više od **230 relacijskih veza**. Analiza pokazuje da suvremena animacija ne funkcionira kroz izolirane priče, već kroz transmedijsku "meta-narativnu" strukturu koja redefinira tradicionalne granice autorskog djela, spajajući magičnu prošlost s tehnološkom budućnošću. Rezultati sugeriraju da digitalna vizualizacija mreža pruža dublji uvid u strategije građenja franšiza.
+Ovaj rad predstavlja sveobuhvatnu znanstvenu analizu i tehničku implementaciju projekta "Remix: Teorija Disneyevog Zajedničkog Svemira", proširenog integracijom **Pixarove ujedinjene teorije** te potpuno novog sloja **Disneyevog igranog svemira (Live-Action)**. Primarni cilj istraživanja bio je razviti i primijeniti sustav za interaktivnu vizualizaciju koji omogućuje mapiranje kompleksnih narativnih sinergija, skrivenih poveznica ("easter eggs"), teorija obožavatelja, te odnosa između fikcijskih likova i stvarnih osoba (glumica koje ih utjelovljuju) unutar različitih kinematografskih ekosustava. Koristeći napredni algoritam grafa s usmjerenim silama (Force-Directed Graph) implementiran putem D3.js biblioteke, studija kvantificira narativnu isprepletenost kroz mrežu od **141 jedinstvenog čvora** i **242 relacijske veze**. Analiza pokazuje da suvremeni medijski sustavi ne funkcioniraju kroz izolirane priče, već kroz transmedijsku "meta-narativnu" strukturu koja redefinira tradicionalne granice autorskog djela, spajajući animiranu magiju sa stvarnim igranim ulogama i povijesnim razdobljima. Rezultati sugeriraju da digitalna vizualizacija mreža pruža dublji uvid u strategije građenja franšiza.
 
 ## Uvod
 
-U suvremenoj medijskoj teoriji, koncept "zajedničkog svemira" (Shared Universe) postao je jedan od najutjecajnijih paradigmi u produkciji i konzumaciji zabavnog sadržaja. "Teorija Disneyevog zajedničkog svemira" sada se neizbježno isprepliće s **Pixarovom ujedinjenom teorijom** (Negroni, 2013), koja postavlja radikalnu pretpostavku: od Meride u srednjovjekovnoj Škotskoj do Wall-E-ja u dubokom svemiru, sve su priče dio istog evolucijskog procesa magije i inteligencije.
+U suvremenoj medijskoj teoriji, koncept "zajedničkog svemira" (Shared Universe) postao je jedan od najutjecajnijih paradigmi u produkciji i konzumaciji zabavnog sadržaja. "Teorija Disneyevog zajedničkog svemira" sada se neizbježno isprepliće s **Pixarovom ujedinjenom teorijom** (Negroni, 2013) te s novootkrivenim slojem **Disneyevog igranog svemira (Live-Action)** (s filmovima poput *Pirati s Kariba*, *Mary Poppins*, *Gospodarica Zla* i *Cruella*).
 
-Ovaj rad polazi od hipoteze da se ovaj narativni sustav može promatrati kao kompleksna društvena mreža u kojoj su čvorovi povezani ne samo kanonskim činjenicama, već i spekulativnim mostovima. Uvodni dio ove studije identificira četiri ključna stupa:
+Ovaj rad polazi od hipoteze da se ovaj narativni sustav može promatrati kao višeslojna društvena mreža u kojoj su čvorovi povezani ne samo kanonskim činjenicama, već i spekulativnim transmedijskim mostovima koji povezuju fiktivne likove s realnim ontologijama (stvarnim glumicama koje nastupaju kao ti likovi). Uvodni dio ove studije identificira pet ključnih stupova:
 
 1. **Strukturni kanon ("Cameo" nastupi):** Dokazi prostorne blizine (npr. Rapunzel u Arendellu).
 2. **Mitološka genealogija:** Poveznice temeljene na klasičnim mitovima (npr. Kralj Triton i Herkul).
 3. **Tehnološka evolucija (Pixar):** Uloga korporacije **Buy n Large (BnL)** koja povezuje svijet igračaka, superjunaka i konačnu evakuaciju čovječanstva.
 4. **Vremenski paradoksi:** Teorija o "Vještici" iz *Meride* kao ostarjeloj Boo koja putuje kroz vrijeme, što djeluje kao ključni narativni "zatvarač" cijelog sustava (Negroni, 2013).
+5. **Ontologija igranih adaptacija i glumica:** Povezivanje igranih filmova (koji nisu klasični crtići već stvarni filmovi) i unose ulogu stvarnih glumica (npr. Keira Knightley kao Elizabeth Swann, Angelina Jolie kao igrana Maleficent, Emma Stone kao Cruella, te Julie Andrews kao Mary Poppins) te povezivanje njihovih magičnih artefakata sa starijim animiranim univerzumima (poput mitskog Posejdonovog trozupca iz Pirata s Kariba koji se podudara s trozubcem kralja Tritona).
 
 Primjenom teorije grafova na ove baze podataka, ova studija nastoji preobraziti linearne popise trivijalnosti u nelinearno, interaktivno iskustvo.
 
@@ -29,7 +30,7 @@ Primjenom teorije grafova na ove baze podataka, ova studija nastoji preobraziti 
 Metodološki pristup istraživanju bio je strogo strukturiran i kombiniran, obuhvaćajući tri ključna stupa: kvalitativnu hermeneutiku filmskog sadržaja, mrežnu topološku analizu i real-time računalnu vizualizaciju. Ovakav pristup omogućuje premošćivanje jaza između naratološke teorije i matematičkog modeliranja složenih sustava.
 
 ### 1. Arhitektura sustava i modeliranje podataka
-Središnji dio metodologije oslanja se na razvoj relacijske baze podataka (implementirane unutar `data.ts`) koja definira čvorove ($V$) i veze ($E$). Svaki čvor je opremljen metapodacima koji uključuju tip entiteta i pripadnost klasteru (npr. *Moderna Era*, *Era Strojeva*, *Monstropolis*). Veze su usmjerene i težinske, ovisno o snazi narativnog dokaza.
+Središnji dio metodologije oslanja se na razvoj relacijske baze podataka (implementirane unutar `data.ts`) koja definira čvorove ($V$) i veze ($E$). Svaki čvor je opremljen metapodacima koji uključuju tip entiteta i pripadnost klasteru (npr. *Moderna Era*, *Era Strojeva*, *Monstropolis*, *Igrani Svemir*). Veze su usmjerene i težinske, ovisno o snazi narativnog dokaza. Poseban obrat predstavlja uvođenje i analiza "meta-čvorova" glumica te njihovih izravnih poveznica s ulogama.
 
 ### 2. Algoritamska vizualizacija (D3.js Force-Directed Graph)
 Za vizualizaciju je korišten napredni fizikalni model koji simulira sile privlačenja i odbijanja među čvorovima. Matematički, položaj svakog čvora u svakom trenutku $t$ određen je jednadžbom:
@@ -104,11 +105,11 @@ U sklopu istraživanja provedena je dubinska kvantitativna analiza topologije Di
 ### 1. Globalni statistički parametri
 Analizom cjelokupne mreže dobiveni su sljedeći deskriptivni pokazatelji:
 
-- **Ukupan broj čvorova ($N$):** 131 (uključujući 20 novih Pixarovih čvorova)
-- **Ukupan broj veza ($E$):** 231
-- **Gustoća mreže ($D$):** $D = \frac{2|E|}{N(N-1)} \approx 0.027$
-- **Prosječni stupanj povezanosti ($<k>$):** $3.52$ veza po čvoru.
-- **Koeficijent klasterizacije:** Visok, što ukazuje na to da su likovi unutar filmova (npr. *Toy Story*, *Finding Nemo*) snažno povezani, dok mostovi (hubovi) povezuju te izolirane skupine.
+- **Ukupan broj čvorova ($N$):** 141 (uključujući 20 Pixarovih i 10 novih igranih čvorova / glumica)
+- **Ukupan broj veza ($E$):** 242 (uključujući 11 novih inter-univerzumskih i glumačkih veza)
+- **Gustoća mreže ($D$):** $D = \frac{2|E|}{N(N-1)} \approx 0.0245$
+- **Prosječni stupanj povezanosti ($<k>$):** $3.43$ veza po čvoru.
+- **Koeficijent klasterizacije:** Visok, što ukazuje na to da su likovi unutar filmova (npr. *Toy Story*, *Finding Nemo*, *Pirati s Kariba*) snažno povezani, dok mostovi (hubovi) povezuju te izolirane skupine.
 - **Distribucija stupnjeva (Degree Distribution):** Slijedi zakon potencije ($P(k) \sim k^{-\gamma}$), što je karakteristika *scale-free* mreža. To znači da sustavom dominira mali broj ekstremno povezanih čvorova (hubova) koji održavaju integritet cijelog narativnog svemira.
 
 ### 2. Rangiranje mrežnih hubova (Centralnost stupnja)
@@ -116,17 +117,19 @@ Korištenjem izračuna centralnosti, identificirani su najvažniji konektori sus
 
 | Pozicija | Čvor (ID) | Stupanj (k) | Relativna centralnost | Primarna uloga |
 | :--- | :--- | :---: | :---: | :--- |
-| 1. | **ego** (Skriveni Mickey) | 25 | 19.2% | Univerzalni marker |
-| 2. | **merida** (Merida) | 16 | 12.3% | Izvor magije (Pixar-Disney most) |
-| 3. | **elsa** (Elsa) | 12 | 9.2% | Centralna figura magijske ere |
-| 4. | **bnl_corp** (BnL Corp) | 11 | 8.5% | Komercijalni hub Pixarovog svijeta |
-| 5. | **teorija_pixar** | 10 | 7.7% | Meta-teorijski most |
-| 6. | **ariel** (Ariel) | 10 | 7.7% | Klasični Disney hub |
+| 1. | **ego** (Skriveni Mickey) | 26 | 18.6% | Univerzalni marker |
+| 2. | **merida** (Merida) | 16 | 11.4% | Izvor magije (Pixar-Disney most) |
+| 3. | **elsa** (Elsa) | 12 | 8.6% | Centralna figura magijske ere |
+| 4. | **bnl_corp** (BnL Corp) | 11 | 7.9% | Komercijalni hub Pixarovog svijeta |
+| 5. | **teorija_pixar** | 10 | 7.1% | Meta-teorijski most |
+| 6. | **ariel** (Ariel) | 10 | 7.1% | Klasični Disney hub |
+| 7. | **mary_poppins** | 3 | 2.1% | Čarobni transmedijski poveznik |
 
 ### 3. Analiza klastera
 Podaci pokazuju nejednoliku distribuciju važnosti klastera:
 - **Moderna Era:** Sadrži 22% ukupnih čvorova, djeluje kao stabilizator mreže.
 - **Teorije:** Iako čine samo 12% čvorova, imaju najveći *Betweenness Centrality* (posredničku centralnost), jer bez njih mreža puca na izolirane otoke.
+- **Igrani Svemir:** Čini oko 7% ukupne mreže, funkcionira kao nezavisni ali snažno usidreni podgraf koji preko Posejdonovog trozupca i Mary Poppins uvodi magiju u fizičku sferu stvarnosti i povezuje stvarnu povijest filma (glumice) s animiranom fikcijom.
 - **Monstropolis:** Jedan od najgušće povezanih klastera, ali s malo vanjskih veza (osim preko Boo).
 
 ### 4. Implementacijska logika (NetworkX API)

@@ -125,6 +125,28 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'anton_ego', name: 'Anton Ego', type: 'character', description: 'Strogi kritičar hrane čije je djetinjstvo povezano s toplinom doma i magijom kuhanja.', movie: 'Juhu-hu', cluster: 'Moderna' },
     { id: 'mei_lee', name: 'Mei Lee', type: 'character', description: 'Djevojčica koja se pretvara u crvenu pandu, koristeći drevnu magiju predaka sličnu Mulaninoj.', movie: 'Turning Red', cluster: 'Moderna' },
 
+    // Igrani Svemir (Disney Live-Action) - Filmovi, Glumice i Likovi
+    { id: 'elizabeth_swann', name: 'Elizabeth Swann', type: 'character', description: 'Glavna heroina i kći guvernera koja postaje piratska kraljica. Njezin susret s kletvama povezuje je s oceanskim legendama.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
+    { id: 'keira_knightley', name: 'Keira Knightley', type: 'character', description: 'Slavna britanska glumica koja je utjelovila buntovnu i hrabru Elizabeth Swann u piratskoj sagi.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
+    { id: 'jack_sparrow', name: 'Jack Sparrow', type: 'character', description: 'Zloglasni i ekscentrični piratski kapetan. Njegovo posjedovanje Posejdonovog trozupca i kompasa spaja avanturu sa starom magijom vladara mora.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
+    { id: 'maleficent_live', name: 'Maleficent (Igrana)', type: 'character', description: 'Reinterpretacija Disneyjeve najpoznatije zle vile, prikazana kao zaštitnica Močvara s tragičnom i dirljivom prošlošću.', movie: 'Gospodarica Zla', cluster: 'Igrani Svemir' },
+    { id: 'angelina_jolie', name: 'Angelina Jolie', type: 'character', description: 'Karizmatična holivudska glumica koja je utjelovila veličanstvenu Maleficent, dodajući dubinu i ranjivost njezinom liku.', movie: 'Gospodarica Zla', cluster: 'Igrani Svemir' },
+    { id: 'cruella_live', name: 'Cruella de Vil (Igrana)', type: 'character', description: 'Estella Miller, talentirana i buntovna dizajnerica u Londonu 1970-ih koja prihvaća svoju mračnu, genijalnu stranu kao Cruella.', movie: 'Cruella', cluster: 'Igrani Svemir' },
+    { id: 'emma_stone', name: 'Emma Stone', type: 'character', description: 'Dobitnica Oscara koja je majstorski prikazala psihološku transformaciju i modni bunt mlade Cruelle.', movie: 'Cruella', cluster: 'Igrani Svemir' },
+    { id: 'mary_poppins', name: 'Mary Poppins', type: 'character', description: 'Čarobna dadilja s letećim kišobranom i beskrajnom torbom koja nudi nelinearne poglede na stvarnost, slično Merlinu.', movie: 'Mary Poppins', cluster: 'Igrani Svemir' },
+    { id: 'julie_andrews', name: 'Julie Andrews', type: 'character', description: 'Legendarna glumica i pjevačica koja je prva oživjela lik Mary Poppins, osvojivši Oscara za ovu ikonsku ulogu.', movie: 'Mary Poppins', cluster: 'Igrani Svemir' },
+    { id: 'posejdonov_trozubac', name: 'Posejdonov Trozubac', type: 'object', description: 'Drevni oceanski artefakt koji posjeduje moć lomljenja svih kletvi na moru. Isti trozubac koristi i Kralj Triton u animiranom svijetu.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
+    { id: 'belle_live', name: 'Belle (Igrana)', type: 'character', description: 'Fizička i hrabra interpretacija prelijepe knjižničarke koja spasila Zvijer i razbila prokletstvo dvorca u raskošnom igranom filmu.', movie: 'Ljepotica i Zvijer (2017)', cluster: 'Igrani Svemir' },
+    { id: 'emma_watson', name: 'Emma Watson', type: 'character', description: 'Svjetski poznata glumica i aktivistica koja je udahnula inteligenciju i moderni senzibilitet igranoj verziji Belle.', movie: 'Ljepotica i Zvijer (2017)', cluster: 'Igrani Svemir' },
+    { id: 'cinderella_live', name: 'Pepeljuga (Igrana)', type: 'character', description: 'Ella, mlada djevojka čija su dobrota i hrabrost jače od svake okrutnosti. Njezine staklene cipelice i bal krase predivnu igranu adaptaciju.', movie: 'Pepeljuga (2015)', cluster: 'Igrani Svemir' },
+    { id: 'lily_james', name: 'Lily James', type: 'character', description: 'Talentirana britanska glumica koja je utjelovila Pepeljugu s iznimnom toplinom, gracioznošću i autentičnom snagom.', movie: 'Pepeljuga (2015)', cluster: 'Igrani Svemir' },
+    { id: 'jasmine_live', name: 'Jasmine (Igrana)', type: 'character', description: 'Buntovna princeza Agrabaha koja se bori protiv nepravde, želi postati prva ženska sultanica i pjeva o tome kako neće biti tiho.', movie: 'Aladin (2019)', cluster: 'Igrani Svemir' },
+    { id: 'naomi_scott', name: 'Naomi Scott', type: 'character', description: 'Britanska glumica i pjevačica koja je odigrala ulogu Jasmine, dajući joj vokalnu moć i borbenu, inspirativnu osobnost.', movie: 'Aladin (2019)', cluster: 'Igrani Svemir' },
+    { id: 'mulan_live', name: 'Mulan (Igrana)', type: 'character', description: 'Legendarna kineska ratnica koja pokazuje snagu svog Chija kako bi spasila obitelj i carstvo u velikom epskom spektaklu.', movie: 'Mulan (2020)', cluster: 'Igrani Svemir' },
+    { id: 'liu_yifei', name: 'Liu Yifei', type: 'character', description: 'Kineska megazvijezda i majstorica borilačkih vještina koja je savršeno izvela zahtjevne borbene scene kao legendarna ratnica.', movie: 'Mulan (2020)', cluster: 'Igrani Svemir' },
+    { id: 'alice_live', name: 'Alice (Igrana)', type: 'character', description: 'Devetnaestogodišnja Alice koja se vraća u Podzemlje kako bi ostvarila svoju sudbinu, porazila Jabberwockyja i oslobodila čudesni svijet.', movie: 'Alisa u zemlji čudesa (2010)', cluster: 'Igrani Svemir' },
+    { id: 'mia_wasikowska', name: 'Mia Wasikowska', type: 'character', description: 'Australska glumica koja je utjelovila Alice u vizionarskom, trodimenzionalnom svijetu redatelja Tima Burtona.', movie: 'Alisa u zemlji čudesa (2010)', cluster: 'Igrani Svemir' },
+
     // Nove Teorije
     { id: 'bnl_corp', name: 'BnL Korporacija', type: 'theory', description: 'Megakorporacija koja stoji iza tehnologije u Priči o igračkama, Nebesima i Wall-E.', movie: 'Teorija', cluster: 'Teorije' },
     { id: 'teorija_pixar', name: 'Ujedinjena Pixar Teorija', type: 'theory', description: 'Sve Pixarove priče su u istoj vremenskoj liniji od antičkog doba do Wall-E ere.', movie: 'Teorija', cluster: 'Teorije' },
@@ -261,6 +283,33 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { source: 'anton_ego', target: 'remy', type: 'easter_egg', description: 'Okus ratatouillea vratio je Ega u djetinjstvo, povezujući generacije.' },
     { source: 'mei_lee', target: 'mulan', type: 'magic', description: 'Duhovno nasljeđe životinja zaštitnika koje se prenosi kroz generacije.' },
     { source: 'mei_lee', target: 'ego', type: 'hidden_mickey', description: 'Skriven u dizajnu njezina rodnog grada i hrama.' },
-    { source: 'teorija_pixar', target: 'merida', type: 'theory', description: 'Meridin susret s magijom postavlja temelje za sve kasnije magijske i tech događaje u Pixar univerzumu.' }
+    { source: 'teorija_pixar', target: 'merida', type: 'theory', description: 'Meridin susret s magijom postavlja temelje za sve kasnije magijske i tech događaje u Pixar univerzumu.' },
+
+    // Igrani Svemir (Live-Action) - Relacijske Veze
+    { source: 'keira_knightley', target: 'elizabeth_swann', type: 'theory', description: 'Glumica daje fizički oblik i glumačku snagu Elizabeth Swann u mrežnom svemiru.' },
+    { source: 'angelina_jolie', target: 'maleficent_live', type: 'theory', description: 'Glumica donosi revolucionarnu glumačku kompleksnost i majčinski motiv klasičnoj mračnoj vili.' },
+    { source: 'emma_stone', target: 'cruella_live', type: 'theory', description: 'Glumačka izvedba koja prikazuje podvojenu ličnost Estelle i divlju modnu ikonu Cruellu de Vil.' },
+    { source: 'julie_andrews', target: 'mary_poppins', type: 'theory', description: 'Vječna glumačka uloga koja je utjelovila savršenstvo čarobne dadilje i osvojila filmsku akademiju.' },
+    { source: 'elizabeth_swann', target: 'jack_sparrow', type: 'family', description: 'Karizmatični piratski saveznici i suputnici na moru koji dijele potragu za slobodom.' },
+    { source: 'jack_sparrow', target: 'posejdonov_trozubac', type: 'easter_egg', description: 'Jack Sparrow očajnički traži Posejdonov trozubac kako bi oslobodio oceane od prokletstva mrtvih.' },
+    { source: 'posejdonov_trozubac', target: 'triton', type: 'magic', description: 'Posejdonov trozubac iz Pirata s Kariba je isti onaj božanski instrument kojeg drži Kralj Triton, spajajući igranu povijest mora s animiranom mitologijom.' },
+    { source: 'maleficent_live', target: 'maleficent', type: 'theory', description: 'Multiverzumska zrcalna veza; igrana verzija pruža alternativnu priču o herojstvu animirane zlikovke.' },
+    { source: 'cruella_live', target: 'stitch', type: 'easter_egg', description: 'Uskršnja jaja u londonu 70-ih i njezina ljubav prema dalmatinerima suptilno se isprepliću sa Stitchovim dolaskom u moderan svijet i Liloina usvajanja nestandardnih ljubimaca.' },
+    { source: 'mary_poppins', target: 'merlin', type: 'magic', description: 'Beskonačna torba Mary Poppins koristi istu magiju prostorne ekspanzije kao i Merlinov kofer, implicirajući da je Mary učila magiju Camelota.' },
+    { source: 'ego', target: 'mary_poppins', type: 'hidden_mickey', description: 'Na ručki njezinog magičnog kišobrana i obrisima londonskih oblaka pojavljuje se tajanstveni oblik s tri kruga.' },
+    { source: 'emma_watson', target: 'belle_live', type: 'theory', description: 'Glumica koja utjelovljuje Belle, povezujući intelekt i modernu gracioznost s fizičkim svijetom.' },
+    { source: 'belle_live', target: 'belle', type: 'theory', description: 'Multiverzumska tranzicija; igrana Belle zrcali mudrost i ljubav prema knjigama svoje animirane verzije.' },
+    { source: 'belle_live', target: 'beast', type: 'family', description: 'Romantični partneri u njezinu kraljevstvu, ključni likovi za razbijanje kletve.' },
+    { source: 'lily_james', target: 'cinderella_live', type: 'theory', description: 'Utjelovljenje čiste dobrote, nade i klasičnog glamura u modernoj igranoj adaptaciji.' },
+    { source: 'cinderella_live', target: 'cinderella', type: 'theory', description: 'Duhovno ogledalo originalne Pepeljuge, obje dijele vjeru u snagu snova.' },
+    { source: 'cinderella_live', target: 'snow_white', type: 'cameo', description: 'Pepeljugine staklene cipelice koriste istu alkemiju kristalnog stakla kao i Snjeguljičin lijes.' },
+    { source: 'naomi_scott', target: 'jasmine_live', type: 'theory', description: 'Daje glas političkom buntu i modernoj snazi princeze Jasmine u igranoj verziji.' },
+    { source: 'jasmine_live', target: 'jasmine', type: 'theory', description: 'Zrcalna verzija princeze; igrana Jasmin dobiva još veću vokalnu i političku moć u Agrabahu.' },
+    { source: 'jasmine_live', target: 'aladdin', type: 'family', description: 'Romantična i saveznička veza s Aladinom u pustinjskom kraljevstvu.' },
+    { source: 'liu_yifei', target: 'mulan_live', type: 'theory', description: 'Glumica i ratnica koja utjelovljuje legendarni Chi i borilačku snagu u realističnom ratnom spektaklu.' },
+    { source: 'mulan_live', target: 'mulan', type: 'theory', description: 'Igrana verzija nudi realniju, povijesno dublju analizu legende o ratnici koja je spasila carstvo.' },
+    { source: 'mia_wasikowska', target: 'alice_live', type: 'theory', description: 'Glumica koja vodi Alice kroz Burtonov mračni i maštoviti vizualni svemir.' },
+    { source: 'alice_live', target: 'alice', type: 'theory', description: 'Nastavak originalnih snova; devetnaestogodišnja Alice vraća se u isti fantastični svijet nakon mnogo godina.' },
+    { source: 'alice_live', target: 'cheshire_cat', type: 'magic', description: 'Njezino glavno metafizičko vodstvo kroz zagonetke Podzemlja.' }
   ]
 };
