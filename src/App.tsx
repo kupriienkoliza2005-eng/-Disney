@@ -23,7 +23,8 @@ import {
   MessageSquare,
   Send,
   Loader2,
-  Cpu
+  Cpu,
+  Star
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -826,6 +827,80 @@ export default function App() {
                   </div>
                 </div>
 
+                {/* Tablica s podacima za Animirane Klasike */}
+                <div className="bg-slate-900/40 border border-white/5 rounded-2xl overflow-hidden shadow-2xl mt-6">
+                  <div className="p-4 bg-white/5 border-b border-white/5 flex justify-between items-center">
+                    <span className="text-[9px] font-mono font-black text-slate-400 uppercase tracking-widest">Animirani Benchmark (Originalna ostvarenja i Pixar)</span>
+                    <span className="text-[8px] font-mono font-bold text-amber-500">Najviša ocjena označena zlatnim rubom</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs text-slate-300 font-sans border-collapse">
+                      <thead className="bg-[#05050a] text-[9px] font-mono uppercase text-slate-500 border-b border-white/5">
+                        <tr>
+                          <th className="p-4 font-black">Rank</th>
+                          <th className="p-4 font-black">Animirani Film</th>
+                          <th className="p-4 font-black">Glavni Lik u Grafu</th>
+                          <th className="p-4 font-black text-center">IMDb Ocjena</th>
+                          <th className="p-4 font-black text-right">Glasovi</th>
+                          <th className="p-4 font-black text-right">Zarada</th>
+                          <th className="p-4 font-black text-center">Mrežne veze</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {[
+                          { movie: "Kralj lavova (1994)", character: "Simba", ranking: 1, rating: 8.5, votes: "1.1M+", budget: "45M", boxoffice: "1.08B", connections: 5, isWinner: true },
+                          { movie: "Wall-E (2008)", character: "Wall-E", ranking: 2, rating: 8.4, votes: "1.1M+", budget: "180M", boxoffice: "533M", connections: 3, isWinner: false },
+                          { movie: "Priča o igračkama (1995)", character: "Woody", ranking: 3, rating: 8.3, votes: "1.0M+", budget: "30M", boxoffice: "373M", connections: 6, isWinner: false },
+                          { movie: "Potraga za Nemom (2003)", character: "Nemo / Dori", ranking: 4, rating: 8.2, votes: "1.1M+", budget: "94M", boxoffice: "940M", connections: 3, isWinner: false },
+                          { movie: "Ljepotica i Zvijer (1991)", character: "Belle (Animirana)", ranking: 5, rating: 8.0, votes: "460k+", budget: "25M", boxoffice: "424M", connections: 5, isWinner: false },
+                          { movie: "Aladin (1992)", character: "Aladin / Jasmine", ranking: 6, rating: 8.0, votes: "430k+", budget: "28M", boxoffice: "504M", connections: 5, isWinner: false },
+                          { movie: "Mulan (1998)", character: "Mulan (Animirana)", ranking: 7, rating: 7.6, votes: "310k+", budget: "90M", boxoffice: "304M", connections: 4, isWinner: false },
+                          { movie: "Mala Sirena (1989)", character: "Ariel", ranking: 8, rating: 7.6, votes: "275k+", budget: "40M", boxoffice: "211M", connections: 6, isWinner: false },
+                          { movie: "Snjeguljica (1937)", character: "Snjeguljica", ranking: 9, rating: 7.6, votes: "210k+", budget: "1.5M", boxoffice: "418M", connections: 4, isWinner: false },
+                          { movie: "Snježno kraljevstvo (2013)", character: "Elsa / Anna", ranking: 10, rating: 7.4, votes: "640k+", budget: "150M", boxoffice: "1.28B", connections: 6, isWinner: false }
+                        ].map((m, idx) => (
+                          <tr 
+                            key={idx} 
+                            className={cn(
+                              "hover:bg-white/5 transition-colors",
+                              m.isWinner && "bg-amber-500/10 hover:bg-amber-500/15 border-l-2 border-l-amber-500"
+                            )}
+                          >
+                            <td className="p-4 font-mono font-bold text-slate-500">#{m.ranking}</td>
+                            <td className="p-4 font-bold text-white flex items-center gap-2">
+                              {m.movie}
+                              {m.isWinner && <span className="text-[8px] bg-amber-500/20 text-amber-400 font-mono font-black py-0.5 px-1.5 rounded border border-amber-500/25">LEADER</span>}
+                            </td>
+                            <td className="p-4 text-slate-300 font-mono">{m.character}</td>
+                            <td className="p-4 text-center">
+                              <div className="flex items-center justify-center gap-2">
+                                <span className={cn(
+                                  "font-black px-2 py-0.5 rounded",
+                                  m.rating >= 8.2 ? "bg-amber-500/20 text-amber-400" : m.rating >= 7.6 ? "bg-blue-500/20 text-blue-400" : "bg-slate-800 text-slate-500"
+                                )}>
+                                  {m.rating.toFixed(1)}
+                                </span>
+                                <div className="w-16 bg-slate-800 h-1.5 rounded-full overflow-hidden hidden sm:block">
+                                  <div 
+                                    className={cn(
+                                      "h-full rounded-full",
+                                      m.rating >= 8.2 ? "bg-amber-500" : m.rating >= 7.6 ? "bg-blue-500" : "bg-slate-600"
+                                    )} 
+                                    style={{ width: `${(m.rating / 10) * 100}%` }} 
+                                  />
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 text-right font-mono text-slate-400">{m.votes}</td>
+                            <td className="p-4 text-right font-mono font-bold text-emerald-400">{m.boxoffice}</td>
+                            <td className="p-4 text-center font-mono text-slate-400">{m.connections} veze</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
                 {/* Kvantitativni opis & Detaljno Objašnjenje */}
                 <div className="bg-white/5 border border-white/5 p-6 rounded-2xl space-y-4">
                   <h4 className="text-[10px] font-mono font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
@@ -926,6 +1001,86 @@ export default function App() {
                     ))}
                   </div>
                 </div>
+
+                {/* Filmska statistika i komparacija (Crtić vs Igrani film) */}
+                {(selectedNode.imdbRating || selectedNode.counterpartId) && (
+                  <div className="space-y-4 border border-amber-500/15 bg-amber-500/[0.02] rounded-2xl p-4">
+                    <h4 className="text-[10px] font-mono font-black text-amber-500 uppercase tracking-[0.3em] flex items-center gap-3 border-b border-amber-500/10 pb-2">
+                      <Star className="w-3.5 h-3.5 text-amber-500" /> Filmska_Statistika_i_Usporedba
+                    </h4>
+                    
+                    {selectedNode.imdbRating && (
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="bg-slate-900/40 p-2.5 rounded-xl border border-white/5">
+                          <p className="text-[7.5px] font-mono font-bold text-slate-500 uppercase">IMDb Ocjena</p>
+                          <p className="text-base font-black text-amber-400 mt-1 flex items-center gap-1">
+                            ⭐ {selectedNode.imdbRating.toFixed(1)}
+                          </p>
+                        </div>
+                        <div className="bg-slate-900/40 p-2.5 rounded-xl border border-white/5">
+                          <p className="text-[7.5px] font-mono font-bold text-slate-500 uppercase">Budžet</p>
+                          <p className="text-sm font-black text-emerald-400 mt-1 font-mono">
+                            {selectedNode.budget || 'N/A'}
+                          </p>
+                        </div>
+                        <div className="bg-slate-900/40 p-2.5 rounded-xl border border-white/5">
+                          <p className="text-[7.5px] font-mono font-bold text-slate-500 uppercase">Zarada (Box)</p>
+                          <p className="text-sm font-black text-emerald-400 mt-1 font-mono">
+                            {selectedNode.boxOffice || 'N/A'}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedNode.counterpartId && (() => {
+                      const counterpart = graphData.nodes.find(n => n.id === selectedNode.counterpartId);
+                      if (!counterpart) return null;
+                      
+                      const isSelectionAnimated = selectedNode.cluster !== 'Igrani Svemir';
+                      const animatedNode = isSelectionAnimated ? selectedNode : counterpart;
+                      const liveNode = isSelectionAnimated ? counterpart : selectedNode;
+                      
+                      const ratingDiff = (animatedNode.imdbRating && liveNode.imdbRating) 
+                        ? (animatedNode.imdbRating - liveNode.imdbRating).toFixed(1) 
+                        : null;
+
+                      return (
+                        <div className="mt-3 bg-slate-950/40 border border-white/5 p-3 rounded-xl space-y-3">
+                          <p className="text-[8px] font-mono font-black text-slate-400 uppercase tracking-widest text-center">
+                            Izravna usporedba: Crtić vs Igrana Verzija
+                          </p>
+                          <div className="flex justify-between items-center text-xs">
+                            <div className="text-center flex-1 min-w-0">
+                              <span className="text-[7.5px] font-mono font-bold text-slate-500 uppercase block mb-1 truncate">Animirani Original</span>
+                              <p className="font-bold text-white truncate text-[10px]">{animatedNode.name}</p>
+                              <p className="text-sm font-black text-amber-400 mt-1">⭐ {animatedNode.imdbRating?.toFixed(1) || 'N/A'}</p>
+                            </div>
+                            <div className="px-2 text-slate-500 font-mono text-[9px] font-black italic flex flex-col items-center flex-shrink-0">
+                              <span>VS</span>
+                              {ratingDiff && (
+                                <span className="text-[8px] bg-emerald-500/10 text-emerald-400 px-1 py-0.5 mt-1 rounded whitespace-nowrap">
+                                  +{ratingDiff} original
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-center flex-1 min-w-0">
+                              <span className="text-[7.5px] font-mono font-bold text-slate-500 uppercase block mb-1 truncate">Igrani Remake</span>
+                              <p className="font-bold text-white truncate text-[10px]">{liveNode.name.replace(' (Igrana)', '')}</p>
+                              <p className="text-sm font-black text-blue-400 mt-1">⭐ {liveNode.imdbRating?.toFixed(1) || 'N/A'}</p>
+                            </div>
+                          </div>
+                          
+                          <button
+                            onClick={() => setSelectedNode(counterpart)}
+                            className="w-full mt-2 py-1.5 px-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[9px] font-mono font-black text-slate-300 uppercase tracking-widest transition-all text-center block"
+                          >
+                            Lociraj_Dvojnika_U_Grafu_→
+                          </button>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
 
                 <div className="space-y-6">
                   <h4 className="text-[10px] font-mono font-black text-slate-600 uppercase tracking-[0.3em] flex items-center justify-between border-b border-white/5 pb-2">

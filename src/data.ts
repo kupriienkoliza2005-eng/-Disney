@@ -5,6 +5,10 @@ export interface Node {
   description: string;
   movie: string;
   cluster: string;
+  imdbRating?: number;
+  boxOffice?: string;
+  budget?: string;
+  counterpartId?: string; // id animirane ili igrane verzije za direktnu usporedbu
 }
 
 export interface Link {
@@ -19,13 +23,13 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'ego', name: 'Skriveni Mickey', type: 'ego', description: 'Centralni simbol Disney magije. Njegova prisutnost u svakom filmu dokazuje da su svi ovi svjetovi dio jedne velike kreativne misli.', movie: 'Svi filmovi', cluster: 'Centar Magije' },
     
     // Sjeverna Kraljevstva
-    { id: 'elsa', name: 'Elsa', type: 'character', description: 'Kraljica leda. Njezin izvor moći je isti kao kod Moane i Pocahontas, a njezina obitelj seže do Afrike i Tarzana.', movie: 'Snježno kraljevstvo', cluster: 'Sjeverna Kraljevstva' },
+    { id: 'elsa', name: 'Elsa', type: 'character', description: 'Kraljica leda. Njezin izvor moći je isti kao kod Moane i Pocahontas, a njezina obitelj seže do Afrike i Tarzana.', movie: 'Snježno kraljevstvo', cluster: 'Sjeverna Kraljevstva', imdbRating: 7.4, budget: '$150M', boxOffice: '$1,280M' },
     { id: 'anna', name: 'Anna', type: 'character', description: 'Kraljica Anna. Njezina potraga za istinom o roditeljima povezuje je s Tarzanom i morskim olupinama.', movie: 'Snježno kraljevstvo', cluster: 'Sjeverna Kraljevstva' },
     { id: 'rapunzel', name: 'Rapunzel', type: 'character', description: 'Posjeduje moć Sunca. Njezin dolazak u Arendelle i sličnost s Elsom potiču teorije o krunskim rođacima.', movie: 'Vrlo zapetljana priča', cluster: 'Sjeverna Kraljevstva' },
     { id: 'flynn', name: 'Flynn Rider', type: 'character', description: 'Bivši lopov koji je kroz Rapunzel ušao u najviše krugove Disneyevog kraljevstva.', movie: 'Vrlo zapetljana priča', cluster: 'Sjeverna Kraljevstva' },
     
     // Oceani
-    { id: 'ariel', name: 'Ariel', type: 'character', description: 'Sirena koja sakuplja ljudske predmete. Njezin život spaja Atlantidu, Olimp (preko Tritona) i Neverland.', movie: 'Mala Sirena', cluster: 'Oceani' },
+    { id: 'ariel', name: 'Ariel', type: 'character', description: 'Sirena koja sakuplja ljudske predmete. Njezin život spaja Atlantidu, Olimp (preko Tritona) i Neverland.', movie: 'Mala Sirena', cluster: 'Oceani', imdbRating: 7.6, budget: '$40M', boxOffice: '$211M' },
     { id: 'triton', name: 'Kralj Triton', type: 'character', description: 'Vladar mora. Njegovo božansko porijeklo ga čini izravnim rođakom Herculesa.', movie: 'Mala Sirena', cluster: 'Oceani' },
     { id: 'moana', name: 'Moana', type: 'character', description: 'Navigatorica koja komunicira s oceanom, istom silom koja je u Frozenu oživjela u obliku vodenog konja.', movie: 'Moana', cluster: 'Oceani' },
     { id: 'maui', name: 'Maui', type: 'character', description: 'Polubog čija kuka ima magiju sličnu onoj iz Atlantide i Moane.', movie: 'Moana', cluster: 'Oceani' },
@@ -33,13 +37,13 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     // Divljina
     { id: 'tarzan', name: 'Tarzan', type: 'character', description: 'Slikovit primjer preživljavanja. Prema direktoru filma, on je Annin i Elsin brat, rođen u džungli.', movie: 'Tarzan', cluster: 'Divljina' },
     { id: 'jane', name: 'Jane Porter', type: 'character', description: 'Istraživačica koja je od predaka naslijedila Bellein čuveni set za čaj.', movie: 'Tarzan', cluster: 'Divljina' },
-    { id: 'simba', name: 'Simba', type: 'character', description: 'Kralj lavova čija legenda o precima iz zvijezda odjekuje u Moani i Mulan.', movie: 'Kralj Lavova', cluster: 'Divljina' },
+    { id: 'simba', name: 'Simba', type: 'character', description: 'Kralj lavova čija legenda o precima iz zvijezda odjekuje u Moani i Mulan.', movie: 'Kralj Lavova', cluster: 'Divljina', imdbRating: 8.5, budget: '$45M', boxOffice: '$1,083M' },
     { id: 'scar', name: 'Scar', type: 'character', description: 'Zli lav čija je sudbina (koža) završila u Herculesovom svijetu kao trofej.', movie: 'Kralj Lavova', cluster: 'Divljina' },
 
     // Stara Europa
-    { id: 'belle', name: 'Belle', type: 'character', description: 'Ljubiteljica knjiga. Njezina obiteljska loza vodi do Jane Porter u Africi.', movie: 'Ljepotica i Zvijer', cluster: 'Stara Europa' },
+    { id: 'belle', name: 'Belle', type: 'character', description: 'Ljubiteljica knjiga. Njezina obiteljska loza vodi do Jane Porter u Africi.', movie: 'Ljepotica i Zvijer', cluster: 'Stara Europa', imdbRating: 8.0, budget: '$25M', boxOffice: '$424M', counterpartId: 'belle_live' },
     { id: 'beast', name: 'Zvijer', type: 'character', description: 'Princ koji je naučio o kletvama, sličnim onima koje baca Maleficent.', movie: 'Ljepotica i Zvijer', cluster: 'Stara Europa' },
-    { id: 'cinderella', name: 'Pepeljuga', type: 'character', description: 'Simbol nade. Njezina magija kume vile je preteča moći iz Trnoružice.', movie: 'Pepeljuga', cluster: 'Stara Europa' },
+    { id: 'cinderella', name: 'Pepeljuga', type: 'character', description: 'Simbol nade. Njezina magija kume vile je preteča moći iz Trnoružice.', movie: 'Pepeljuga', cluster: 'Stara Europa', imdbRating: 7.3, budget: '$3M', boxOffice: '$263M', counterpartId: 'cinderella_live' },
     { id: 'maleficent', name: 'Maleficent', type: 'character', description: 'Vila tame. Njezina magija transformacije je "zlatni standard" za Ursulu i Jafara.', movie: 'Trnoružica', cluster: 'Stara Europa' },
 
     // Teorije i Lokacije
@@ -55,11 +59,11 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'hercules', name: 'Herkul', type: 'character', description: 'Polubog čiji su podvizi poznati u cijelom morskom kraljevstvu.', movie: 'Herkul', cluster: 'Olimp' },
     { id: 'hades', name: 'Had', type: 'character', description: 'Bog podzemlja koji upravlja dušama svih zlikovaca.', movie: 'Herkul', cluster: 'Olimp' },
     { id: 'phil', name: 'Filoktet', type: 'character', description: 'Trener koji posjeduje Scarov trofej.', movie: 'Herkul', cluster: 'Olimp' },
-    { id: 'aladdin', name: 'Aladin', type: 'character', description: 'Vodi nas u pustinju gdje je vidio Sebastiana.', movie: 'Aladin', cluster: 'Pustinja' },
+    { id: 'aladdin', name: 'Aladin', type: 'character', description: 'Vodi nas u pustinju gdje je vidio Sebastiana.', movie: 'Aladin', cluster: 'Pustinja', imdbRating: 8.0, budget: '$28M', boxOffice: '$504M' },
     { id: 'genie', name: 'Duh', type: 'character', description: 'Svemoćno biće koje probija granice filma.', movie: 'Aladin', cluster: 'Pustinja' },
-    { id: 'jasmine', name: 'Jasmina', type: 'character', description: 'Princeza čiji tepih leti iznad svih kraljevstava.', movie: 'Aladin', cluster: 'Pustinja' },
+    { id: 'jasmine', name: 'Jasmina', type: 'character', description: 'Princeza čiji tepih leti iznad svih kraljevstava.', movie: 'Aladin', cluster: 'Pustinja', imdbRating: 8.0, budget: '$28M', boxOffice: '$504M', counterpartId: 'jasmine_live' },
     { id: 'jafar', name: 'Jafar', type: 'character', description: 'Zlikovac čija magija podsjeća na Maleficent.', movie: 'Aladin', cluster: 'Pustinja' },
-    { id: 'mulan', name: 'Mulan', type: 'character', description: 'Ratnica čija se legenda proučava u modernom svijetu Lilo i Stitcha.', movie: 'Mulan', cluster: 'Istok' },
+    { id: 'mulan', name: 'Mulan', type: 'character', description: 'Ratnica čija se legenda proučava u modernom svijetu Lilo i Stitcha.', movie: 'Mulan', cluster: 'Istok', imdbRating: 7.6, budget: '$90M', boxOffice: '$304M', counterpartId: 'mulan_live' },
     { id: 'mushu', name: 'Mushu', type: 'character', description: 'Zmaj čuvar predaka, mehanika slična Mufasi.', movie: 'Mulan', cluster: 'Istok' },
     { id: 'stitch', name: 'Stitch', type: 'character', description: 'Vanzemaljac koji posjeduje poster Mulan u svojoj sobi.', movie: 'Lilo & Stitch', cluster: 'Moderna' },
     { id: 'lilo', name: 'Lilo', type: 'character', description: 'Djevojčica s Havaja koja poznaje Mulanine legende.', movie: 'Lilo & Stitch', cluster: 'Moderna' },
@@ -69,7 +73,7 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'peter_pan', name: 'Petar Pan', type: 'character', description: 'Dječak iz Neverlanda čije su sirene srodne Arielinoj obitelji.', movie: 'Petar Pan', cluster: 'Neverland' },
     { id: 'hook', name: 'Kuka', type: 'character', description: 'Kapetan koji je navodno usmrtio Arielinu majku Atenu.', movie: 'Petar Pan', cluster: 'Neverland' },
     { id: 'tinkerbell', name: 'Zvončica', type: 'character', description: 'Izvor vilinskog praha, univerzalnog Disney resursa.', movie: 'Petar Pan', cluster: 'Neverland' },
-    { id: 'alice', name: 'Alice', type: 'character', description: 'Putuje kroz dimenzije kroz koje krstari i Mačak Cheshire.', movie: 'Alice', cluster: 'Neverland' },
+    { id: 'alice', name: 'Alice', type: 'character', description: 'Putuje kroz dimenzije kroz koje krstari i Mačak Cheshire.', movie: 'Alice', cluster: 'Neverland', imdbRating: 7.4, budget: '$3M', boxOffice: '$30M', counterpartId: 'alice_live' },
     { id: 'cheshire_cat', name: 'Mačak Cheshire', type: 'character', description: 'Metafizičko biće koje povezuje sve dimenzije snova.', movie: 'Alice', cluster: 'Neverland' },
     { id: 'kida', name: 'Kida', type: 'character', description: 'Princeza Atlantide čiji kristal napaja svu magiju svijeta.', movie: 'Atlantis', cluster: 'Tajne' },
     { id: 'milo', name: 'Milo', type: 'character', description: 'Istraživač koji je povezao antičke jezike u jedan sustav.', movie: 'Atlantis', cluster: 'Tajne' },
@@ -78,13 +82,13 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'hector', name: 'Hector', type: 'character', description: 'Duh čije sjećanje čuva vezu s obitelji (Mulan mahanika).', movie: 'Coco', cluster: 'Moderna' },
     { id: 'mother_gothel_secret', name: 'Gothelina tajna', type: 'theory', description: 'Ona je ista osoba kao i Zla Kraljica, koristeći drugu magiju.', movie: 'Teorija', cluster: 'Teorije' },
     { id: 'aurora', name: 'Aurora', type: 'character', description: 'Povezana s kletvama i vilama koje vladaju Starkom Europom.', movie: 'Trnoružica', cluster: 'Stara Europa' },
-    { id: 'snow_white', name: 'Snjeguljica', type: 'character', description: 'Osnova svih bajki čije se ogledalo spominje u dvorcu Zvijeri.', movie: 'Snjeguljica', cluster: 'Stara Europa' },
+    { id: 'snow_white', name: 'Snjeguljica', type: 'character', description: 'Osnova svih bajki čije se ogledalo spominje u dvorcu Zvijeri.', movie: 'Snjeguljica', cluster: 'Stara Europa', imdbRating: 7.6, budget: '$1.5M', boxOffice: '$418M' },
     { id: 'evil_queen', name: 'Zla Kraljica', type: 'character', description: 'Prva zla vještica čije kletve i danas odjekuju.', movie: 'Snjeguljica', cluster: 'Stara Europa' },
     { id: 'mufasa', name: 'Mufasa', type: 'character', description: 'Bivši kralj lavova čiji duh bdije iz zvijezda.', movie: 'Kralj Lavova', cluster: 'Divljina' },
     { id: 'red_witch', name: 'Grimhilde', type: 'character', description: 'Poznata i kao Zla Kraljica, čije mračne moći Had koristi u podzemlju.', movie: 'Snjeguljica', cluster: 'Stara Europa' },
     
     // Pixar & Moderna
-    { id: 'woody', name: 'Woody', type: 'character', description: 'Kauboj igračka. Njegova egzistencija dokazuje da neživi predmeti crpe magiju iz dječje mašte.', movie: 'Priča o igračkama', cluster: 'Moderna' },
+    { id: 'woody', name: 'Woody', type: 'character', description: 'Kauboj igračka. Njegova egzistencija dokazuje da neživi predmeti crpe magiju iz dječje mašte.', movie: 'Priča o igračkama', cluster: 'Moderna', imdbRating: 8.3, budget: '$30M', boxOffice: '$373M' },
     { id: 'buzz', name: 'Buzz Svjetlosni', type: 'character', description: 'Svemirski rendžer. Njegova tehnologija podsjeća na rane prototipove iz Treasure Planeta.', movie: 'Priča o igračkama', cluster: 'Moderna' },
     { id: 'andy', name: 'Andy', type: 'character', description: 'Dječak čija mašta napaja svijet igračaka. Njegova soba krije brojne reference na druge svjetove.', movie: 'Priča o igračkama', cluster: 'Moderna' },
     { id: 'remy', name: 'Remy', type: 'character', description: 'Štakor kuhar. Njegov talent je dar koji se u ovom svemiru često dodjeljuje "običnim" stvorenjima.', movie: 'Juhu-hu', cluster: 'Moderna' },
@@ -92,7 +96,7 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'carl', name: 'Carl Fredricksen', type: 'character', description: 'Starac koji je odletio s kućom. Njegova kuća je viđena iznad brojnih Disneyevih gradova.', movie: 'Nebesa', cluster: 'Moderna' },
     { id: 'russell', name: 'Russell', type: 'character', description: 'Mladi izviđač koji je povezao moderni svijet s drevnim divljinama Južne Amerike.', movie: 'Nebesa', cluster: 'Moderna' },
     { id: 'charles_muntz', name: 'Charles Muntz', type: 'character', description: 'Istraživač čiji su izumi (ogrlice za pse) preteča tehnologije komunikacije sa životinjama.', movie: 'Nebesa', cluster: 'Moderna' },
-    { id: 'wall_e', name: 'Wall-E', type: 'character', description: 'Robot koji je preživio kraj civilizacije. Njegova upornost je ista ona koja pokreće Pinokija.', movie: 'Wall-E', cluster: 'Daleka Budućnost' },
+    { id: 'wall_e', name: 'Wall-E', type: 'character', description: 'Robot koji je preživio kraj civilizacije. Njegova upornost je ista ona koja pokreće Pinokija.', movie: 'Wall-E', cluster: 'Daleka Budućnost', imdbRating: 8.4, budget: '$180M', boxOffice: '$533M' },
     { id: 'eve', name: 'Eva', type: 'character', description: 'Napredni sondažni robot. Njezina tehnologija je vrhunac BnL korporacije.', movie: 'Wall-E', cluster: 'Daleka Budućnost' },
     { id: 'merlin', name: 'Merlin', type: 'character', description: 'Čarobnjak koji putuje kroz vrijeme. Njegovo poznavanje Bermuda i modernog svijeta objašnjava anakronizme.', movie: 'Mač u Kamenu', cluster: 'Srednji Vijek' },
     { id: 'arthur', name: 'Arthur', type: 'character', description: 'Budući kralj. Njegov mač je kovan istom tehnikom kao i Mauijeva kuka.', movie: 'Mač u Kamenu', cluster: 'Srednji Vijek' },
@@ -105,7 +109,7 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'vanellope', name: 'Vanellope', type: 'character', description: 'Princeza koda koja je upoznala sve klasične Disneyjeve princeze u internetu.', movie: 'Krš i lom', cluster: 'Digitalni' },
     { id: 'dory', name: 'Dori', type: 'character', description: 'Riba koja zaboravlja, ali čiji instinkt vodi do istih oceanskih struja koje koristi Moana.', movie: 'U Potrazi za Nemom', cluster: 'Oceani' },
     { id: 'bambi', name: 'Bambi', type: 'character', description: 'Mladi srndać čija je majka stradala od istog "Lovca" koji se spominje u brojnim filmovima.', movie: 'Bambi', cluster: 'Divljina' },
-    { id: 'nemo', name: 'Nemo', type: 'character', description: 'Mala riba klaun koja je preživjela akvarij i vratila se u divljinu oceana.', movie: 'U Potrazi za Nemom', cluster: 'Oceani' },
+    { id: 'nemo', name: 'Nemo', type: 'character', description: 'Mala riba klaun koja je preživjela akvarij i vratila se u divljinu oceana.', movie: 'U Potrazi za Nemom', cluster: 'Oceani', imdbRating: 8.2, budget: '$94M', boxOffice: '$940M' },
     { id: 'maid_marian', name: 'Maid Marian', type: 'character', description: 'Robinova ljubav; njezina prisutnost u Nottinghamu je preteča plemstva u Zootopiji.', movie: 'Robin Hood', cluster: 'Srednji Vijek' },
     { id: 'sid', name: 'Sid', type: 'character', description: 'Dječak koji muči igračke; njegova trauma je stvorila mračnije teorije o svijetu predmeta.', movie: 'Priča o igračkama', cluster: 'Moderna' },
     
@@ -126,25 +130,25 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { id: 'mei_lee', name: 'Mei Lee', type: 'character', description: 'Djevojčica koja se pretvara u crvenu pandu, koristeći drevnu magiju predaka sličnu Mulaninoj.', movie: 'Turning Red', cluster: 'Moderna' },
 
     // Igrani Svemir (Disney Live-Action) - Filmovi, Glumice i Likovi
-    { id: 'elizabeth_swann', name: 'Elizabeth Swann', type: 'character', description: 'Glavna heroina i kći guvernera koja postaje piratska kraljica. Njezin susret s kletvama povezuje je s oceanskim legendama.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
+    { id: 'elizabeth_swann', name: 'Elizabeth Swann', type: 'character', description: 'Glavna heroina i kći guvernera koja postaje piratska kraljica. Njezin susret s kletvama povezuje je s oceanskim legendama.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir', imdbRating: 8.1, budget: '$140M', boxOffice: '$654M' },
     { id: 'keira_knightley', name: 'Keira Knightley', type: 'character', description: 'Slavna britanska glumica koja je utjelovila buntovnu i hrabru Elizabeth Swann u piratskoj sagi.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
     { id: 'jack_sparrow', name: 'Jack Sparrow', type: 'character', description: 'Zloglasni i ekscentrični piratski kapetan. Njegovo posjedovanje Posejdonovog trozupca i kompasa spaja avanturu sa starom magijom vladara mora.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
-    { id: 'maleficent_live', name: 'Maleficent (Igrana)', type: 'character', description: 'Reinterpretacija Disneyjeve najpoznatije zle vile, prikazana kao zaštitnica Močvara s tragičnom i dirljivom prošlošću.', movie: 'Gospodarica Zla', cluster: 'Igrani Svemir' },
+    { id: 'maleficent_live', name: 'Maleficent (Igrana)', type: 'character', description: 'Reinterpretacija Disneyjeve najpoznatije zle vile, prikazana kao zaštitnica Močvara s tragičnom i dirljivom prošlošću.', movie: 'Gospodarica Zla', cluster: 'Igrani Svemir', imdbRating: 6.9, budget: '$180M', boxOffice: '$758M', counterpartId: 'maleficent' },
     { id: 'angelina_jolie', name: 'Angelina Jolie', type: 'character', description: 'Karizmatična holivudska glumica koja je utjelovila veličanstvenu Maleficent, dodajući dubinu i ranjivost njezinom liku.', movie: 'Gospodarica Zla', cluster: 'Igrani Svemir' },
-    { id: 'cruella_live', name: 'Cruella de Vil (Igrana)', type: 'character', description: 'Estella Miller, talentirana i buntovna dizajnerica u Londonu 1970-ih koja prihvaća svoju mračnu, genijalnu stranu kao Cruella.', movie: 'Cruella', cluster: 'Igrani Svemir' },
+    { id: 'cruella_live', name: 'Cruella de Vil (Igrana)', type: 'character', description: 'Estella Miller, talentirana i buntovna dizajnerica u Londonu 1970-ih koja prihvaća svoju mračnu, genijalnu stranu kao Cruella.', movie: 'Cruella', cluster: 'Igrani Svemir', imdbRating: 7.3, budget: '$100M', boxOffice: '$233M' },
     { id: 'emma_stone', name: 'Emma Stone', type: 'character', description: 'Dobitnica Oscara koja je majstorski prikazala psihološku transformaciju i modni bunt mlade Cruelle.', movie: 'Cruella', cluster: 'Igrani Svemir' },
-    { id: 'mary_poppins', name: 'Mary Poppins', type: 'character', description: 'Čarobna dadilja s letećim kišobranom i beskrajnom torbom koja nudi nelinearne poglede na stvarnost, slično Merlinu.', movie: 'Mary Poppins', cluster: 'Igrani Svemir' },
+    { id: 'mary_poppins', name: 'Mary Poppins', type: 'character', description: 'Čarobna dadilja s letećim kišobranom i beskrajnom torbom koja nudi nelinearne poglede na stvarnost, slično Merlinu.', movie: 'Mary Poppins', cluster: 'Igrani Svemir', imdbRating: 8.4, budget: '$6M', boxOffice: '$102M' },
     { id: 'julie_andrews', name: 'Julie Andrews', type: 'character', description: 'Legendarna glumica i pjevačica koja je prva oživjela lik Mary Poppins, osvojivši Oscara za ovu ikonsku ulogu.', movie: 'Mary Poppins', cluster: 'Igrani Svemir' },
     { id: 'posejdonov_trozubac', name: 'Posejdonov Trozubac', type: 'object', description: 'Drevni oceanski artefakt koji posjeduje moć lomljenja svih kletvi na moru. Isti trozubac koristi i Kralj Triton u animiranom svijetu.', movie: 'Pirati s Kariba', cluster: 'Igrani Svemir' },
-    { id: 'belle_live', name: 'Belle (Igrana)', type: 'character', description: 'Fizička i hrabra interpretacija prelijepe knjižničarke koja spasila Zvijer i razbila prokletstvo dvorca u raskošnom igranom filmu.', movie: 'Ljepotica i Zvijer (2017)', cluster: 'Igrani Svemir' },
+    { id: 'belle_live', name: 'Belle (Igrana)', type: 'character', description: 'Fizička i hrabra interpretacija prelijepe knjižničarke koja spasila Zvijer i razbila prokletstvo dvorca u raskošnom igranom filmu.', movie: 'Ljepotica i Zvijer (2017)', cluster: 'Igrani Svemir', imdbRating: 7.1, budget: '$160M', boxOffice: '$1,260M', counterpartId: 'belle' },
     { id: 'emma_watson', name: 'Emma Watson', type: 'character', description: 'Svjetski poznata glumica i aktivistica koja je udahnula inteligenciju i moderni senzibilitet igranoj verziji Belle.', movie: 'Ljepotica i Zvijer (2017)', cluster: 'Igrani Svemir' },
-    { id: 'cinderella_live', name: 'Pepeljuga (Igrana)', type: 'character', description: 'Ella, mlada djevojka čija su dobrota i hrabrost jače od svake okrutnosti. Njezine staklene cipelice i bal krase predivnu igranu adaptaciju.', movie: 'Pepeljuga (2015)', cluster: 'Igrani Svemir' },
+    { id: 'cinderella_live', name: 'Pepeljuga (Igrana)', type: 'character', description: 'Ella, mlada djevojka čija su dobrota i hrabrost jače od svake okrutnosti. Njezine staklene cipelice i bal krase predivnu igranu adaptaciju.', movie: 'Pepeljuga (2015)', cluster: 'Igrani Svemir', imdbRating: 6.9, budget: '$95M', boxOffice: '$542M', counterpartId: 'cinderella' },
     { id: 'lily_james', name: 'Lily James', type: 'character', description: 'Talentirana britanska glumica koja je utjelovila Pepeljugu s iznimnom toplinom, gracioznošću i autentičnom snagom.', movie: 'Pepeljuga (2015)', cluster: 'Igrani Svemir' },
-    { id: 'jasmine_live', name: 'Jasmine (Igrana)', type: 'character', description: 'Buntovna princeza Agrabaha koja se bori protiv nepravde, želi postati prva ženska sultanica i pjeva o tome kako neće biti tiho.', movie: 'Aladin (2019)', cluster: 'Igrani Svemir' },
+    { id: 'jasmine_live', name: 'Jasmine (Igrana)', type: 'character', description: 'Buntovna princeza Agrabaha koja se bori protiv nepravde, želi postati prva ženska sultanica i pjeva o tome kako neće biti tiho.', movie: 'Aladin (2019)', cluster: 'Igrani Svemir', imdbRating: 6.9, budget: '$183M', boxOffice: '$1,050M', counterpartId: 'jasmine' },
     { id: 'naomi_scott', name: 'Naomi Scott', type: 'character', description: 'Britanska glumica i pjevačica koja je odigrala ulogu Jasmine, dajući joj vokalnu moć i borbenu, inspirativnu osobnost.', movie: 'Aladin (2019)', cluster: 'Igrani Svemir' },
-    { id: 'mulan_live', name: 'Mulan (Igrana)', type: 'character', description: 'Legendarna kineska ratnica koja pokazuje snagu svog Chija kako bi spasila obitelj i carstvo u velikom epskom spektaklu.', movie: 'Mulan (2020)', cluster: 'Igrani Svemir' },
+    { id: 'mulan_live', name: 'Mulan (Igrana)', type: 'character', description: 'Legendarna kineska ratnica koja pokazuje snagu svog Chija kako bi spasila obitelj i carstvo u velikom epskom spektaklu.', movie: 'Mulan (2020)', cluster: 'Igrani Svemir', imdbRating: 5.7, budget: '$200M', boxOffice: '$70M', counterpartId: 'mulan' },
     { id: 'liu_yifei', name: 'Liu Yifei', type: 'character', description: 'Kineska megazvijezda i majstorica borilačkih vještina koja je savršeno izvela zahtjevne borbene scene kao legendarna ratnica.', movie: 'Mulan (2020)', cluster: 'Igrani Svemir' },
-    { id: 'alice_live', name: 'Alice (Igrana)', type: 'character', description: 'Devetnaestogodišnja Alice koja se vraća u Podzemlje kako bi ostvarila svoju sudbinu, porazila Jabberwockyja i oslobodila čudesni svijet.', movie: 'Alisa u zemlji čudesa (2010)', cluster: 'Igrani Svemir' },
+    { id: 'alice_live', name: 'Alice (Igrana)', type: 'character', description: 'Devetnaestogodišnja Alice koja se vraća u Podzemlje kako bi ostvarila svoju sudbinu, porazila Jabberwockyja i oslobodila čudesni svijet.', movie: 'Alisa u zemlji čudesa (2010)', cluster: 'Igrani Svemir', imdbRating: 6.4, budget: '$200M', boxOffice: '$1,020M', counterpartId: 'alice' },
     { id: 'mia_wasikowska', name: 'Mia Wasikowska', type: 'character', description: 'Australska glumica koja je utjelovila Alice u vizionarskom, trodimenzionalnom svijetu redatelja Tima Burtona.', movie: 'Alisa u zemlji čudesa (2010)', cluster: 'Igrani Svemir' },
 
     // Nove Teorije

@@ -125,15 +125,63 @@ Sljedeća tablica prikazuje ove ključne podatke, poredane prema ocjenama gledat
 
 ---
 
+## 3.1. Komparativna analiza animiranih filmskih klasika (likova iz crtića): Temelji crtanog kanona
+
+Nakon što smo istražili igranu sferu, neophodno je analizirati ishodišne mrežne materijale: originalne animirane klasike. Ovi crtani filmovi predstavljaju fundament cijele naše mreže, jer se na njihovim ontologijama temelji i s njima se prepliće cjelokupni igrani i teorijski transmedijski svemir. 
+
+Sljedeća tablica prikazuje kvantitativne parametre (iz IMDb i Box Office Mojo, 2026) za 10 najistaknutijih animiranih i Pixarovih ostvarenja koji su integrirani u naš interaktivni graf kao primarni entiteti, poredani prema ocjenama gledatelja:
+
+| Rank | Naziv filma | Glavni lik u grafu | IMDb Ocjena | Glasovi publike | Budžet filma | Svjetska zarada | Broj mrežnih veza |
+| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **#1** | **Kralj lavova (1994)** | Simba | **8.5 / 10** | 1,120,000+ | $45M | $1,083M | 5 veza |
+| **#2** | **Wall-E (2008)** | Wall-E | **8.4 / 10** | 1,150,000+ | $180M | $533M | 3 veze |
+| **#3** | **Priča o igračkama (1995)** | Woody | **8.3 / 10** | 1,020,000+ | $30M | $373M | 6 veza |
+| **#4** | **Potraga za Nemom (2003)** | Nemo / Dori | **8.2 / 10** | 1,080,000+ | $94M | $940M | 3 veze |
+| **#5** | **Ljepotica i Zvijer (1991)** | Belle (Animirana) | **8.0 / 10** | 465,000+ | $25M | $424M | 5 veza |
+| **#6** | **Aladin (1992)** | Aladin / Jasmine | **8.0 / 10** | 435,000+ | $28M | $504M | 5 veza |
+| **#7** | **Mulan (1998)** | Mulan (Animirana) | **7.6 / 10** | 315,000+ | $90M | $304M | 4 veze |
+| **#8** | **Mala Sirena (1989)** | Ariel | **7.6 / 10** | 278,000+ | $40M | $211M | 6 veza |
+| **#9** | **Snjeguljica (1937)** | Snjeguljica | **7.6 / 10** | 212,000+ | $1.5M | $418M | 4 veze |
+| **#10** | **Snježno kraljevstvo (2013)** | Elsa / Anna | **7.4 / 10** | 645,000+ | $150M | $1,280M | 6 veza |
+
+---
+
 ## 4. Analiza rezultata i rasprava: Što nam ovi brojevi zapravo govore?
 
-Gledajući ovu tablicu, odmah možemo uočiti nekoliko nevjerojatnih obrazaca i napetosti između umjetničkog uspjeha (ocjene gledatelja) i čiste komercijalne moći.
+Gledajući ove tablice, odmah možemo uočiti nekoliko nevjerojatnih obrazaca, financijskih anomalija i napetosti između umjetničkog uspjeha (ocjene gledatelja) i čiste komercijalne moći.
 
-### 4.1. Sukob nostalgije i gigantske zarade (Kritički vs. Financijski lideri)
-- **Kritički trijumf Julie Andrews:** Apsolutni pobjednik po ocjenama publike i kritičara je legendarni klasik **Mary Poppins (1964)** s impresivnih **8.4/10**. Snimljen sa skromnim budžetom od svega 6 milijuna dolara, ovaj je film ostvario nevjerojatan povrat investicije i osvojio 5 Oscara (IMDb & Box Office Mojo, 2026). To dokazuje da stvarni, topli ljudski šarm (Julie Andrews) i pažljivo narativno vođenje imaju trajnu vrijednost koja nadilazi prolazne CGI efekte i industrijska prepisivanja (Mollet, 2019; Proctor, 2012).
-- **Masovna popularnost Pirata s Kariba:** Kada govorimo o "velikim brojevima", **Pirati s Kariba (2003)** su neprikosnoveni vladar. S preko **1.2 milijuna pojedinačnih glasova gledatelja** na IMDb-u i ocjenom od **8.1/10**, ovaj film predstavlja najpopularniji ne-crtani uradak Disneyevog studija u povijesti (IMDb & Box Office Mojo, 2026). Keira Knightley (kao Elizabeth Swann) i Johnny Depp (kao Jack Sparrow) uspjeli su stvoriti moderni pustolovni mit koji publika i danas obožava i koji drži izuzetnu stabilnost i ugled u našem grafu mrežnih veza (Smith, 2018; Newman, 2018).
+### 4.1. Sukob nostalgije i gigantske zarade (Kritički vs. Financijski lideri kod igranog filma)
+- **Kritički trijumf Julie Andrews:** Apsolutni pobjednik po ocjenama publike i kritičara u igranoj sferi je legendarni klasik **Mary Poppins (1964)** s impresivnih **8.4/10**. Snimljen sa skromnim budžetom od svega 6 milijuna dolara, ovaj je film ostvario nevjerojatan povrat investicije i osvojio 5 Oscara (IMDb & Box Office Mojo, 2026). To dokazuje da stvarni, topli ljudski šarm (Julie Andrews) i pažljivo narativno vođenje imaju trajnu vrijednost koja nadilazi prolazne CGI efekte i industrijska prepisivanja (Mollet, 2019; Proctor, 2012).
+- **Masovna popularnost Pirata s Kariba:** Kada govorimo o "velikim brojevima", **Pirati s Kariba (2003)** su neprikosnoveni vladar igrane sfere. S preko **1.2 milijuna pojedinačnih glasova gledatelja** na IMDb-u i ocjenom od **8.1/10**, ovaj film predstavlja najpopularniji ne-crtani uradak Disneyevog studija u povijesti (IMDb & Box Office Mojo, 2026). Keira Knightley (kao Elizabeth Swann) i Johnny Depp (kao Jack Sparrow) uspjeli su stvoriti moderni pustolovni mit koji publika i danas obožava i koji drži izuzetnu stabilnost i ugled u našem grafu mrežnih veza (Smith, 2018; Newman, 2018).
 - **Milijarderi niske ocjene:** Zanimljivo je pogledati filmove poput *Alise u zemlji čudesa (2010)* i *Aladina (2019)*. Oba filma su prešla magičnu granicu od **1 milijarde dolara zarade** na blagajnama (IMDb & Box Office Mojo, 2026), unatoč tome što su im ocjene gledatelja bile razmjerno niske (6.4 i 6.9). Ovo nam ukazuje na "Disney mašineriju industrijskog remakea" (Mollet, 2019) — publika hrli u kina zbog nostalgije i brenda, no njezino aktivno pregovaranje s vlastitim djetinjstvom i kolektivnim sjećanjem rezultira umjerenim ocjenama (Proctor, 2012; Wohlwend, 2009).
 - **Tragedija Mulana (2020):** Najgori rezultat ostvario je film *Mulan (2020)* s razočaravajućih **5.7/10**. S ogromnim budžetom od 200 milijuna dolara, film je zbog niza kontroverzi i pandemijskih okolnosti zaradio svega 70 milijuna na kino blagajnama (IMDb & Box Office Mojo, 2026). To nam pokazuje da pretjerano odstupanje od zabavnih i magičnih korijena originala (izbacivanje zmaja Mushua i glazbenih brojeva) rezultira odbijanjem od strane publike, koja od Disneyja traži toplinu, a ne hladni ratni spektakl s obilježjima korporativne dominacije (Proctor, 2012; Giroux, 1999).
+
+### 4.2. Izravna usporedba: Animirani originali vs. Igrani remakeovi (Crtić vs. Realnost)
+
+Kada sučelimo podatke iz sekcije 3 i sekcije 3.1, izranja fascinantna kulturno-komparativna studija koja jasno dokazuje superiornost animirane forme u srcima publike. Za gotovo svaki par filmova (predstavnik u crtanom formatu vs. njegov nasljednik u igranom formatu), animirana verzija uvjerljivo pobjeđuje po ocjenama publike:
+
+1. **Usporedba Mulan (1998 - 7.6 vs. 2020 - 5.7):**
+   - **Trend:** Pad od zapanjujućih **1.9 bodova** na IMDb ljestvici.
+   - **Objašnjenje:** Najveća diskrepancija u cijelom uzorku. Dok se animirani uradak s pravom slavi zbog emotivne topline, briljantnog humora (zmaj Mushu) i snažnog glazbenog rječnika, igrani remake je amputirao te elemente u korist povijesnog realizma koji je publika doživjela kao sterilan i distanciran (Mollet, 2019).
+   
+2. **Usporedba Aladin (1992 - 8.0 vs. 2019 - 6.9):**
+   - **Trend:** Pad od **1.1 boda**.
+   - **Objašnjenje:** Igrani *Aladin* predvođen Willom Smithom u ulozi Duha zaradio je preko milijardu dolara, ali mrežna analiza ocjena pokazuje duboku nostalgiju za originalnom izvedbom neprežaljenog Robina Williamsa iz 1992. Crtani oblik pružio je nadrealnu, ekspresivnu slobodu kretanja i preobrazbe koju čak i najsuvremenija CGI tehnologija teško može organski zamijeniti (Wohlwend, 2009).
+
+3. **Usporedba Ljepotica i Zvijer (1991 - 8.0 vs. 2017 - 7.1):**
+   - **Trend:** Pad od **0.9 bodova**.
+   - **Objašnjenje:** Unatoč zvjezdanoj glumačkoj postavi s Emmom Watson, publika je i dalje lojalnija remek-djelu iz 1991., prvom animiranom filmu nominiranom za Oscara za najbolji film. Kritičari i publika uočavaju da u igranoj verziji, CGI reprezentacija Zvijeri i kućnih predmeta (Lumiere, Cogsworth) gubi dio tople mikroekspresije i dječje mekoće koja krasi ručni crtež (Mollet, 2019; Proctor, 2012).
+
+4. **Usporedba Pepeljuga (1950 - 7.3 vs. 2015 - 6.9):**
+   - **Trend:** Pad od **0.4 boda**.
+   - **Objašnjenje:** Ovo predstavlja najmanji pad u našoj usporedbi. Igrani film redatelja Kennetha Branagha i glumice Lily James odlučio je ostati vrlo vjeran tradicionalnoj, melodramatskoj i iskrenoj premisi originala, bez "suvremenih ciničnih podtonova". Rezultat je stabilna i visoko cijenjena adaptacija koja vjerno čuva staru magiju staklene cipelice.
+
+### 4.3. Nevjerojatna profitna dinamika i povrat investicije
+Mrežnim praćenjem financijskih linija dolazimo do zapanjujućeg zaključka o **povratu investicije (ROI)**. 
+- Pionir svjetske animacije, **Snjeguljica i sedam patuljaka (1937)**, stvorena je za tada nevjerojatnih ali apsolutno sitnih $1.5M. Preračunato u povrat u kinu, njezina globalna zarada od $418M predstavlja zapanjujući financijski multiplikator od **preko 27,000%**! 
+- S druge strane, moderni igrani mega-naslovi poput *Mulan (2020)* s proračunom od $200M ostvaruju gubitak, dok *Alisa u zemlji čudesa (2010)* s identičnim proračunom dostiže milijardu zarade, ali s drastično manjim ROI koeficijentom od svega 400% do 500% nakon uračunavanja gigantskih marketinških troškova.
+
+Ove dramatične razlike i poređenja integrirali smo i vizualno unutar same programske opreme "Remix", kako bismo analitičarima omogućili da u sekundi procijene usporedbu između crtanih fundamenta i stvarnih adaptacija.
 
 ---
 
