@@ -24,13 +24,49 @@ import {
   Send,
   Loader2,
   Cpu,
-  Star
+  Star,
+  Film
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function getNodeGroup(d: { id: string; movie?: string; cluster?: string }): 'Disney' | 'Pixar' | 'Film' {
+  if (d.cluster === 'Igrani Svemir') {
+    return 'Film';
+  }
+  
+  const pixarMovies = [
+    'Priča o igračkama', 'Wall-E', 'Juhu-hu', 'Nebesa', 'Coco',
+    'Turning Red', 'Merida Hrabra', 'Čudovišta iz ormara', 'Izbavitelji',
+    'Auti', 'Izvrnuto obrnuto', 'U Potrazi za Nemom'
+  ];
+  
+  const pixarClusters = [
+    'Moderna', 'Daleka Budućnost', 'Drevna Škotska', 'Monstropolis',
+    'Doba Heroja', 'Era Strojeva', 'Unutarnji Svijet'
+  ];
+
+  const isPixarMovie = pixarMovies.some(m => d.movie && d.movie.includes(m));
+  const isPixarCluster = d.cluster ? pixarClusters.includes(d.cluster) : false;
+  const isPixarSpecific = ['bnl_corp', 'teorija_pixar'].includes(d.id);
+
+  if (isPixarMovie || isPixarCluster || isPixarSpecific) {
+    return 'Pixar';
+  }
+
+  return 'Disney';
+}
+
+export function getGroupColor(group: 'Disney' | 'Pixar' | 'Film'): string {
+  switch (group) {
+    case 'Disney': return '#a855f7'; // Royal Purple / Violet
+    case 'Pixar': return '#fb923c';  // Vibrant Orange
+    case 'Film': return '#06b6d4';   // Neon Cyan
+  }
 }
 
 interface SimulationNode extends d3.SimulationNodeDatum, Node {}
@@ -202,39 +238,31 @@ export default function App() {
     zoomRef.current = zoom;
     svg.call(zoom);
 
-    // Dynamic orbital layout calculation for cluster centers
-    const uniqueClusters = Array.from(new Set(nodes.map(n => n.cluster).filter(c => c !== 'Centar Magije' && c !== 'Veze' && c !== 'Teorije')));
-    const clusterCenters: Record<string, { x: number, y: number }> = {
-      'Centar Magije': { x: dimensions.width / 2, y: dimensions.height / 2 },
-      'Veze': { x: dimensions.width / 2, y: dimensions.height / 2 - 120 },
-      'Teorije': { x: dimensions.width / 2, y: dimensions.height / 2 + 120 }
+    // Definicija 3 jasna centra za grupe: Disney, Pixar, Film
+    const groupCenters: Record<string, { x: number, y: number }> = {
+      'Disney': { x: dimensions.width / 2 - 380, y: dimensions.height / 2 - 120 },
+      'Pixar': { x: dimensions.width / 2 + 380, y: dimensions.height / 2 - 120 },
+      'Film': { x: dimensions.width / 2, y: dimensions.height / 2 + 300 }
     };
-    uniqueClusters.forEach((cluster, i) => {
-      const angle = (i / uniqueClusters.length) * 2 * Math.PI;
-      // Stagger radius to create an elegant multi-layer universe aesthetic
-      const radius = i % 2 === 0 ? 460 : 680;
-      clusterCenters[cluster] = {
-        x: dimensions.width / 2 + Math.cos(angle) * radius,
-        y: dimensions.height / 2 + Math.sin(angle) * radius
-      };
-    });
 
     const simulation = d3.forceSimulation<SimulationNode>(nodes)
       .force('link', d3.forceLink<SimulationNode, SimulationLink>(links)
         .id(d => d.id)
-        .distance(120)
+        .distance(140) // Malo veći distance da rastegne veze među grupama dajući predivnu mrežnu strukturu
       )
-      .force('charge', d3.forceManyBody().strength(-350))
+      .force('charge', d3.forceManyBody().strength(-380))
       .force('x', d3.forceX<SimulationNode>(d => {
-        const center = clusterCenters[d.cluster] || { x: dimensions.width / 2, y: dimensions.height / 2 };
+        const group = getNodeGroup(d);
+        const center = groupCenters[group] || { x: dimensions.width / 2, y: dimensions.height / 2 };
         return center.x;
-      }).strength(0.28)) // Pull nodes strongly to their cluster focal point coordinates
+      }).strength(0.35)) // Jače privlačenje prema makro grupama za jasnu tlocrtnu podjelu
       .force('y', d3.forceY<SimulationNode>(d => {
-        const center = clusterCenters[d.cluster] || { x: dimensions.width / 2, y: dimensions.height / 2 };
+        const group = getNodeGroup(d);
+        const center = groupCenters[group] || { x: dimensions.width / 2, y: dimensions.height / 2 };
         return center.y;
-      }).strength(0.28)) // Pull nodes strongly to their cluster focal point coordinates
+      }).strength(0.35))
       .force('center', d3.forceCenter(dimensions.width / 2, dimensions.height / 2))
-      .force('collision', d3.forceCollide().radius(65))
+      .force('collision', d3.forceCollide().radius(60))
       .alphaDecay(0.015);
 
     // Links
@@ -287,7 +315,7 @@ export default function App() {
     node.append('circle')
       .attr('r', d => d.type === 'ego' ? 40 : d.type === 'theory' ? 25 : 20)
       .attr('fill', d => d.type === 'ego' ? '#fbbf24' : '#0f172a')
-      .attr('stroke', d => colorScale(d.cluster))
+      .attr('stroke', d => getGroupColor(getNodeGroup(d)))
       .attr('stroke-width', d => d.type === 'ego' ? 5 : 3)
       .style('filter', 'url(#glow)');
 
@@ -313,18 +341,19 @@ export default function App() {
       .text(d => d.name);
 
     simulation.on('tick', () => {
-      // Direct live centroid tracking to center big beautiful floating labels behind each cluster's grouping
-      const centroids: Record<string, { x: number, y: number, count: number }> = {};
+      // Izračunavanje u realnom vremenu koordinata za 3 velika pozadinska regionalna natpisa
+      const groupCentroids: Record<string, { x: number, y: number, count: number }> = {};
       nodes.forEach(d => {
-        if (!centroids[d.cluster]) {
-          centroids[d.cluster] = { x: 0, y: 0, count: 0 };
+        const group = getNodeGroup(d);
+        if (!groupCentroids[group]) {
+          groupCentroids[group] = { x: 0, y: 0, count: 0 };
         }
-        centroids[d.cluster].x += d.x!;
-        centroids[d.cluster].y += d.y!;
-        centroids[d.cluster].count++;
+        groupCentroids[group].x += d.x!;
+        groupCentroids[group].y += d.y!;
+        groupCentroids[group].count++;
       });
 
-      const labelData = Object.entries(centroids).filter(([name, info]) => name !== 'Centar Magije' && info.count >= 2);
+      const labelData = Object.entries(groupCentroids).filter(([name, info]) => info.count >= 2);
 
       clusterLabelsGroup.selectAll('text')
         .data(labelData, (d: any) => d[0])
@@ -332,13 +361,18 @@ export default function App() {
           enter => enter.append('text')
             .attr('class', 'cluster-bg-title pointer-events-none select-none transition-all duration-300')
             .attr('text-anchor', 'middle')
-            .attr('font-size', '20px')
+            .attr('font-size', '44px') // Velika elegantna slova u pozadini regije
             .attr('font-family', 'System-UI, Inter, sans-serif')
             .attr('font-weight', '950')
-            .attr('fill', d => colorScale(d[0]))
-            .attr('opacity', 0.16)
-            .attr('letter-spacing', '0.25em')
-            .text(d => d[0].toUpperCase()),
+            .attr('fill', d => getGroupColor(d[0] as any))
+            .attr('opacity', 0.08) // Vrlo blagi i moderni opacity za čistu pozadinu
+            .attr('letter-spacing', '0.35em')
+            .text(d => {
+              if (d[0] === 'Disney') return 'DISNEY_KLASICI';
+              if (d[0] === 'Pixar') return 'PIXAR_UNIVERZUM';
+              if (d[0] === 'Film') return 'IGRANI_SVEMIR';
+              return d[0].toUpperCase();
+            }),
           update => update,
           exit => exit.remove()
         )
@@ -509,6 +543,51 @@ export default function App() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            <h3 className="text-xs font-mono font-black text-amber-500 uppercase tracking-widest mt-6 mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+              <Layers className="w-4 h-4" /> Narativne_Skupine // Tri Glavna Svijeta
+            </h3>
+            <div className="space-y-4 mb-4">
+              {[
+                { label: 'Disney Klasici', color: 'bg-[#a855f7]', desc: 'Zlatna era animacije, kraljevstva, bajke i drevne magije (npr. Frozen, Mala Sirena, Lion King, Aladdin).' },
+                { label: 'Pixar Svemir', color: 'bg-[#fb923c]', desc: 'Sinteza mašte, igračaka i tehnologije kroz jedinstvenu Pixar vremensku liniju (npr. Toy Story, Wall-E, Up, Monsters Inc).' },
+                { label: 'Igrani Svemir (Film)', color: 'bg-[#06b6d4]', desc: 'Live-action adaptacije, stvarne glumačke izvedbe, povijest i nelinearna magija mora (npr. Pirati s Kariba, Cruella, Mary Poppins).' }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col gap-1 border-b border-white/5 pb-2.5 last:border-b-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <div className={cn("w-3 h-3 rounded-full shrink-0 shadow-[0_0_10px_rgba(255,255,255,0.15)]", item.color)} />
+                    <span className="text-xs font-black text-white">{item.label}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 font-medium pl-6 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <h3 className="text-xs font-mono font-black text-amber-500 uppercase tracking-widest mt-6 mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+              <Film className="w-4 h-4" /> Vodič_za_Gledanje // Popis Filmova i Crtića
+            </h3>
+            <div className="space-y-4 max-h-[220px] overflow-y-auto pr-2 no-scrollbar border border-white/5 bg-slate-900/20 rounded-xl p-3">
+              <div className="space-y-1">
+                <span className="text-[9px] font-mono font-black text-[#a855f7] uppercase tracking-wider block">🟣 DISNEY ANIMACIJA:</span>
+                <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
+                  Snjeguljica (1937), Pepeljuga (1950), Trnoružica (1959), Mač u Kamenu (1963), Mala Sirena (1989), Ljepotica i Zvijer (1991), Aladin (1992), Kralj lavova (1994), Herkul (1997), Mulan (1998), Tarzan (1999), Lilo i Stitch (2002), Snježno kraljevstvo (2013), Moana (2016).
+                </p>
+              </div>
+              <div className="space-y-1 pt-2 border-t border-white/5">
+                <span className="text-[9px] font-mono font-black text-[#fb923c] uppercase tracking-wider block">🟠 PIXAR SVIJET MAŠTE:</span>
+                <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
+                  Priča o igračkama (1995), Potraga za Nemom (2003), Juhu-hu / Ratatouille (2007), Wall-E (2008), Nebesa / Up (2009), Merida Hrabra (2012), Coco (2017), Turning Red (2022).
+                </p>
+              </div>
+              <div className="space-y-1 pt-2 border-t border-white/5">
+                <span className="text-[9px] font-mono font-black text-[#06b6d4] uppercase tracking-wider block">🔵 IGRANI SVEMIR (LIVE-ACTION):</span>
+                <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
+                  Mary Poppins (1964), Pirati s Kariba (2003), Alisa u zemlji čudesa (2010), Gospodarica Zla (2014), Pepeljuga (2015), Ljepotica i Zvijer (2017), Aladin (2019), Mulan (2020), Cruella (2021).
+                </p>
+              </div>
             </div>
             
             <div className="mt-5 pt-4 border-t border-white/10 space-y-3">
@@ -950,7 +1029,7 @@ export default function App() {
             {selectedNode && (
               <div className="flex-1 flex flex-col space-y-10 py-6 overflow-y-auto no-scrollbar">
                 <div className="space-y-6">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <span className="text-[10px] font-mono font-black py-1.5 px-3 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-md">
                       ID_{selectedNode.id.toUpperCase()}
                     </span>
@@ -958,6 +1037,19 @@ export default function App() {
                       <Globe className="w-3 h-3" />
                       <span className="text-[10px] font-mono font-black uppercase tracking-widest">{selectedNode.cluster}</span>
                     </div>
+                    {(() => {
+                      const grp = getNodeGroup(selectedNode);
+                      const color = getGroupColor(grp);
+                      return (
+                        <div 
+                          className="flex items-center gap-1.5 py-1 px-2.5 rounded-md border"
+                          style={{ borderColor: `${color}30`, backgroundColor: `${color}10`, color: color }}
+                        >
+                          <Layers className="w-3 h-3" />
+                          <span className="text-[10px] font-mono font-black uppercase tracking-widest">{grp === 'Film' ? 'IGRANI SVIJET' : grp.toUpperCase()}</span>
+                        </div>
+                      );
+                    })()}
                   </div>
                   <h2 className="text-6xl font-black leading-none tracking-tighter uppercase italic bg-gradient-to-br from-white via-white to-slate-600 bg-clip-text text-transparent">
                     {selectedNode.name}
