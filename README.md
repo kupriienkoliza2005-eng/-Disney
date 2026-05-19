@@ -4,7 +4,7 @@ Interaktivna full-stack mrežna vizualizacija i sveobuhvatna znanstvena analiza 
 
 Aplikacija je integrirana s akademskim radom izrađenim za **Filozofski fakultet, Odsjek za Pedagogiju** u sklopu kolegija *Istraživanje društvenih mreža*.
 
-![Disney Connections](./src/assets/images/disney_connections_banner_1779108363166.png)
+![Disney Connections](https://mass001.wordpress.com/wp-content/uploads/2019/10/disneyandpixar3b.jpg)
 
 ## 🎨 O Projektu & Najnovije Promjene
 
