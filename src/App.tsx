@@ -188,6 +188,9 @@ export default function App() {
 
     const g = svg.append('g');
 
+    // Clean backtrack group for beautiful cluster labels
+    const clusterLabelsGroup = g.append('g').attr('class', 'cluster-labels-bg');
+
     // Zoom setup
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.1, 4])
@@ -198,14 +201,39 @@ export default function App() {
     zoomRef.current = zoom;
     svg.call(zoom);
 
+    // Dynamic orbital layout calculation for cluster centers
+    const uniqueClusters = Array.from(new Set(nodes.map(n => n.cluster).filter(c => c !== 'Centar Magije' && c !== 'Veze' && c !== 'Teorije')));
+    const clusterCenters: Record<string, { x: number, y: number }> = {
+      'Centar Magije': { x: dimensions.width / 2, y: dimensions.height / 2 },
+      'Veze': { x: dimensions.width / 2, y: dimensions.height / 2 - 120 },
+      'Teorije': { x: dimensions.width / 2, y: dimensions.height / 2 + 120 }
+    };
+    uniqueClusters.forEach((cluster, i) => {
+      const angle = (i / uniqueClusters.length) * 2 * Math.PI;
+      // Stagger radius to create an elegant multi-layer universe aesthetic
+      const radius = i % 2 === 0 ? 460 : 680;
+      clusterCenters[cluster] = {
+        x: dimensions.width / 2 + Math.cos(angle) * radius,
+        y: dimensions.height / 2 + Math.sin(angle) * radius
+      };
+    });
+
     const simulation = d3.forceSimulation<SimulationNode>(nodes)
       .force('link', d3.forceLink<SimulationNode, SimulationLink>(links)
         .id(d => d.id)
-        .distance(100)
+        .distance(120)
       )
-      .force('charge', d3.forceManyBody().strength(-400))
+      .force('charge', d3.forceManyBody().strength(-350))
+      .force('x', d3.forceX<SimulationNode>(d => {
+        const center = clusterCenters[d.cluster] || { x: dimensions.width / 2, y: dimensions.height / 2 };
+        return center.x;
+      }).strength(0.28)) // Pull nodes strongly to their cluster focal point coordinates
+      .force('y', d3.forceY<SimulationNode>(d => {
+        const center = clusterCenters[d.cluster] || { x: dimensions.width / 2, y: dimensions.height / 2 };
+        return center.y;
+      }).strength(0.28)) // Pull nodes strongly to their cluster focal point coordinates
       .force('center', d3.forceCenter(dimensions.width / 2, dimensions.height / 2))
-      .force('collision', d3.forceCollide().radius(60))
+      .force('collision', d3.forceCollide().radius(65))
       .alphaDecay(0.015);
 
     // Links
@@ -284,6 +312,38 @@ export default function App() {
       .text(d => d.name);
 
     simulation.on('tick', () => {
+      // Direct live centroid tracking to center big beautiful floating labels behind each cluster's grouping
+      const centroids: Record<string, { x: number, y: number, count: number }> = {};
+      nodes.forEach(d => {
+        if (!centroids[d.cluster]) {
+          centroids[d.cluster] = { x: 0, y: 0, count: 0 };
+        }
+        centroids[d.cluster].x += d.x!;
+        centroids[d.cluster].y += d.y!;
+        centroids[d.cluster].count++;
+      });
+
+      const labelData = Object.entries(centroids).filter(([name, info]) => name !== 'Centar Magije' && info.count >= 2);
+
+      clusterLabelsGroup.selectAll('text')
+        .data(labelData, (d: any) => d[0])
+        .join(
+          enter => enter.append('text')
+            .attr('class', 'cluster-bg-title pointer-events-none select-none transition-all duration-300')
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '20px')
+            .attr('font-family', 'System-UI, Inter, sans-serif')
+            .attr('font-weight', '950')
+            .attr('fill', d => colorScale(d[0]))
+            .attr('opacity', 0.16)
+            .attr('letter-spacing', '0.25em')
+            .text(d => d[0].toUpperCase()),
+          update => update,
+          exit => exit.remove()
+        )
+        .attr('x', d => d[1].x / d[1].count)
+        .attr('y', d => d[1].y / d[1].count);
+
       // Curved links
       link.attr('d', d => {
         const source = d.source as SimulationNode;
