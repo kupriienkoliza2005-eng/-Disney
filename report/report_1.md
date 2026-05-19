@@ -43,6 +43,33 @@ Veze nisu nasumične — svaka od njih označava točan tip odnosa:
 - **magic** (korištenje istog izvora čarolije),
 - **theory** (spekulativne veze koje drže sustav na okupu).
 
+#### 2.1.1. Vizualni rječnik i semiotika elemenata i veza na grafu
+Kako bi se vizualna sintaksa našeg grafa u potpunosti prevela u koherentan sustav značenja, u nastavku donosimo detaljan **vizualni rječnik** koji objašnjava ključne relacijske i entitetske koncepte te njihovu važnost za teoriju mreža i medijsku analizu:
+
+1. **Obitelj (Family - `family` veza):**
+   - **Što znači na grafu:** Označava izravne krvne, bračne ili srodstvene odnose između likova (npr. roditeljska veza između kralja Tritona i Ariel, ili sestrinska veza između Else i Anne).
+   - **Mrežna i narativna važnost:** U strukturnom smislu, obiteljske veze tvore unutar-mrežne jezgre s najvišim intenzitetom povjerenja i povezivanja (engl. *bonding social capital*). Ove su veze narativni "kralježnjak" Disneyjevog svemira koji se proteže kroz generacije (Smith, 2018; Disney Theory, 2021). Međutim, feminističke i kulturne studije uočavaju da su u ranoj epohi ove obiteljske veze često služile za zatvaranje likova u restriktivne i pasivne patrijarhalne strukture, dok u modernoj i igranoj epohi obiteljske mreže i sestrinske odanosti služe kao katalizator ženske emancipacije, povećavajući mrežnu i društvenu važnost ženskih čvorova (England et al., 2011; Wohlwend, 2009).
+
+2. **Gostovanje (Cameo / Guest Appearance - `cameo` veza):**
+   - **Što znači na grafu:** Kratko i često jedva primjetno unakrsno pojavljivanje lika iz jednog filma u pozadini drugog filma (npr. prisutnost Rapunzel i Flynna na Elsinom krunjenju u *Frozen*, ili pojava Belle koja prolazi ulicama Agrabaha u pozadini *Aladina*) (Walt Disney Animation Studios, 2025).
+   - **Mrežna i narativna važnost:** S aspekta transmedijskog pripovijedanja, gostovanja su službeni autorski dokazi da se različite priče odvijaju unutar koordiniranog i zajedničkog prostorno-vremenskog kontinuiteta (Jenkins, 2006). U topologiji grafa, gostovanja funkcioniraju kao **mrežni mostovi niske gustoće (engl. *weak ties*)** koji drže nepovezane filmske svjetove unutar jedne narativne orbite, omogućujući prijenos mrežne i prepoznatljive energije bez izravnog utjecaja na primarni tijek radnje (Newman, 2018; Smith, 2018).
+
+3. **Easter Egg (Uskršnje jaje - interaktivni markeri otkrića):**
+   - **Što znači na grafu:** Skriveni vizualni detalji, predmeti ili reference koje su animatori namjerno utkali u tkivo scena kako bi nagradili pažljivo promatranje (npr. plišani lik zvijeri u sultanovoj heraldičkoj zbirci u *Aladinu*, ili Pixarova registracijska oznaka "A113" koja se pojavljuje u gotovo svim filmovima) (Walt Disney Animation Studios, 2025).
+   - **Mrežna i narativna važnost:** U pogledu interaktivnog mrežnog dizajna, uskršnja jaja pretvaraju pasivnog gledatelja u aktivnog sudionika i "arheologa" koji kroz pregovaranje s medijskim sadržajem stvara novi smisao (Jenkins, 2006). Korištenjem softverskih alata za vizualnu analizu i interakciju (poput zumiranja i filtriranja), korisnici mogu lakše detektirati i mapirati ove tajne točke, čime se jača njihova kognitivna agencija i potiče suradničko slaganje narativne slagalice (Heer & Shneiderman, 2012; Ryan, 2015).
+
+4. **Magični izvor (Magic source - `magic` veza):**
+   - **Što znači na grafu:** Korištenje istog energetskog, alkemijskog ili mističnog potpisa koji povezuje vremenski i geografski udaljene čvorove (npr. drvena vrata koja putuju kroz vrijeme u *Čudovištima iz ormara* i *Braveu*, trozubac koji spaja *Malu Sirenu* s fizikalnim svijetom *Pirata s Kariba*, ili alkemija čarobnog napitka i staklenih struktura kod Pepeljuge i Snjeguljice).
+   - **Mrežna i narativna važnost:** Magični izvori su nelinearni narativni mostovi koji premošćuju velike povijesne i fizikalne skokove (Negroni, 2013). Oni funkcioniraju kao kritične točke osjetljivosti i spajanja svjetova. U topologiji mreže, ovi čvorovi daju objašnjenje za ontološke anomalije i pomažu u povezivanju klasičnih fantastičnih narativa s modernim znanstveno-fantastičnim elementima, držeći cijeli ekosustav pod istim fizikalno-magičnim zakonitostima (Proctor, 2012; Ryan, 2015).
+
+5. **Teorija Fanova (Fan theory - `theory` veza):**
+   - **Što znači na grafu:** Spekulacijske i interpretacijske veze koje je razvila i utemeljila globalna publika i kritičari na temelju logičkih tragova, popunjavajući prazne prostore u kanonu (npr. kultna pretpostavka da je Mary Poppins ostarjela i bjegunac u obliku Merlinove učenice, ili teorija da je potonuli brod roditelja Else i Anne upravo ona olupina u kojoj Ariel traži ljudske predmete).
+   - **Mrežna i narativna važnost:** Teorije obožavatelja predstavljaju ultimativni izraz participativne kulture (engl. *participatory culture*) i kolektivne inteligencije (Jenkins, 2006). Bez ovih spekulativnih spona, graf bi se raspao na nepovezane, izolirane filmske otoke. One funkcioniraju kao narativni fluid koji povezuje teorijske skokove i stvara duboki osjećaj uranjanja u imaginarni svijet (imaginarni svjetovi, Proctor, 2012; Ryan, 2015; Tanenbaum, 2011).
+
+6. **Skriveni Mickey na grafu (Hidden Mickey - Ego-čvor):**
+   - **Što znači na grafu:** "Ego-čvor" (ili centralni privlačni čvor) koji u našoj topologiji označava arhetipski vizualni identitet nasmješenog miša diskretno skrivenog u pozadini scena diljem cijelog mrežnog meta-svemira (Walt Disney Animation Studios, 2025).
+   - **Mrežna i narativna važnost:** Skriveni Mickey u našem sustavu ima ulogu **središnjeg mrežnog integratora (engl. *super-hub*)** s najvišim stupnjem utjecaja i centralnosti bliskosti (Newman, 2018). On je vizualni potpis i temeljni kôd koji prožima svaki aspekt korporativne i estetske strategije (Giroux, 1999; Smith, 2018). U fizikalnoj simulaciji D3.js, ovaj čvor djeluje kao gravitacijsko sidro koje privlači sve klastere prema sebi, vizualno demonstrirajući da bez obzira na raznolikost i prostranstvo svjetova, nad svim regijama i erama tiho i neumoljivo bdije identitet nasmješenog miša.
+
 ### 2.2. Fizika privlačenja i odbijanja (D3.js)
 Za vizualizaciju grafa koristili smo napredni model fizikalnih sila (Bostock et al., 2011). Da se čvorovi ne bi pretvorili u nečitljivu hrpu na ekranu, algoritmu smo zadali dva suprotstavljena pravila:
 1. **Coulombovo odbijanje:** Svi čvorovi se međusobno odbijaju kao da imaju isti električni naboj, što nam osigurava slobodan prostor i sprječava preklapanje teksta.

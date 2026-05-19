@@ -480,39 +480,50 @@ export default function App() {
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
-            className="absolute bottom-10 left-10 p-6 bg-[#0c0c14]/90 backdrop-blur-3xl border border-white/5 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] z-20 w-72"
+            className="absolute bottom-10 left-10 p-6 bg-[#0a0a10] border border-white/20 rounded-2xl shadow-[0_0_60px_rgba(0,0,0,0.85)] z-20 w-[380px] max-h-[75vh] overflow-y-auto no-scrollbar"
           >
-            <h3 className="text-[10px] font-mono font-black text-slate-500 uppercase tracking-widest mb-6 flex items-center gap-2 border-b border-white/5 pb-2">
-              <BookOpen className="w-3 h-3" /> Vizualni_Rječnik
+            <h3 className="text-xs font-mono font-black text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+              <BookOpen className="w-4 h-4" /> Vizualni_Rječnik // Legenda Veza
             </h3>
             <div className="space-y-4">
               {[
-                { label: 'Obitelj', color: 'bg-red-400' },
-                { label: 'Gostovanje (Cameo)', color: 'bg-blue-400' },
-                { label: 'Easter Egg', color: 'bg-amber-400' },
-                { label: 'Magični Izvor', color: 'bg-emerald-400' },
-                { label: 'Teorija Fanova', color: 'bg-purple-400', dashed: true },
-                { label: 'Skriveni Mickey', color: 'bg-slate-700' },
+                { label: 'Obitelj', color: 'bg-red-400', desc: 'Krvna, bračna i bliska srodstvena povezanost likova koji tvore narativnu jezgru.' },
+                { label: 'Gostovanje (Cameo)', color: 'bg-blue-400', desc: 'Suptilna preklapanja i kratka pojavljivanja lika u pozadini tuđeg filma.' },
+                { label: 'Easter Egg', color: 'bg-amber-400', desc: 'Tajni predmeti ili skrivene reference utkani kao nagrada za pažljivog promatrača.' },
+                { label: 'Magični Izvor', color: 'bg-emerald-400', desc: 'Isti energetski ili alkemijski potpis koji povezuje udaljene fantastične svjetove.' },
+                { label: 'Teorija Fanova', color: 'bg-purple-400', dashed: true, desc: 'Spekulativne i interpretacijske veze publike koje popunjavaju kanonske praznine.' },
+                { label: 'Skriveni Mickey', color: 'bg-slate-500', desc: 'Ego-čvor s ikonskim vizualnim potpisom koji djeluje kao tihi mrežni integrator.' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 group cursor-default">
-                  <div className={cn(
-                    "w-10 h-1 rounded-full transition-all group-hover:scale-110",
-                    item.color,
-                    item.dashed && "border-t-2 border-dashed bg-transparent border-purple-400 h-0"
-                  )} />
-                  <span className="text-[11px] font-bold text-slate-400 group-hover:text-white transition-colors">{item.label}</span>
+                <div key={i} className="flex flex-col gap-1 border-b border-white/5 pb-2.5 last:border-b-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <div className={cn(
+                      "w-12 h-2 rounded-full shrink-0 shadow-sm",
+                      item.color,
+                      item.dashed && "border-t-2 border-dashed bg-transparent border-purple-400 h-0"
+                    )} />
+                    <span className="text-xs font-black text-white">{item.label}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 font-medium pl-[60px] leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
             
-            <div className="mt-8 pt-4 border-t border-white/5">
-              <div className="flex items-center gap-4 mb-2">
-                <div className="w-4 h-4 rounded-full bg-[#fbbf24] shadow-[0_0_10px_#fbbf24]" />
-                <span className="text-[11px] font-bold text-slate-300">EGO Čvor (Centar)</span>
+            <div className="mt-5 pt-4 border-t border-white/10 space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#fbbf24] shadow-[0_0_12px_#fbbf24] shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-xs font-black text-white">EGO Čvor (Središte)</span>
+                  <p className="text-[11px] text-slate-300 font-medium leading-relaxed">Glavni pokretači radnje ili kritične mrežne točke na kojima se temelji struktura multiverzuma.</p>
+                </div>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-3 h-3 rounded-full border border-slate-500" />
-                <span className="text-[11px] font-bold text-slate-300">Standardni Entitet</span>
+              <div className="flex items-start gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-slate-400 bg-[#0f172a] shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-xs font-black text-white">Standardni Entitet</span>
+                  <p className="text-[11px] text-slate-300 font-medium leading-relaxed">Pojedinačni likovi, magični artefakti, heralda, ere ili specifične povijesne lokacije u mreži.</p>
+                </div>
               </div>
             </div>
           </motion.div>

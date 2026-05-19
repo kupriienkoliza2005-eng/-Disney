@@ -310,6 +310,20 @@ export const graphData: { nodes: Node[]; links: Link[] } = {
     { source: 'mulan_live', target: 'mulan', type: 'theory', description: 'Igrana verzija nudi realniju, povijesno dublju analizu legende o ratnici koja je spasila carstvo.' },
     { source: 'mia_wasikowska', target: 'alice_live', type: 'theory', description: 'Glumica koja vodi Alice kroz Burtonov mračni i maštoviti vizualni svemir.' },
     { source: 'alice_live', target: 'alice', type: 'theory', description: 'Nastavak originalnih snova; devetnaestogodišnja Alice vraća se u isti fantastični svijet nakon mnogo godina.' },
-    { source: 'alice_live', target: 'cheshire_cat', type: 'magic', description: 'Njezino glavno metafizičko vodstvo kroz zagonetke Podzemlja.' }
+    { source: 'alice_live', target: 'cheshire_cat', type: 'magic', description: 'Njezino glavno metafizičko vodstvo kroz zagonetke Podzemlja.' },
+
+    // --- DODATNE MEĐUSOBNE VEZE ZA POVEĆANU GUSTOĆU GRAFA ---
+    { source: 'peter_pan', target: 'alice', type: 'theory', description: 'Obje su viktorijanske priče o djeci koja bježe od stvarnosti u srodne alter-dimenzije (Neverland i Zemlja čudesa) gdje vrijeme teče drugačije.' },
+    { source: 'merida', target: 'rapunzel', type: 'magic', description: 'Drevni keltski magični plamičci (iz Bravea) i čarobni zlatni cvijet (iz Tangleda) potječu iz istog kozmičkog izvora prirodne životne sile.' },
+    { source: 'kida', target: 'ariel', type: 'magic', description: 'Atlantida, potonula imperija, leži neposredno ispod Arielinih morskih dubina; Tritonova obitelj koristi istu kristalnu energiju za zaštitu kraljevstva.' },
+    { source: 'jack_sparrow', target: 'hook', type: 'theory', description: 'Dva najpoznatija piratska kapetana u Disneyevu svemiru koji su navodno plovili istim morima u potrazi za vječnom slavnošću.' },
+    { source: 'bambi', target: 'belle', type: 'easter_egg', description: 'Bambijeva majka se vidi u pozadinskim scenama šume koja okružuje dvorac Zvijeri, pokazujući zajedničko ekološko susjedstvo.' },
+    { source: 'hercules', target: 'maui', type: 'theory', description: 'Mogući drevni božanski saveznik; dva legendarna poluboga neizmjerne snage koji posjeduju magične artefakte i bore se s čudovištima.' },
+    { source: 'pocahontas', target: 'tarzan', type: 'theory', description: 'Oboje dijele duboku metafizičku vezu s divljom prirodom, duhovnim vodstvom i zaštitom zemlje od kolonijalnih osvajača.' },
+    { source: 'stitch', target: 'baymax', type: 'theory', description: 'Dva ne-ljudska zaštitnika i prijatelja koji su redefinirali tehnološki i emocionalni pojam obitelji (Ohana) za bolesno ili usamljeno dijete.' },
+    { source: 'mulan', target: 'pocahontas', type: 'theory', description: 'Povijesne narodne boriteljice koje se obraćaju duhovnim silama svojih predaka radi mudrosti i snage u vremenima rata.' },
+    { source: 'aurora', target: 'cinderella', type: 'family', description: 'Klasične princeze Starog svijeta koje dijele iskustvo s magičnim silama, vilama kumama i dvorcima visoke aristokracije.' },
+    { source: 'linguini', target: 'anton_ego', type: 'family', description: 'Partneri u restoranu; Linguinijevo poštenje i Antonov kritički preokret redefinirali su kulinarski Pariz.' },
+    { source: 'dumbo', target: 'carl', type: 'theory', description: 'Dumbov uzlet s magičnim perom i Carlov let s tisućama balona dokazuju da mašta nadvladava gravitaciju u ovom svemiru.' }
   ]
 };
