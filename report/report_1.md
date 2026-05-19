@@ -143,10 +143,14 @@ $$C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}$$
 Čvorovi s visokim $C_B$ djeluju kao ključni "mostovi" ili čuvari vrata bez kojih bi se graf raspao na nepovezane komponente.
 - **Primjer u grafu:** Čvor **Mary Poppins** drži golemu posredničku vrijednost jer predstavlja jedini kanal kroz koji se bajkovita srednjovjekovna magija (Merlin) prenosi u realni svijet Edwardijanskog Londona, a preko njega se povezuje s modernim igranim adaptacijama. Uklanjanjem Mary Poppins sa zaslona, čitav igrani svemir izgubio bi ključni teorijski most prema tradiciji animiranog Disneyevog kanona.
 
+![Mrežni most Mary Poppins: Vizualizacija posredničke centralnosti koja spaja fantastične i povijesne ere](/images/mary_poppins_bridge.png)
+
 #### 6.3.5. Centralnost svojstvenog vektora (Eigenvector Centrality)
 Svojstveni vektor dodjeljuje utjecaj čvoru na temelju kvalitete njegovih veza: *"Nije bitno koliko prijatelja imaš, nego tko su oni."* Ako se povezuješ s drugim utjecajnim hubovima, tvoja vrijednost raste:
 $$x_v = \frac{1}{\lambda} \sum_{u \in M(v)} x_u$$
 - **Primjer u grafu:** Čvor **Remy** (*Juhu-hu*) ima izuzetno veliku vrijednost ove metrike jer se povezuje izravno s monumentalnim hubovima poput Antona Egoa i "Ujedinjene Pixar teorije". Remy sam po sebi nema previše izravnih veza, ali njegova blizina kritičnim središtima moći unutar mreže čini ga ključnim igračem u poretku.
+
+![Svojstveni vektor Remyja: Povezivanje s najmoćnijim mrežnim čvorištima i teorijskim jezgrama](/images/remy_graph.png)
 
 ### 6.4. Koeficijenti klasteriranja (Clustering Coefficients)
 Klasteriranje nam govori o tendenciji čvorova da se grupiraju u visoko povezane podgrafove (klike).
