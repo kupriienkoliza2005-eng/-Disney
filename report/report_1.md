@@ -13,6 +13,8 @@ Svi mi koji smo odrasli uz Disney i Pixar filmove intuitivno osjećamo da su te 
 
 Koristeći biblioteku D3.js i algoritam s usmjerenim silama, stvorili smo dinamičku mrežu od **115 jedinstvenih čvorova** i **158 relacijskih veza**. Povrh toga, proveli smo precizno kvantitativno istraživanje o tome kako publika i gledatelji ocjenjuju ove igrane adaptacije, suprostavljajući kultne klasike poput *Mary Poppins* i *Pirata s Kariba* modernim milijardskim remakeovima poput *Ljepotice i Zvijeri* te *Aladina*. Analiza pokazuje kako ovi medijski svjetovi više ne funkcioniraju kao izolirani otoci, već tvore složeni transmedijski sustav u kojem se stara magija susreće s fizikalnošću stvarnih glumačkih lica i financijskim zakonitostima holivudske industrije.
 
+![Disney likovi kroz desetljeća](https://static0.moviewebimages.com/wordpress/wp-content/uploads/2022/09/Disney-movie-characters-from-every-decade.jpg?w=1200&h=675&fit=crop)
+
 ---
 
 ## 1. Uvod: Zašto nas privlači ideja o zajedničkom svemiru?
@@ -104,93 +106,231 @@ U našem grafu, čvorovi glumica služe kao **svjetovni mostovi** koji objašnja
 
 ## 6. Sveobuhvatna teorijska i empirijska analiza mrežnih mjera, centralnosti i klasteriranja (SNA)
 
-U okviru analize društvenih i narativnih mreža (engl. *Social Network Analysis* - SNA), mreža likova i glumaca Disney-Pixar meta-svemira podliježe strogoj matematičkoj procjeni. Kako bismo osigurali apsolutnu konzistentnost i razumljivost, definirat ćemo **referentni podgraf** koji obuhvaća ključne energetske, obiteljske, magične i teorijske petlje našeg mrežnog svemira, te ćemo sve mrežne mjere i centralnosti demonstrirati izravno na njegovoj topologiji:
+U okviru analize društvenih i narativnih mreža (engl. *Social Network Analysis* - SNA), mreža likova, predmeta i glumaca našeg interaktivnog Disney-Pixar meta-svemira podliježe strogoj matematičkoj i topološkoj procjeni. Umjesto jednog nepreglednog cjelovitog prikaza, u nastavku donosimo dekonstruirane i lokalizirane **istraživačke podgrafove** (mini-figurice visoke vjernosti) koji precizno izoliraju mrežnu topologiju za svaki pojedini mrežni pojam i metriku. Sve skice su izravno povezane s realnim stanjem, čvorovima i vezama iz našeg interaktivnog D3.js grafa.
 
-```text
-                [merlin] -----(magic)-----> [mary_poppins]
-                   |                             |
-                (magic)                   (hidden_mickey)
-                   |                             |
-                 [kida]                          |
-                   |                             |
-            (hidden_mickey)                      |
-                   |                             v
-                [ ego ] <=====(hidden_mickey)=======> [remy] ----(easter_egg)----> [anton_ego]
-                   |                                                      |
-            (hidden_mickey)                                        (hidden_mickey)
-                   |                                                      v
-                [ariel] <=====(family)====== [triton]                      [  ego  ]
-                   |                            |
-             (easter_egg)                    (magic)
-                   |                            |
-           [potonuli_brod]            [posejdonov_trozubac] <====(magic)==== [jack_sparrow]
-                   ^
-                   |
-            (theory_roditelj)
-                   |
-                [elsa] ======(family)======> [tarzan] ======(family)======> [jane] ======(family)======> [belle]
-```
-
-U nastavku detaljno analiziramo i objašnjavamo ključne koncepte, povezujući ih izravno s ovim strukturnim modelom.
+---
 
 ### 6.1. Čvorovi i veze (Nodes and Links)
 U grafičkom i mrežnom teorijskom smislu, mreža se definira kao uređeni par $G = (V, E)$, gdje je:
-- $V$ skup **čvorova (Nodes)** koji predstavljaju samostalne entitete u sustavu. U našem referentnom grafu to su likovi (*elsa*, *tarzan*, *jane*, *belle*, *ariel*, *triton*, *jack_sparrow*, *mary_poppins*, *merlin*, *remy*, *anton_ego*, *kida*), mitski predmeti (*posejdonov_trozubac*), lokacije (*potonuli_brod*) i sam ego-čvor (*ego* - Skriveni Mickey). Naš globalni graf sadrži preko 115 jedinstvenih čvorova.
-- $E$ skup **veza (Links)** koji definira relacije među tim čvorovima. Na gornjoj shemi vidimo više tipova veza: simetrične `family` (npr. obiteljski most od Else preko Tarzana do Belle), usmjerene ili neusmjerene `magic` tokove (Merlinovo učenje Mary Poppins), te referentne `hidden_mickey` i `easter_egg` veze koje premošćuju fikciju i zagonetke (Mickey u kuhinji s Remyjem). Globalni graf broji oko 158 relacijskih veza.
+- $V$ skup **čvorova (Nodes)** koji predstavljaju samostalne entitete u sustavu. Naš cjeloviti skup sadrži preko 115 jedinstvenih entiteta (likovi, magični predmeti, povijesne lokacije te stvarna glumačka lica).
+- $E$ skup **veza (Links)** koji definira relacije među tim čvorovima (primjerice obiteljska veza `family`, skriveni detalji `hidden_mickey` ili utjecaji realnih glumačkih lica na animaciju `live_action_link`).
+
+Sljedeća skica prikazuje reprezentativni segment baze podataka koji se bavi povezivanjem klasične bajkovite obitelji preko triju filmskih epoha:
+
+```text
++-----------------------+                    +-------------------------+
+|     [Elsa] (lik)      | ==(family)===>     |     [Tarzan] (lik)      |
+|  (Sjeverna Kraljevstva|                    |  (Sjeverna Kraljevstva) |
++-----------------------+                    +-------------------------+
+                                                          ||
+                                                       (family)
+                                                          v
+                                             +-------------------------+
+                                             |     [Jane] (lik)        |
+                                             |    (Džungla / London)   |
+                                             +-------------------------+
+                                                          ||
+                                                       (family)
+                                                          v
+                                             +-------------------------+
+                                             |   [Belle_Igrana] (lik)  |
+                                             |    (Igrani Svemir)      |
+                                             +-------------------------+
+```
+*Figurica 6.1: Izolirana linearna istraživačka putanja koja spaja fiktivnu animaciju s igranim svemirom preko obiteljskih relacija.*
+
+---
 
 ### 6.2. Gustoća grafa (Graph Density)
-Gustoća mreže ($D$) mjeri omjer stvarnog broja veza prema maksimalno mogućem broju veza u grafu s $N$ čvorova. Za neusmjereni graf formula glasi:
+Gustoća mreže ($D$) mjeri omjer stvarnog broja ostvarenih veza prema maksimalno mogućem broju veza u grafu s $N$ čvorova. Za neusmjereni graf formula glasi:
 $$D = \frac{2 |E|}{N(N - 1)}$$
-- **Primjer u grafu:** Ako uzmemo gornji podgraf od $N = 14$ čvorova (uključujući dupli vizualni prikaz ega) i $|E| = 15$ veza, gustoća iznosi $2 \times 15 / (14 \times 13) \approx 0.165$ (ili $16.5\%$). To nam pokazuje visoku lokalnu integraciju. Međutim, kada se ovaj podgraf ulije u cjeloviti skup od $115$ čvorova i $158$ veza, gustoća drastično opada na svega $\approx 2.4\%$.
-- **Mrežna interpretacija:** Niska gustoća je uobičajena za narativne mreže. Pojedini filmski svjetovi (npr. obitelj *Priče o igračkama* ili *Izbavitelji*) formiraju visoko povezane lokalne module, dok su međusobni mostovi rijetki i prolaze kroz jedinstvene točke (kao što je *potonuli_brod* koji spaja ocean Ariel i sjeverno kraljevstvo Else).
 
-### 6.3. Centralnost (Centrality) - Opći koncept
-Centralnost označava skupinu mjera koje identificiraju "najvažnije" ili "najutjecajnije" čvorove u mreži. No, pojam važnosti varira ovisno o primijenjenom mrežnom filteru:
+Naš globalni graf odlikuje izuzetno niska ukupna gustoća ($D \approx 2.4\%$) jer se sastoji od visoko integriranih filmskih carstava (gusari, igračke, sirene, čudovišta) koji su tek sporadično povezani malim brojem strateških mostova. Sljedeća skica uspoređuje hermetički i gusto povezani modul (kliku) *Toy Story* svijeta s vanjskim mostom prema ostatku meta-svemira:
+
+```text
+    +-----------+             +----------+
+    |  [Woody]  | <(family)>  |  [Buzz]  |
+    +-----------+             +----------+
+          ^                        ^
+          |                        |
+      (family)                  (family)
+          v                        v
+    +-----------+             +----------+
+    |  [Andy]   | <(family)>  |  [Jessie]|
+    +-----------+             +----------+
+          ^
+          |
+    (hidden_mickey) <--- Rijetki vanjski most
+          |
+    +-----------+
+    |   [Ego]   | (Skriveni Mickey)
+    +-----------+
+```
+*Figurica 6.2: Visoko gusto povezani lokalni podgraf svijeta igračaka s rijetkim, niskopropusnim prijelazom prema širem svemiru.*
+
+---
+
+### 6.3. Centralnost (Centrality)
+
+Centralnost označava skupinu mjera koje definiraju "važnost" pojedinih čvorova. Kako bismo pojasnili slojeve ove važnosti, svaka je definicija popraćena zasebnim izdvojenim vizualom.
 
 #### 6.3.1. Stupanj centralnosti (Degree Centrality)
-Predstavlja najjednostavniju mjeru centralnosti — ukupan broj izravnih veza (susjeda) koje pojedini čvor posjeduje:
+Predstavlja najjednostavniju mjeru važnosti — ukupan broj izravnih relacija koje određeni čvor posjeduje:
 $$C_D(v) = \text{deg}(v)$$
-- **Primjer u grafu:** Čvor **ego (Skriveni Mickey)** ima najveći stupanj centralnosti ($C_D = 4$ u našem pojednostavljenom prikazu, a čak $C_D = 26$ u globalnoj bazi). On je povezan izravno s *arielom*, *kida*, *remyjem* i *anton_ego-om*. Nakon njega, visoki stupanj ima **tarzan** ($C_D = 3$), koji je spona između sestara Ane/Else, supruge Jane i šireg obiteljskog stabla.
+
+U našem sustavu, čvorovi koji se provlače kroz najviše različitih svjetova i epoha imaju najveći stupanj centralnosti. Sljedeća skica prikazuje ključne izravne veze za dva najvažnija mrežna huba:
+
+```text
+   A) Čvor: [Ego] (Skriveni Mickey)           B) Čvor: [Tarzan]
+      Stupanj: CD = 26 (globalno)                Stupanj: CD = 4 (lokalni hub)
+
+            +-----------+                              +-----------+
+            |  [Ariel]  |                              |  [Elsa]   |
+            +-----------+                              +-----------+
+                  ^                                          ^
+                  |                                          |
+            +-----+-----+                              +-----+-----+
+            |   [Ego]   | <====(hidden_mickey)=====>   | [Tarzan]  |
+            +-----+-----+                              +-----+-----+
+            |     |     \                                    |     \
+            v     v      \                                   v      v
+      +-----+  +-----+  +-----+                        +-----+  +-----+
+      |[Remy]| |[Kida]| |[Mulan]|                      |[Jane]| |[Anna]|
+      +-----+  +-----+  +-----+                        +-----+  +-----+
+```
+*Figurica 6.3: Usporedba dva najistaknutija mrežna huba na temelju njihova stupnja centralnosti (broja izravnih susjeda).*
+
+---
 
 #### 6.3.2. Težinski stupanj (Weighted Degree)
-Težinski stupanj uzima u obzir vrijednost ili snagu (težinu) svake pojedne veze:
+Težinski stupanj uzima u obzir vrijednost (snagu ili pouzdanost) svake pojedine veze:
 $$C_{WD}(v) = \sum_{u \in N(v)} w(v, u)$$
-U našem modelu, čvrstim kanonskim vezama (kao što su obiteljska stabla - `family` ili dokazani `easter_egg`) pridružena je veća težina ($w = 1.5$), dok su špekulativne forumski raspisane teorije (`theory`) vrednovane nižom težinom ($w = 0.6$).
-- **Primjer u grafu:** Ako izračunamo težinu za **ariela**, njegove veze su `family` s Tritonon ($1.5$), `easter_egg` s potonulim brodom ($1.5$) i `hidden_mickey` s egom ($1.0$), što mu daje težinski stupanj $C_{WD} = 4.0$. Nasuprot tome, špekulativna veza `theory_roditelj` između Else i potonulog broda teži svega $0.6$. To sprječava da nagađanja nadvladaju čvrste činjenice originalnog scenarija.
+
+U našem modelu, čvrstim formalnim vezama (kao što su obitelji `family` ili dokazani cameo detalji `cameo`) pridružena je visoka težina ($w = 1.5$), dok su špekulativne teorije s internetskih foruma (`theory`) vrednovane nižom težinom ($w = 0.6$). Sljedeća skica jasno to dekonstruira na primjeru čvora Ariel:
+
+```text
+       +---------------+             +---------------+
+       |   [Triton]    |             | [PotonuliBrod]|
+       +---------------+             +---------------+
+               \                             /
+             family (w=1.5)               cameo (w=1.2)
+                 \                         /
+                  v                       v
+                      +---------------+
+                      |    [Ariel]    |
+                      +---------------+
+                              ^
+                              |
+                        theory (w=0.6)  <--- Niska težina
+                              |
+                       +---------------+
+                       |   [Merida]    |
+                       +---------------+
+
+   Izračun: Weighted Degree (Ariel) = 1.5 (Triton) + 1.2 (Brod) + 0.6 (Merida) = 3.3
+```
+*Figurica 6.4: Raspodjela težina na zornoj skici čvora Ariel koja sprječava da špekulativne glasine nadvladaju provjereni kanon.*
+
+---
 
 #### 6.3.3. Centralnost bliskosti (Closeness Centrality)
-Mjeri koliko je neki čvor "blizu" svim ostalim čvorovima u mreži, na temelju prosječne duljine najkraćeg puta:
+Mjeri koliko je neki čvor "blizu" svim ostalim čvorovima u mreži, odnosno prosječnu duljinu najkraćeg puta do svih drugih točaka:
 $$C_C(v) = \frac{N - 1}{\sum_{u \neq v} d(v, u)}$$
-- **Primjer u grafu:** Čvor **ariel** ima izuzetno visoku bliskost jer se nalazi u samom geografskom središtu morskih i ljudskih veza. Od Ariel do *potonulog_broda*, *tritona* i *ega* udaljenost je samo 1 skok, dok do *else* i *kide* treba samo 2 skoka. S druge strane, čvor **jack_sparrow** na rubu grafa ima najnižu bliskost, jer mora putovati preko *posejdonovog_trozupca*, *tritona* i *ariela* kako bi uopće došao do ostatka mreže.
+
+Čvorovi u središtu našeg D3.js rasporeda (poput Ariel) imaju izuzetno visoku bliskost jer mogu dosegnuti gotovo svaki kutak mreže u 2 ili 3 koraka, dok rubni gusarski i povijesni likovi moraju putovati znatno duže:
+
+```text
+  A) Brzi i kratki putevi (Visoka bliskost)
+     [Ariel] --------> [PotonuliBrod] --------> [Elsa] (Svega 2 skoka do Sjevernih Kraljevstava)
+     [Ariel] --------> [Ego] -----------------> [Remy] (Svega 2 skoka do modernog Pariza)
+
+  B) Dugački i spori putevi na periferiji (Niska bliskost)
+     [Jack Sparrow] -> [Trozubac] -> [Triton] -> [Ariel] -> [Ego] -> [Remy] (Čak 5 skokova)
+```
+*Figurica 6.5: Komparativni topološki putovi koji zorno prikazuju zašto je oceansko središte mrežna jezgra nasuprot izoliranoj piratskoj periferiji.*
+
+---
 
 #### 6.3.4. Posrednička centralnost (Betweenness Centrality)
-Ova mjera broji koliko često se promatrani čvor nalazi na najkraćem putu između bilo koja druga dva čvora u mreži:
+Ova mjera broji koliko se često promatrani čvor nalazi na najkraćem putu između bilo koja druga dva čvora u mreži. Oni djeluju kao mrežni "mostovi" bez kojih bi se graf raspao na nepovezane svjetove:
 $$C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}$$
-Čvorovi s visokim $C_B$ djeluju kao ključni "mostovi" ili čuvari vrata bez kojih bi se graf raspao na više nepovezanih komponenti.
-- **Primjer u grafu:** Čvor **potonuli_brod** drži golemu posredničku vrijednost. Ako Elsa želi dosegnuti Ariel ili bilo koji morski/magični čvor, najkraći put obavezno vodi preko ovog čvora. Ako uklonimo *potonuli_brod* s našeg grafa, čitav blok *Sjevernih Kraljevstava* i obiteljska loza Tarzana/Belle ostaju potpuno odsječeni od oceanskih legendi Ariel i Tritona.
+
+Kao najzorniji primjer u našem radu ističe se **Potonuli brod** (mjesto nesreće roditelja Else i Ane, obitavalište Arielinih blaga). Ako ga uklonimo, čitav blok morskih legendi gubi poveznicu sa sjevernim kraljevstvima:
+
+```text
+    +---------------------------------+             +---------------------------------+
+    |        MORSKA KRALJEVSTVA       |             |      SJEVERNA KRALJEVSTVA       |
+    |      [Ariel] , [Triton] . . .   |             |       [Elsa] , [Tarzan] . . .   |
+    +---------------------------------+             +---------------------------------+
+                    \                                               /
+                     \                                             /
+                      v                                           v
+                    +-----------------------------------------------+
+                    |             [Potonuli_Brod] (most)            |
+                    +-----------------------------------------------+
+```
+*Figurica 6.6: Topološka vizualizacija "Potonulog broda" s enormnom posredničkom vrijednošću koja sprječava mrežnu separaciju.*
+
+---
 
 #### 6.3.5. Centralnost svojstvenog vektora (Eigenvector Centrality)
-Svojstveni vektor dodjeljuje utjecaj čvoru na temelju kvalitete/utjecaja njegovih susjeda: *"Nije bitno koliko prijatelja imaš, nego tko su oni."* Ako se povezuješ s drugim utjecajnim hubovima, tvoja vrijednost raste:
+Dodjeljuje utjecaj čvoru na temelju kvalitete i utjecaja njegovih susjeda: *"Nije bitno koliko prijatelja imaš, nego tko su oni."* Ako je čvor povezan s utjecajnim hubovima, njegova vrijednost raste:
 $$x_v = \frac{1}{\lambda} \sum_{u \in M(v)} x_u$$
-- **Primjer u grafu:** Čvor **anton_ego** ima malo izravnih veza ($C_D = 2$), ali su mu susjedi izuzetno važni — to su **remy** (glavni mrežni kuhar) i centralni **ego (Skriveni Mickey)**. Zato je njegova centralnost svojstvenog vektora primjetno veća nego kod čvora *jack_sparrow*, koji je spojen na iznimno periferne, rubne čvorove puste morske obale.
+
+Primjer je kultni gastronomski kritičar **Anton Ego**. On ima izuzetno mali stupanj izravnih veza, ali njegove veze ga čine utjecajnim jer ga spajaju s Remyjem i samim Skrivenim Mickeyjem (Ego):
+
+```text
+ +---------------+             +---------------+             +---------------+
+ |  [Anton Ego]  | <(friend)>  |    [Remy]     | <(friend)>  |  [Ego_Mickey] |
+ | (Nizak stupanj|             | (Visok utjecaj|             | (Mrežni Hub)  |
+ | ali utjecajan)|             |    kuhara)    |             |               |
+ +---------------+             +---------------+             +---------------+
+```
+*Figurica 6.7: Slikovni prikaz mrežnog utjecaja koji se širi sa mrežnog središta (Mickey) preko gastronomskog mosta (Remy) na Antona Egoa.*
+
+---
 
 ### 6.4. Koeficijenti klasteriranja (Clustering Coefficients)
-Klasteriranje nam govori o tendenciji čvorova da se grupiraju u visoko povezane podgrafove (klike).
+Klasteriranje nam govori o tendenciji čvorova da se grupiraju u visoko povezane podgrafove (stabilne trokute / klike).
 
 #### 6.4.1. Lokalni koeficijent klasteriranja (Local Clustering Coefficient)
-Mjeri koliko su susjedi pojedinog čvora sami međusobno povezanim trokutima:
+Mjeri koliko su susjedi pojedinog čvora sami međusobno povezani:
 $$C(v) = \frac{2 e_v}{k_v(k_v - 1)}$$
-- **Primjer u grafu:** Pogledajmo čvor **triton**. Njegovi susjedi su *ariel*, *posejdonov_trozubac* i *ego*. Među njima postoji izravna veza između Ariel i ega (skriveni Mickey pod morem). To zatvara jedan trokut ($e_v = 1$). Od 3 moguća partnerstva među susjedima, jedno je ostvareno, pa lokalni koeficijent iznosi $C = 1/3 \approx 0.33$. Nasuprot tome, čvor **potonuli_brod** ima susjede *ariel* i *elsa* koji nisu međusobno povezani, pa mu je lokalni koeficijent $C = 0$.
+
+Sljedeća skica prikazuje kako čvor Triton ostvaruje visoko klasterirano i zatvoreno lokalno susjedstvo, dok se čvor Potonuli brod nalazi u otvorenom i linearnom odnosu bez lokalnih trokuta:
+
+```text
+  A) Zatvoreno susjedstvo (Triton): C = 1/3 (33.3%)
+         [Triton]
+          /    \
+      family  magic
+        /        \
+       v          v
+   [Ariel] <====> [Ego] (Ostvarena veza zatvara trokut)
+
+  B) Otvoreno susjedstvo (Potonuli Brod): C = 0 (0.0%)
+         [Potonuli Brod]
+          /          \
+       cameo        theory
+        /              \
+       v                v
+   [Ariel]            [Elsa] (Nema izravne veze između susjeda)
+```
+*Figurica 6.8: Usporedba zatvorene lokalne petlje (trokuta) koja stvara otpornost, nasuprot linearne mostovne relacije.*
 
 #### 6.4.2. Globalni koeficijent klasteriranja (Global Clustering Coefficient)
 Globalna mjera koja se temelji na omjeru zatvorenih trokuta naspram svih povezanih trojki (tripleta) u cijelom grafu:
 $$C_{global} = \frac{3 \times \text{broj trokuta}}{\text{broj povezanih tripleta}}$$
+
 - **Nemogućnost izravnog izračuna u klijentskom grafu:** Iako naš interaktivni D3.js program dinamički iscrtava i raspoređuje čvorove te koristi njihove atribute za vizualno grupiranje, točna vrijednost globalnog koeficijenta klasteriranja se **ne izračunava direktno u klijentskom kodu**. Razlog tome je iznimna računalna složenost algoritmizacije trećeg stupnja u JavaScriptu u realnom vremenu (s obzirom na to da je klijentska aplikacija optimizirana za glatko iscrtavanje na 60 FPS unutar preglednika). Umjesto toga, globalna kohezija se aproksimira i rješava rasporedom sila (odbijanje i privlačenje) koje vizualno simuliraju gustoću tih povezanih trokuta na ekranu.
+
+---
 
 ### 6.5. Modularnost (Modularity)
 Modularnost ($Q$) je mjera strukture grafa koja ocjenjuje kvalitetu podjele mreže u klastere (zajednice). Visoka modularnost ukazuje na to da unutar klastera postoji gusta povezanost, dok su veze između različitih klastera rijetke:
 $$Q = \frac{1}{2m} \sum_{i,j} \left[ A_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)$$
-Zajedno sa formulom i objašnjenjem, točna vrijednost modularnosti se ne može u stvarnom vremenu izračunati na klijentu jer takva kalkulacija zahtijeva cjelovit, statički prelazak matrice susjedstva ($A_{ij}$) nakon svakog dodavanja ili brisanja čvorova, što bi uzrokovalo zastajkivanje i pad performansi D3 simulacije u pregledniku. Zbog toga se modularnost u našem radu koristi kao **polazni teorijski okvir** kojim opravdavamo podjelu grafa na prepoznatljive vizualne orbitalne klastere, čime smo olakšali čitljivost i estetski dojam cijelog sučelja.
+
+Točna vrijednost modularnosti se ne može u stvarnom vremenu izračunati na klijentskoj strani jer takva kalkulacija zahtijeva cjelovit, statički prelazak matrice susjedstva ($A_{ij}$) nakon svakog dodavanja ili brisanja čvorova, što bi uzrokovalo zastajkivanje i pad performansi D3 simulacije u pregledniku. Zbog toga se modularnost u našem radu koristi kao **polazni teorijski okvir** kojim opravdavamo podjelu grafa na prepoznatljive vizualne orbitalne klastere, čime smo olakšali čitljivost i estetski dojam cijelog sučelja.
 
 ---
 
