@@ -530,7 +530,9 @@ Kako bismo na jednom mjestu vizualizirali cjelokupnu mrežnu povezanost našeg h
            v                                                                                 v
    +---------------+ <======================(povijesni incident)====================> +--------------------+
    | Potonuli Brod |  (Kritična točka osjetljivosti i spajanja svjetova)            | Mei (Turning Red)  |
-   +---------------+                                       *Figurica 6.11: Arhitektonska karta globalnih tranzitnih putova i mrežnih mostova u svemiru.*
+   +---------------+
+```
+*Figurica 6.11: Arhitektonska karta globalnih tranzitnih putova i mrežnih mostova u svemiru.*
 
 Ova vizualizacija jasno pokazuje da u našoj mreži ne postoje izolirani kutovi. Kroz središnju ulogu **Skrivenog Mickeyja**, koji viri iz pozadine, te kroz lokaciju **Potonulog broda** koji spaja sjeverna kraljevstva, oceanske dubine i prašume Tarzana, svi su svjetovi uvučeni u jedinstvenu topologiju. Glumice poput **Emme Watson** djeluju kao stvarni mrežni prevoditelji: one prevode animirani kanon u igrane adaptacije, te dalje prenose mrežnu energiju u druge pustinjske i ratničke regije (poput Jasmine, Simbe i Mulan), gradeći tako monumentalni i neraskidivi krug moderne kinematografije.
 
